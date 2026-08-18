@@ -566,22 +566,23 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 <a href="https://www.instagram.com/muhammad_aslambik" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2m0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></svg></a>
 </div>
 </div>
-<form onsubmit="event.preventDefault(); alert(document.documentElement.dataset.lang==='id' ? 'Pesan terkirim (demo).' : 'Message sent (demo).');">
+<form id="contact-form">
 <div class="field">
-<label><span data-i18n="en">Name</span><span data-i18n="id">Nama</span></label>
-<input type="text" required>
+<label for="contact-name"><span data-i18n="en">Name</span><span data-i18n="id">Nama</span></label>
+<input id="contact-name" name="name" type="text" autocomplete="name" required>
 </div>
 <div class="field">
-<label>Email</label>
-<input type="email" required>
+<label for="contact-email">Email</label>
+<input id="contact-email" name="email" type="email" autocomplete="email" required>
 </div>
 <div class="field">
-<label><span data-i18n="en">Message</span><span data-i18n="id">Pesan</span></label>
-<textarea required></textarea>
+<label for="contact-message"><span data-i18n="en">Message</span><span data-i18n="id">Pesan</span></label>
+<textarea id="contact-message" name="message" required></textarea>
 </div>
 <button type="submit" class="btn">
 <span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span>
 </button>
+<p id="form-status" role="status" aria-live="polite" style="font-size:13px;color:var(--muted);margin-top:4px;"></p>
 </form>
 </div>
 </div>
@@ -609,6 +610,36 @@ b.addEventListener('click', ()=> setLang(b.dataset.setlang));
 });
 setLang(localStorage.getItem('ma_lang') || 'en');
 
+/* Contact form: open a pre-filled Gmail compose window.
+   This works on static GitHub Pages without a backend. */
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+contactForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const name = document.getElementById('contact-name').value.trim();
+  const email = document.getElementById('contact-email').value.trim();
+  const message = document.getElementById('contact-message').value.trim();
+  const lang = document.documentElement.dataset.lang;
+
+  if (!name || !email || !message) return;
+
+  const subject = `Portfolio Contact — ${name}`;
+  const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+  const gmailUrl =
+    'https://mail.google.com/mail/?view=cm&fs=1' +
+    '&to=' + encodeURIComponent('job.muhammadaslambik@gmail.com') +
+    '&su=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
+
+  formStatus.textContent = lang === 'id'
+    ? 'Membuka Gmail dengan pesan yang sudah disiapkan...'
+    : 'Opening Gmail with your message prepared...';
+
+  window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+});
 
 const menuToggle = document.querySelector('.navmenu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu');
