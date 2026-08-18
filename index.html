@@ -160,7 +160,7 @@ font-family:var(--mono); font-size:12px; color:var(--muted);
 .flow-topbar .live{color:var(--teal); display:flex; align-items:center; gap:6px;}
 .flow-topbar .live .dot{width:6px;height:6px;border-radius:50%;background:var(--teal); animation:pulse 1.8s infinite;}
 .flow-canvas{padding:34px 18px; overflow-x:auto;}
-.flow-canvas svg{width:100%; height:auto; min-width:640px;}
+.flow-canvas svg{width:100%; height:auto; min-width:900px;}
 .flow-node-label{font-family:var(--mono); font-size:11px; fill:var(--muted);}
 .flow-node-title{font-family:var(--display); font-size:13px; font-weight:600; fill:var(--text);}
 
@@ -232,8 +232,9 @@ display:none;
 .project-link{margin-top:40px; display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:13px; color:var(--amber); border-bottom:1px solid var(--amber-dim); padding-bottom:2px;}
 
 /* CONTACT */
-#contact{padding:110px 0; border-top:1px solid var(--border);}
-.contact-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:64px;}
+#contact{padding:90px 0; border-top:1px solid var(--border);}
+.contact-layout{display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:start;}
+.contact-left .sec-sub{margin-bottom:36px;}
 .contact-info a.email{font-family:var(--display); font-size:clamp(15px, 2vw, 18px); color:var(--amber); display:inline-flex; align-items:center; gap:9px; margin-bottom:28px; word-break:break-word;}
 .email-icon{width:19px; height:19px; flex:0 0 19px; color:var(--amber);}
 .social-list{display:flex; flex-direction:row; gap:12px; align-items:center;}
@@ -311,7 +312,7 @@ footer p{font-family:var(--mono); font-size:12px; color:var(--muted-2);}
 .about-grid{grid-template-columns:1fr;}
 .skill-grid{grid-template-columns:1fr;}
 .steps{grid-template-columns:1fr 1fr;}
-.contact-grid{grid-template-columns:1fr; gap:40px;}
+.contact-layout{grid-template-columns:1fr; gap:40px;}
 }
 @media(max-width:520px){
 .steps{grid-template-columns:1fr;}
@@ -324,6 +325,34 @@ nav.wrap{height:64px;}
 @media (prefers-reduced-motion: reduce){
 *{animation:none !important; transition:none !important;}
 }
+
+/* LIVE WORKFLOW ANIMATION */
+.flow-canvas{padding:24px 18px 18px; overflow-x:auto;}
+.flow-canvas svg{width:100%; height:auto; min-width:640px; display:block;}
+.flow-path{fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.flow-path-main{stroke:#5EEAD4;stroke-width:2;opacity:.55;}
+.flow-path-pass{stroke:#FFB454;stroke-width:2;opacity:.55;}
+.flow-path-reject{stroke:#F0876B;stroke-width:2;opacity:.55;}
+.flow-path-glow{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:5;opacity:.10;filter:url(#workflowGlow);}
+.flow-node{transition:stroke .25s ease,filter .25s ease;}
+.flow-node.running{animation:nodePulse 1.8s ease-in-out infinite;}
+.flow-node.output-pass.running{animation-delay:.35s;}
+.flow-node.output-reject.running{animation-delay:.75s;}
+.flow-check{transform-box:fill-box;transform-origin:center;animation:checkPulse 1.8s ease-in-out infinite;}
+.flow-packet{filter:url(#packetGlow);}
+.flow-packet-main{fill:#5EEAD4;}
+.flow-packet-pass{fill:#FFB454;}
+.flow-packet-reject{fill:#F0876B;}
+.flow-packet-trail{fill:none;stroke-width:2;stroke-linecap:round;opacity:.75;stroke-dasharray:2 9;animation:dashFlow .65s linear infinite;}
+.flow-packet-trail.main{stroke:#5EEAD4;}
+.flow-packet-trail.pass{stroke:#FFB454;}
+.flow-packet-trail.reject{stroke:#F0876B;}
+.flow-live-label{animation:liveFlicker 2s ease-in-out infinite;}
+@keyframes nodePulse{0%,100%{filter:none;}50%{filter:url(#nodeGlow);}}
+@keyframes checkPulse{0%,100%{opacity:.72;}50%{opacity:1;}}
+@keyframes dashFlow{to{stroke-dashoffset:-22;}}
+@keyframes liveFlicker{0%,100%{opacity:1;}50%{opacity:.72;}}
+@media(max-width:860px){.flow-canvas{padding:20px 12px 14px;}}
 </style>
 </head>
 <body>
@@ -389,38 +418,146 @@ nav.wrap{height:64px;}
 <div class="flow-card">
 <div class="flow-topbar">
 <span>cv-screening-automation.n8n</span>
-<span class="live"><span class="dot"></span><span data-i18n="en">WORKFLOW LIVE — 4 nodes · running</span><span data-i18n="id">WORKFLOW AKTIF — 4 node · berjalan</span></span>
+<span class="live flow-live-label"><span class="dot"></span><span data-i18n="en">WORKFLOW LIVE — 7 nodes · running</span><span data-i18n="id">WORKFLOW AKTIF — 7 node · berjalan</span></span>
 </div>
 <div class="flow-canvas">
-<svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
-<!-- connecting lines -->
-<path d="M 110 60 H 230" stroke="#5EEAD4" stroke-width="1.5" fill="none"/>
-<path d="M 330 60 H 450" stroke="#5EEAD4" stroke-width="1.5" fill="none"/>
-<path d="M 550 60 C 610 60, 610 60, 650 100" stroke="#FFB454" stroke-width="1.5" fill="none"/>
-<path d="M 550 60 C 610 60, 610 190, 650 200" stroke="#F0876B" stroke-width="1.5" fill="none"/>
-<!-- node 1 -->
-<rect x="10" y="30" width="100" height="60" rx="8" fill="#181C22" stroke="#242931"/>
-<text x="60" y="55" text-anchor="middle" class="flow-node-title">Form</text>
-<text x="60" y="75" text-anchor="middle" class="flow-node-label">submission</text>
-<!-- node 2 -->
-<rect x="230" y="30" width="100" height="60" rx="8" fill="#181C22" stroke="#242931"/>
-<text x="280" y="55" text-anchor="middle" class="flow-node-title">Extract CV</text>
-<text x="280" y="75" text-anchor="middle" class="flow-node-label">drive → parse</text>
-<!-- node 3 -->
-<rect x="450" y="30" width="100" height="60" rx="8" fill="#181C22" stroke="#242931"/>
-<text x="500" y="55" text-anchor="middle" class="flow-node-title">AI Agent</text>
-<text x="500" y="75" text-anchor="middle" class="flow-node-label">scoring + JSON</text>
-<!-- node 4a passed -->
-<rect x="650" y="70" width="120" height="60" rx="8" fill="#181C22" stroke="#FFB454"/>
-<text x="710" y="95" text-anchor="middle" class="flow-node-title" fill="#FFB454">Passed</text>
-<text x="710" y="115" text-anchor="middle" class="flow-node-label">email + sheet</text>
-<!-- node 4b rejected -->
-<rect x="650" y="170" width="120" height="60" rx="8" fill="#181C22" stroke="#F0876B"/>
-<text x="710" y="195" text-anchor="middle" class="flow-node-title" fill="#F0876B">Rejected</text>
-<text x="710" y="215" text-anchor="middle" class="flow-node-label">email + sheet</text>
-<circle cx="60" cy="30" r="3" fill="#5EEAD4"/>
-<circle cx="280" cy="30" r="3" fill="#5EEAD4"/>
-<circle cx="500" cy="30" r="3" fill="#5EEAD4"/>
+<svg viewBox="0 0 1120 210" xmlns="http://www.w3.org/2000/svg" aria-label="Live CV screening workflow">
+<defs>
+  <filter id="workflowGlow" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="2" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="packetGlow" x="-300%" y="-300%" width="600%" height="600%">
+    <feGaussianBlur stdDeviation="3" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+
+  <marker id="arrowMain" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#5EEAD4"/>
+  </marker>
+  <marker id="arrowPass" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#FFB454"/>
+  </marker>
+  <marker id="arrowReject" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#F0876B"/>
+  </marker>
+</defs>
+
+<!-- Main workflow: Form → File Size Validation → Duplicate Check → Extract CV → AI Agent -->
+<path id="path-form-validation" class="flow-path flow-path-main" d="M110 80 H160" marker-end="url(#arrowMain)"/>
+<path id="path-validation-duplicate" class="flow-path flow-path-main" d="M310 80 H360" marker-end="url(#arrowMain)"/>
+<path id="path-duplicate-extract" class="flow-path flow-path-main" d="M510 80 H560" marker-end="url(#arrowMain)"/>
+<path id="path-extract-ai" class="flow-path flow-path-main" d="M710 80 H760" marker-end="url(#arrowMain)"/>
+
+<!-- Branches -->
+<path id="path-pass" class="flow-path flow-path-pass" d="M860 80 C900 80 900 55 940 55" marker-end="url(#arrowPass)"/>
+<path id="path-reject" class="flow-path flow-path-reject" d="M860 80 C900 80 900 125 940 125" marker-end="url(#arrowReject)"/>
+
+<!-- Soft glow behind every active route -->
+<path class="flow-path-glow" stroke="#5EEAD4" d="M110 80 H160"/>
+<path class="flow-path-glow" stroke="#5EEAD4" d="M310 80 H360"/>
+<path class="flow-path-glow" stroke="#5EEAD4" d="M510 80 H560"/>
+<path class="flow-path-glow" stroke="#5EEAD4" d="M710 80 H760"/>
+<path class="flow-path-glow" stroke="#FFB454" d="M860 80 C900 80 900 55 940 55"/>
+<path class="flow-path-glow" stroke="#F0876B" d="M860 80 C900 80 900 125 940 125"/>
+
+<!-- Animated trails make each workflow connection look active -->
+<path class="flow-packet-trail main" d="M110 80 H160"/>
+<path class="flow-packet-trail main" d="M310 80 H360"/>
+<path class="flow-packet-trail main" d="M510 80 H560"/>
+<path class="flow-packet-trail main" d="M710 80 H760"/>
+<path class="flow-packet-trail pass" d="M860 80 C900 80 900 55 940 55"/>
+<path class="flow-packet-trail reject" d="M860 80 C900 80 900 125 940 125"/>
+
+<!-- Moving data packets -->
+<circle class="flow-packet flow-packet-main" r="4">
+  <animateMotion dur="1.1s" repeatCount="indefinite"><mpath href="#path-form-validation"/></animateMotion>
+</circle>
+<circle class="flow-packet flow-packet-main" r="4">
+  <animateMotion dur="1.1s" repeatCount="indefinite" begin="-.55s"><mpath href="#path-form-validation"/></animateMotion>
+</circle>
+
+<circle class="flow-packet flow-packet-main" r="4">
+  <animateMotion dur="1.1s" repeatCount="indefinite" begin="-.2s"><mpath href="#path-validation-duplicate"/></animateMotion>
+</circle>
+<circle class="flow-packet flow-packet-main" r="4">
+  <animateMotion dur="1.1s" repeatCount="indefinite" begin="-.75s"><mpath href="#path-validation-duplicate"/></animateMotion>
+</circle>
+
+<circle class="flow-packet flow-packet-main" r="4">
+  <animateMotion dur="1.1s" repeatCount="indefinite" begin="-.4s"><mpath href="#path-duplicate-extract"/></animateMotion>
+</circle>
+<circle class="flow-packet flow-packet-main" r="4">
+  <animateMotion dur="1.1s" repeatCount="indefinite" begin="-.95s"><mpath href="#path-duplicate-extract"/></animateMotion>
+</circle>
+
+<circle class="flow-packet flow-packet-main" r="4">
+  <animateMotion dur="1.1s" repeatCount="indefinite" begin="-.65s"><mpath href="#path-extract-ai"/></animateMotion>
+</circle>
+<circle class="flow-packet flow-packet-main" r="4">
+  <animateMotion dur="1.1s" repeatCount="indefinite" begin="-.1s"><mpath href="#path-extract-ai"/></animateMotion>
+</circle>
+
+<circle class="flow-packet flow-packet-pass" r="4">
+  <animateMotion dur="1.25s" repeatCount="indefinite" begin="-.35s"><mpath href="#path-pass"/></animateMotion>
+</circle>
+<circle class="flow-packet flow-packet-reject" r="4">
+  <animateMotion dur="1.25s" repeatCount="indefinite" begin="-.9s"><mpath href="#path-reject"/></animateMotion>
+</circle>
+
+<!-- Nodes -->
+<g class="flow-node running">
+  <rect x="10" y="50" width="100" height="60" rx="8" fill="#181C22" stroke="#242931"/>
+  <circle class="flow-check" cx="60" cy="50" r="4" fill="#5EEAD4"/>
+  <text x="60" y="75" text-anchor="middle" class="flow-node-title" data-lang-en="Form" data-lang-id="Form">Form</text>
+  <text x="60" y="95" text-anchor="middle" class="flow-node-label" data-lang-en="submission" data-lang-id="pengiriman">submission</text>
+</g>
+
+<g class="flow-node running">
+  <rect x="160" y="50" width="150" height="60" rx="8" fill="#181C22" stroke="#242931"/>
+  <circle class="flow-check" cx="235" cy="50" r="4" fill="#5EEAD4"/>
+  <text x="235" y="75" text-anchor="middle" class="flow-node-title" data-lang-en="File Size Validation" data-lang-id="Validasi Ukuran File">File Size Validation</text>
+  <text x="235" y="95" text-anchor="middle" class="flow-node-label" data-lang-en="size check" data-lang-id="cek ukuran">size check</text>
+</g>
+
+<g class="flow-node running">
+  <rect x="360" y="50" width="150" height="60" rx="8" fill="#181C22" stroke="#242931"/>
+  <circle class="flow-check" cx="435" cy="50" r="4" fill="#5EEAD4"/>
+  <text x="435" y="75" text-anchor="middle" class="flow-node-title" data-lang-en="Duplicate Check" data-lang-id="Cek Duplikat">Duplicate Check</text>
+  <text x="435" y="95" text-anchor="middle" class="flow-node-label" data-lang-en="existing file?" data-lang-id="file sudah ada?">existing file?</text>
+</g>
+
+<g class="flow-node running">
+  <rect x="560" y="50" width="150" height="60" rx="8" fill="#181C22" stroke="#242931"/>
+  <circle class="flow-check" cx="635" cy="50" r="4" fill="#5EEAD4"/>
+  <text x="635" y="75" text-anchor="middle" class="flow-node-title" data-lang-en="Extract CV" data-lang-id="Ekstrak CV">Extract CV</text>
+  <text x="635" y="95" text-anchor="middle" class="flow-node-label" data-lang-en="drive → parse" data-lang-id="drive → parse">drive → parse</text>
+</g>
+
+<g class="flow-node running">
+  <rect x="760" y="50" width="100" height="60" rx="8" fill="#181C22" stroke="#242931"/>
+  <circle class="flow-check" cx="810" cy="50" r="4" fill="#5EEAD4"/>
+  <text x="810" y="75" text-anchor="middle" class="flow-node-title" data-lang-en="AI Agent" data-lang-id="AI Agent">AI Agent</text>
+  <text x="810" y="95" text-anchor="middle" class="flow-node-label" data-lang-en="scoring + JSON" data-lang-id="penilaian + JSON">scoring + JSON</text>
+</g>
+
+<g class="flow-node output-pass running">
+  <rect x="940" y="25" width="150" height="60" rx="8" fill="#181C22" stroke="#FFB454"/>
+  <circle class="flow-check" cx="1015" cy="25" r="4" fill="#FFB454"/>
+  <text x="1015" y="50" text-anchor="middle" class="flow-node-title" fill="#FFB454" data-lang-en="Passed" data-lang-id="Lolos">Passed</text>
+  <text x="1015" y="70" text-anchor="middle" class="flow-node-label" data-lang-en="email + sheet" data-lang-id="email + sheet">email + sheet</text>
+</g>
+
+<g class="flow-node output-reject running">
+  <rect x="940" y="95" width="150" height="60" rx="8" fill="#181C22" stroke="#F0876B"/>
+  <circle class="flow-check" cx="1015" cy="95" r="4" fill="#F0876B"/>
+  <text x="1015" y="120" text-anchor="middle" class="flow-node-title" fill="#F0876B" data-lang-en="Rejected" data-lang-id="Tidak Lolos">Rejected</text>
+  <text x="1015" y="140" text-anchor="middle" class="flow-node-label" data-lang-en="email + sheet" data-lang-id="email + sheet">email + sheet</text>
+</g>
 </svg>
 </div>
 </div>
@@ -579,6 +716,8 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 <!-- CONTACT -->
 <section id="contact">
 <div class="wrap">
+<div class="contact-layout">
+<div class="contact-left">
 <div class="sec-eyebrow">// <span data-i18n="en">contact</span><span data-i18n="id">kontak</span></div>
 <h2 class="sec-title">
 <span data-i18n="en">Let's Work Together</span>
@@ -588,7 +727,6 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 <span data-i18n="en">Got a process you want to automate? Or want to learn how to do it yourself. Let's talk about your project.</span>
 <span data-i18n="id">Ada proses yang ingin diotomasi? Atau mau belajar cara buatnya sendiri. Mari bicarakan project kamu.</span>
 </p>
-<div class="contact-grid">
 <div class="contact-info">
 <a href="mailto:job.muhammadaslambik@gmail.com" class="email">
 <svg class="email-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5.5A2.5 2.5 0 0 1 5.5 3h13A2.5 2.5 0 0 1 21 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18.5zm2 .2V6l7 5.2L19 6v-.3a.5.5 0 0 0-.5-.5h-13a.5.5 0 0 0-.5.5M19 8.5l-6.4 4.8a1 1 0 0 1-1.2 0L5 8.5v10a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5z"/></svg>
@@ -600,6 +738,7 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 <a href="https://www.instagram.com/muhammad_aslambik" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2m0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></svg></a>
 </div>
 </div>
+</div>
 <div class="contact-form-card">
 <form id="contact-form" action="https://api.staticforms.dev/submit" method="POST">
 <input type="hidden" name="apiKey" value="sf_6b4ccbd6e3f0d3b43ee471de">
@@ -609,15 +748,15 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 <input type="checkbox" name="botcheck" style="display:none">
 <div class="field">
 <label for="contact-name"><span data-i18n="en">Name</span><span data-i18n="id">Nama</span></label>
-<input id="contact-name" name="name" type="text" autocomplete="name" required>
+<input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your Name" data-placeholder-en="Your Name" data-placeholder-id="Nama Anda" required>
 </div>
 <div class="field">
 <label for="contact-email">Email</label>
-<input id="contact-email" name="email" type="email" autocomplete="email" required>
+<input id="contact-email" name="email" type="email" autocomplete="email" placeholder="your@email.com" data-placeholder-en="your@email.com" data-placeholder-id="anda@email.com" required>
 </div>
 <div class="field">
 <label for="contact-message"><span data-i18n="en">Message</span><span data-i18n="id">Pesan</span></label>
-<textarea id="contact-message" name="message" required></textarea>
+<textarea id="contact-message" name="message" placeholder="How can I help you?" data-placeholder-en="How can I help you?" data-placeholder-id="Bagaimana saya bisa membantu Anda?" required></textarea>
 </div>
 <button type="submit" class="btn" id="contact-submit">
 <span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span>
@@ -644,6 +783,16 @@ root.dataset.lang = lang;
 document.querySelectorAll('.lang-toggle button').forEach(b=>{
 b.classList.toggle('active', b.dataset.setlang === lang);
 });
+document.querySelectorAll('[data-placeholder-en][data-placeholder-id]').forEach(field=>{
+  field.placeholder = lang === 'id'
+    ? field.dataset.placeholderId
+    : field.dataset.placeholderEn;
+});
+
+document.querySelectorAll('[data-lang-en][data-lang-id]').forEach(el=>{
+  el.textContent = lang === 'id' ? el.dataset.langId : el.dataset.langEn;
+});
+
 localStorage.setItem('ma_lang', lang);
 }
 document.querySelectorAll('.lang-toggle button').forEach(b=>{
