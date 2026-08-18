@@ -248,15 +248,49 @@ display:none;
 .social-list a:nth-child(3){background:linear-gradient(135deg,#515BD4 0%,#8134AF 30%,#DD2A7B 55%,#F58529 78%,#FEDA77 100%); color:#fff;}
 .social-list .linkedin-icon{fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
 .social-list a:nth-child(3) svg{fill:none; stroke:currentColor; stroke-width:1.8;}
-form{display:flex; flex-direction:column; gap:16px;}
-.field label{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); display:block; margin-bottom:8px;}
-.field input, .field textarea{
-width:100%; background:var(--surface); border:1px solid var(--border); border-radius:8px;
-padding:13px 14px; color:var(--text); font-family:var(--body); font-size:14px;
+/* CONTACT FORM — clearer panel, same dark/amber palette */
+.contact-form-card{
+border:1px solid #303640;
+border-radius:var(--radius);
+background:var(--surface);
+padding:32px;
+box-shadow:0 14px 40px rgba(0,0,0,.22);
 }
-.field input:focus, .field textarea:focus{outline:none; border-color:var(--amber);}
-.field textarea{min-height:110px; resize:vertical;}
-form .btn{align-self:flex-start; margin-top:6px; border-radius:8px; padding:12px 26px;}
+form{display:flex; flex-direction:column; gap:20px;}
+.field label{
+font-family:var(--mono); font-size:11px; text-transform:uppercase;
+letter-spacing:.08em; color:var(--amber); display:block; margin-bottom:9px;
+}
+.field input, .field textarea{
+width:100%;
+background:var(--surface-2);
+border:1px solid #303640;
+border-radius:8px;
+padding:14px 15px;
+color:var(--text);
+font-family:var(--body);
+font-size:14px;
+transition:border-color .2s, box-shadow .2s, background .2s;
+}
+.field input::placeholder, .field textarea::placeholder{color:#68707A;}
+.field input:hover, .field textarea:hover{border-color:#3A424D;}
+.field input:focus, .field textarea:focus{
+outline:none;
+border-color:var(--amber);
+background:#1B2027;
+box-shadow:0 0 0 3px rgba(255,180,84,.10);
+}
+.field textarea{min-height:150px; resize:vertical; line-height:1.6;}
+form .btn{
+align-self:stretch;
+margin-top:2px;
+border-radius:8px;
+padding:13px 26px;
+font-size:13px;
+box-shadow:0 6px 18px rgba(255,180,84,.10);
+}
+form .btn:hover{box-shadow:0 8px 24px rgba(255,180,84,.20);}
+@media(max-width:520px){.contact-form-card{padding:22px 18px;}}
 footer{border-top:1px solid var(--border); padding:32px 0; }
 footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
 footer p{font-family:var(--mono); font-size:12px; color:var(--muted-2);}
@@ -566,6 +600,7 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 <a href="https://www.instagram.com/muhammad_aslambik" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2m0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4zm9.75 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></svg></a>
 </div>
 </div>
+<div class="contact-form-card">
 <form id="contact-form" action="https://api.staticforms.dev/submit" method="POST">
 <input type="hidden" name="apiKey" value="sf_6b4ccbd6e3f0d3b43ee471de">
 <input type="text" name="honeypot" tabindex="-1" autocomplete="off" style="display:none">
@@ -589,6 +624,7 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 </button>
 <p id="contact-status" role="status" aria-live="polite" style="font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px;"></p>
 </form>
+</div>
 </div>
 </div>
 </section>
