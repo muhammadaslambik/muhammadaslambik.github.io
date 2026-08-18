@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" data-lang="id">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,6 +57,7 @@ html[data-lang="en"] [data-i18n="en"]{display:revert;}
 span[data-i18n], strong[data-i18n]{display:none;}
 html[data-lang="id"] span[data-i18n="id"], html[data-lang="id"] strong[data-i18n="id"]{display:inline;}
 html[data-lang="en"] span[data-i18n="en"], html[data-lang="en"] strong[data-i18n="en"]{display:inline;}
+
 /* NAV */
 header{
 position:fixed; top:0; left:0; right:0; z-index:50;
@@ -80,8 +81,18 @@ color:#0B0D10; font-family:var(--mono); font-weight:700; font-size:13px;
 font-family:var(--mono); font-size:13px; color:var(--muted);
 text-transform:uppercase; letter-spacing:.06em;
 transition:color .2s;
+position:relative;
+padding-bottom:4px;
 }
 .navlinks a:hover{color:var(--text);}
+.navlinks a.active{color:var(--amber);}
+.navlinks a.active::after{
+content:"";
+position:absolute; left:0; right:0; bottom:-1px;
+height:2px; border-radius:2px;
+background:var(--amber);
+box-shadow:0 0 8px rgba(255,180,84,.6);
+}
 .navright{display:flex; align-items:center; gap:18px;}
 .status-pill{
 display:flex; align-items:center; gap:7px;
@@ -109,6 +120,7 @@ display:inline-block;
 .btn-ghost{background:none; color:var(--text); border-color:var(--border);}
 .btn-ghost:hover{border-color:var(--amber); box-shadow:none;}
 .navmenu-toggle{display:none; background:none; border:none; color:var(--text); font-size:22px; cursor:pointer;}
+
 /* HERO */
 .hero{padding:168px 0 100px; position:relative;}
 .eyebrow{
@@ -128,6 +140,7 @@ h1.headline .accent{color:var(--amber);}
 font-size:18px; color:var(--muted); max-width:560px; margin-bottom:38px;
 }
 .hero-cta{display:flex; gap:14px; margin-bottom:80px; flex-wrap:wrap;}
+
 /* Workflow diagram signature element */
 .flow-card{
 border:1px solid var(--border); border-radius:var(--radius);
@@ -145,6 +158,7 @@ font-family:var(--mono); font-size:12px; color:var(--muted);
 .flow-canvas svg{width:100%; height:auto; min-width:640px;}
 .flow-node-label{font-family:var(--mono); font-size:11px; fill:var(--muted);}
 .flow-node-title{font-family:var(--display); font-size:13px; font-weight:600; fill:var(--text);}
+
 /* SECTION HEADERS */
 .sec-eyebrow{
 font-family:var(--mono); font-size:12px; color:var(--amber);
@@ -155,6 +169,7 @@ font-family:var(--display); font-weight:600;
 font-size:clamp(26px, 3.6vw, 40px); letter-spacing:-.01em; max-width:640px; margin-bottom:16px;
 }
 .sec-sub{color:var(--muted); max-width:520px; font-size:15px; margin-bottom:56px;}
+
 /* ABOUT */
 #about{padding:110px 0;}
 .about-grid{display:grid; grid-template-columns:1.3fr .9fr; gap:64px; align-items:start;}
@@ -171,6 +186,7 @@ font-size:13px;
 .fact-row .v{font-weight:500; text-align:right;}
 .fact-row .v.status{color:var(--teal); display:flex; align-items:center; gap:6px;}
 .fact-row .v.status .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+
 /* SKILLS */
 #skill{padding:110px 0; border-top:1px solid var(--border);}
 .skill-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
@@ -188,6 +204,7 @@ transition:border-color .2s;
 font-family:var(--mono); font-size:12px; padding:6px 12px;
 border:1px solid var(--border); border-radius:100px; color:var(--muted);
 }
+
 /* PROJECT */
 #project{padding:110px 0; border-top:1px solid var(--border);}
 .project-tags{display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;}
@@ -208,28 +225,15 @@ display:none;
 }
 @media(min-width:900px){ .step:not(:last-child)::after{display:block;} }
 .project-link{margin-top:40px; display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:13px; color:var(--amber); border-bottom:1px solid var(--amber-dim); padding-bottom:2px;}
+
 /* CONTACT */
 #contact{padding:110px 0; border-top:1px solid var(--border);}
 .contact-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:64px;}
 .contact-info a.email{font-family:var(--display); font-size:24px; color:var(--amber); display:inline-block; margin-bottom:28px; word-break:break-all;}
-.social-icons{display:flex; gap:14px;}
-.social-icon{
-width:46px; height:46px; border-radius:10px;
-display:flex; align-items:center; justify-content:center;
-border:1px solid var(--border);
-transition:transform .15s, box-shadow .15s;
-}
-.social-icon svg{width:22px; height:22px;}
-.social-icon:hover{transform:translateY(-3px);}
-.social-icon.gh{background:#fff; border-color:#fff;}
-.social-icon.gh svg{fill:#0B0D10;}
-.social-icon.gh:hover{box-shadow:0 8px 20px rgba(255,255,255,.15);}
-.social-icon.li{background:#0A66C2; border-color:#0A66C2;}
-.social-icon.li svg{fill:#fff;}
-.social-icon.li:hover{box-shadow:0 8px 20px rgba(10,102,194,.35);}
-.social-icon.ig{background:linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5); border-color:transparent;}
-.social-icon.ig svg{fill:#fff;}
-.social-icon.ig:hover{box-shadow:0 8px 20px rgba(214,41,118,.35);}
+.social-list{display:flex; flex-direction:column; gap:12px;}
+.social-list a{font-family:var(--mono); font-size:13px; color:var(--muted); display:flex; align-items:center; gap:10px; transition:color .2s;}
+.social-list a:hover{color:var(--text);}
+.social-list a::before{content:"↗"; color:var(--amber);}
 form{display:flex; flex-direction:column; gap:16px;}
 .field label{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted-2); display:block; margin-bottom:8px;}
 .field input, .field textarea{
@@ -242,6 +246,7 @@ form .btn{align-self:flex-start; margin-top:6px; border-radius:8px; padding:12px
 footer{border-top:1px solid var(--border); padding:32px 0; }
 footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
 footer p{font-family:var(--mono); font-size:12px; color:var(--muted-2);}
+
 @media(max-width:860px){
 .navlinks{display:none;}
 .about-grid{grid-template-columns:1fr;}
@@ -264,10 +269,11 @@ nav.wrap{height:64px;}
 <nav class="wrap">
 <div class="brand"><span class="mark">MA</span> M. Aslambik</div>
 <div class="navlinks">
-<a href="#about"><span data-i18n="en">About</span><span data-i18n="id">Tentang</span></a>
-<a href="#skill"><span data-i18n="en">Skills</span><span data-i18n="id">Skill</span></a>
-<a href="#project">Project</a>
-<a href="#contact"><span data-i18n="en">Contact</span><span data-i18n="id">Kontak</span></a>
+<a href="#home" data-navlink><span data-i18n="en">Home</span><span data-i18n="id">Home</span></a>
+<a href="#about" data-navlink><span data-i18n="en">About</span><span data-i18n="id">Tentang</span></a>
+<a href="#skill" data-navlink><span data-i18n="en">Skills</span><span data-i18n="id">Skill</span></a>
+<a href="#project" data-navlink>Project</a>
+<a href="#contact" data-navlink><span data-i18n="en">Contact</span><span data-i18n="id">Kontak</span></a>
 </div>
 <div class="navright">
 <span class="status-pill"><span class="dot"></span><span data-i18n="en">open for work</span><span data-i18n="id">terbuka untuk project</span></span>
@@ -279,6 +285,7 @@ nav.wrap{height:64px;}
 </div>
 </nav>
 </header>
+
 <main>
 <!-- HERO -->
 <section class="hero" id="home">
@@ -303,22 +310,28 @@ nav.wrap{height:64px;}
 </div>
 <div class="flow-canvas">
 <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+<!-- connecting lines -->
 <path d="M 110 60 H 230" stroke="#5EEAD4" stroke-width="1.5" fill="none"/>
 <path d="M 330 60 H 450" stroke="#5EEAD4" stroke-width="1.5" fill="none"/>
 <path d="M 550 60 C 610 60, 610 60, 650 100" stroke="#FFB454" stroke-width="1.5" fill="none"/>
 <path d="M 550 60 C 610 60, 610 190, 650 200" stroke="#F0876B" stroke-width="1.5" fill="none"/>
+<!-- node 1 -->
 <rect x="10" y="30" width="100" height="60" rx="8" fill="#181C22" stroke="#242931"/>
 <text x="60" y="55" text-anchor="middle" class="flow-node-title">Form</text>
 <text x="60" y="75" text-anchor="middle" class="flow-node-label">submission</text>
+<!-- node 2 -->
 <rect x="230" y="30" width="100" height="60" rx="8" fill="#181C22" stroke="#242931"/>
 <text x="280" y="55" text-anchor="middle" class="flow-node-title">Extract CV</text>
 <text x="280" y="75" text-anchor="middle" class="flow-node-label">drive → parse</text>
+<!-- node 3 -->
 <rect x="450" y="30" width="100" height="60" rx="8" fill="#181C22" stroke="#242931"/>
 <text x="500" y="55" text-anchor="middle" class="flow-node-title">AI Agent</text>
 <text x="500" y="75" text-anchor="middle" class="flow-node-label">scoring + JSON</text>
+<!-- node 4a passed -->
 <rect x="650" y="70" width="120" height="60" rx="8" fill="#181C22" stroke="#FFB454"/>
 <text x="710" y="95" text-anchor="middle" class="flow-node-title" fill="#FFB454">Passed</text>
 <text x="710" y="115" text-anchor="middle" class="flow-node-label">email + sheet</text>
+<!-- node 4b rejected -->
 <rect x="650" y="170" width="120" height="60" rx="8" fill="#181C22" stroke="#F0876B"/>
 <text x="710" y="195" text-anchor="middle" class="flow-node-title" fill="#F0876B">Rejected</text>
 <text x="710" y="215" text-anchor="middle" class="flow-node-label">email + sheet</text>
@@ -330,6 +343,7 @@ nav.wrap{height:64px;}
 </div>
 </div>
 </section>
+
 <!-- ABOUT -->
 <section id="about">
 <div class="wrap">
@@ -340,22 +354,22 @@ nav.wrap{height:64px;}
 </h2>
 <div class="about-grid">
 <div>
-<p data-i18n="en" style="display:block">
-I work at the intersection of <strong data-i18n="en" style="display:inline">automation</strong> and <strong data-i18n="en" style="display:inline">AI</strong> — designing n8n workflows that replace repetitive manual processes: from incoming forms, to document processing, to AI-assisted decisions, without anyone having to handle each step by hand.
+<p data-i18n="en">
+I work at the intersection of <strong data-i18n="en">automation</strong> and <strong data-i18n="en">AI</strong> — designing n8n workflows that replace repetitive manual processes: from incoming forms, to document processing, to AI-assisted decisions, without anyone having to handle each step by hand.
 </p>
-<p data-i18n="id" style="display:block">
-Saya bekerja di titik temu antara <strong data-i18n="id" style="display:inline">otomasi</strong> dan <strong data-i18n="id" style="display:inline">AI</strong> — merancang workflow n8n yang menggantikan proses manual berulang: dari form masuk, dokumen diproses, sampai keputusan dibantu AI Agent, tanpa seseorang harus duduk mengerjakannya satu per satu.
+<p data-i18n="id">
+Saya bekerja di titik temu antara <strong data-i18n="id">otomasi</strong> dan <strong data-i18n="id">AI</strong> — merancang workflow n8n yang menggantikan proses manual berulang: dari form masuk, dokumen diproses, sampai keputusan dibantu AI Agent, tanpa seseorang harus duduk mengerjakannya satu per satu.
 </p>
-<p data-i18n="en" style="display:block">
+<p data-i18n="en">
 My flagship project is an automated CV screening system — from an applicant filling out a form, to their CV being extracted and read, scored by an AI Agent against role criteria, to a result email sent automatically to shortlisted and non-shortlisted candidates alike.
 </p>
-<p data-i18n="id" style="display:block">
+<p data-i18n="id">
 Project andalan saya adalah sistem screening CV otomatis — mulai dari pelamar mengisi form, CV-nya diambil dan dibaca, dinilai oleh AI berdasarkan kriteria posisi, sampai email hasil terkirim otomatis ke kandidat lolos maupun tidak.
 </p>
-<p data-i18n="en" style="display:block">
+<p data-i18n="en">
 Beyond automation, I'm also comfortable on the visual and content side — design in Canva and website management in WordPress — so a project can be handled end-to-end, from the system to what people actually see.
 </p>
-<p data-i18n="id" style="display:block">
+<p data-i18n="id">
 Selain automation, saya juga terbiasa mengerjakan sisi visual dan konten — desain di Canva dan pengelolaan website di WordPress — jadi satu project bisa saya kerjakan dari sistemnya sampai tampilannya.
 </p>
 </div>
@@ -368,6 +382,7 @@ Selain automation, saya juga terbiasa mengerjakan sisi visual dan konten — des
 </div>
 </div>
 </section>
+
 <!-- SKILLS -->
 <section id="skill">
 <div class="wrap">
@@ -413,6 +428,7 @@ Selain automation, saya juga terbiasa mengerjakan sisi visual dan konten — des
 </div>
 </div>
 </section>
+
 <!-- PROJECT -->
 <section id="project">
 <div class="wrap">
@@ -430,10 +446,10 @@ Selain automation, saya juga terbiasa mengerjakan sisi visual dan konten — des
 <span data-i18n="en">A recruiting system that scores CVs and replies on its own</span>
 <span data-i18n="id">Sistem rekrutmen yang menilai CV dan membalasnya sendiri</span>
 </h3>
-<p data-i18n="en" style="display:block">
+<p data-i18n="en">
 A candidate fills out an application form, their CV is automatically read and scored by an AI Agent against role criteria (skills, education, experience), then the system sends a different email to shortlisted and non-shortlisted candidates — with results logged automatically to Google Sheets, and error alerts if any step fails.
 </p>
-<p data-i18n="id" style="display:block">
+<p data-i18n="id">
 Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent berdasarkan kriteria posisi (skill, pendidikan, pengalaman), lalu sistem mengirim email berbeda ke kandidat yang lolos maupun tidak — lengkap dengan pencatatan otomatis ke Google Sheets dan notifikasi error kalau ada langkah yang gagal.
 </p>
 </div>
@@ -471,11 +487,12 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 </p>
 </div>
 </div>
-<a href="https://github.com/muhammadaslambik" target="_blank" class="project-link">
+<a href="https://github.com/aslambik" target="_blank" class="project-link">
 <span data-i18n="en">View on GitHub →</span><span data-i18n="id">Lihat GitHub →</span>
 </a>
 </div>
 </section>
+
 <!-- CONTACT -->
 <section id="contact">
 <div class="wrap">
@@ -490,17 +507,11 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 </p>
 <div class="contact-grid">
 <div class="contact-info">
-<a href="mailto:job.muhammadaslambik@gmail.com" class="email">job.muhammadaslambik@gmail.com</a>
-<div class="social-icons">
-<a href="https://github.com/muhammadaslambik" target="_blank" class="social-icon gh" aria-label="GitHub">
-<svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-</a>
-<a href="https://www.linkedin.com/in/muhammadaslambik" target="_blank" class="social-icon li" aria-label="LinkedIn">
-<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
-</a>
-<a href="https://www.instagram.com/muhammad_aslambik" target="_blank" class="social-icon ig" aria-label="Instagram">
-<svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38A5.86 5.86 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.66.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.66 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.27.07-1.68.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 0 0-1.38-2.13A5.86 5.86 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Zm0 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84Zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.41-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0Z"/></svg>
-</a>
+<a href="mailto:job.aslambik@gmail.com" class="email">job.aslambik@gmail.com</a>
+<div class="social-list">
+<a href="https://github.com/aslambik" target="_blank">github.com/aslambik</a>
+<a href="https://www.linkedin.com/in/aslambik/" target="_blank">linkedin.com/in/aslambik</a>
+<a href="https://www.instagram.com/muhammad_aslambik" target="_blank">instagram.com/muhammad_aslambik</a>
 </div>
 </div>
 <form onsubmit="event.preventDefault(); alert(document.documentElement.dataset.lang==='id' ? 'Pesan terkirim (demo).' : 'Message sent (demo).');">
@@ -524,12 +535,14 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 </div>
 </section>
 </main>
+
 <footer>
 <div class="wrap">
 <p>muhammadaslambik.github.io</p>
 <p><span data-i18n="en">Built with plain HTML — hosted on GitHub Pages.</span><span data-i18n="id">Dibangun dengan HTML murni — hosted di GitHub Pages.</span></p>
 </div>
 </footer>
+
 <script>
 const root = document.documentElement;
 function setLang(lang){
@@ -542,7 +555,39 @@ localStorage.setItem('ma_lang', lang);
 document.querySelectorAll('.lang-toggle button').forEach(b=>{
 b.addEventListener('click', ()=> setLang(b.dataset.setlang));
 });
-setLang(localStorage.getItem('ma_lang') || 'id');
+setLang(localStorage.getItem('ma_lang') || 'en');
+
+/* Active nav link: highlight the link matching the section currently in view */
+const navLinks = Array.from(document.querySelectorAll('.navlinks a[data-navlink]'));
+const sections = navLinks
+.map(link => document.querySelector(link.getAttribute('href')))
+.filter(Boolean);
+
+function setActiveLink(id){
+navLinks.forEach(link=>{
+link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+});
+}
+
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+setActiveLink(entry.target.id);
+}
+});
+}, {
+root:null,
+rootMargin: '-40% 0px -55% 0px',
+threshold: 0
+});
+
+sections.forEach(sec => observer.observe(sec));
+
+/* Set initial active state on load, including hash in URL */
+window.addEventListener('DOMContentLoaded', ()=>{
+const initialId = (location.hash || '#home').replace('#','');
+setActiveLink(initialId);
+});
 </script>
 </body>
 </html>
