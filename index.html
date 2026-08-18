@@ -76,22 +76,22 @@ background:linear-gradient(135deg, var(--amber), var(--red));
 display:flex; align-items:center; justify-content:center;
 color:#0B0D10; font-family:var(--mono); font-weight:700; font-size:13px;
 }
-.navlinks{display:flex; align-items:center; gap:36px;}
+.navlinks{display:flex; align-items:center; gap:8px; position:relative; padding:4px; border-radius:10px;}
 .navlinks a{
 font-family:var(--mono); font-size:13px; color:var(--muted);
 text-transform:uppercase; letter-spacing:.06em;
-transition:color .2s;
-position:relative;
-padding-bottom:4px;
+transition:color .28s ease, transform .28s ease;
+position:relative; z-index:2;
+padding:9px 13px; border-radius:7px;
 }
-.navlinks a:hover{color:var(--text);}
+.navlinks a:hover{color:var(--text); transform:translateY(-1px);}
 .navlinks a.active{color:var(--amber);}
-.navlinks a.active::after{
-content:"";
-position:absolute; left:0; right:0; bottom:-1px;
-height:2px; border-radius:2px;
-background:var(--amber);
-box-shadow:0 0 8px rgba(255,180,84,.6);
+.nav-indicator{
+position:absolute; z-index:1; top:4px; left:4px; height:34px;
+border:1px solid rgba(255,180,84,.18); border-radius:7px;
+background:rgba(255,180,84,.07); box-shadow:0 4px 16px rgba(0,0,0,.16);
+transition:transform .42s cubic-bezier(.22,1,.36,1), width .42s cubic-bezier(.22,1,.36,1), opacity .2s ease;
+pointer-events:none;
 }
 .navright{display:flex; align-items:center; gap:18px;}
 .status-pill{
@@ -268,8 +268,10 @@ footer p{font-family:var(--mono); font-size:12px; color:var(--muted-2);}
 .mobile-menu.is-open{display:block; transform:translateY(0); opacity:1; visibility:visible;}
 .mobile-menu-inner{max-width:1120px; margin:0 auto; display:flex; flex-direction:column; gap:8px;}
 .mobile-menu .navlinks-mobile{display:flex; flex-direction:column; border-bottom:1px solid var(--border); padding-bottom:12px;}
-.mobile-menu a{font-family:var(--mono); font-size:14px; color:var(--muted); padding:13px 4px; text-transform:uppercase; letter-spacing:.06em;}
-.mobile-menu a:hover,.mobile-menu a.active{color:var(--amber);}
+.mobile-menu a{font-family:var(--mono); font-size:14px; color:var(--muted); padding:13px 10px; text-transform:uppercase; letter-spacing:.06em; border-radius:8px; transform:translateY(-8px); opacity:0; transition:color .25s ease, background .25s ease, transform .35s cubic-bezier(.22,1,.36,1), opacity .35s ease;}
+.mobile-menu.is-open a{transform:translateY(0); opacity:1;}
+.mobile-menu.is-open a:nth-child(1){transition-delay:.04s;}.mobile-menu.is-open a:nth-child(2){transition-delay:.08s;}.mobile-menu.is-open a:nth-child(3){transition-delay:.12s;}.mobile-menu.is-open a:nth-child(4){transition-delay:.16s;}.mobile-menu.is-open a:nth-child(5){transition-delay:.20s;}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--amber); background:rgba(255,180,84,.06);}
 .mobile-menu .mobile-controls{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:10px;}
 .mobile-menu .status-pill{display:none;}
 .mobile-menu .btn{width:100%; text-align:center;}
@@ -297,6 +299,7 @@ nav.wrap{height:64px;}
 <nav class="wrap">
 <div class="brand"><span class="mark">MA</span> M. Aslambik</div>
 <div class="navlinks">
+<div class="nav-indicator" aria-hidden="true"></div>
 <a href="#home" data-navlink><span data-i18n="en">Home</span><span data-i18n="id">Home</span></a>
 <a href="#about" data-navlink><span data-i18n="en">About</span><span data-i18n="id">Tentang</span></a>
 <a href="#skill" data-navlink><span data-i18n="en">Skills</span><span data-i18n="id">Skill</span></a>
@@ -629,36 +632,81 @@ window.addEventListener('resize', ()=>{
   if(window.innerWidth > 860) closeMobileMenu();
 });
 
-/* Active nav link: highlight the link matching the section currently in view */
+/* Animated navigation: smooth section transitions + sliding active indicator */
 const navLinks = Array.from(document.querySelectorAll('[data-navlink]'));
-const sections = navLinks
-.map(link => document.querySelector(link.getAttribute('href')))
-.filter(Boolean);
+const sections = [...new Set(navLinks.map(link => link.getAttribute('href')))]
+  .map(hash => document.querySelector(hash))
+  .filter(Boolean);
+const desktopNav = document.querySelector('.navlinks');
+const navIndicator = document.querySelector('.nav-indicator');
+
+function moveNavIndicator(id){
+  if(!navIndicator || !desktopNav) return;
+  const active = desktopNav.querySelector(`[data-navlink][href="#${id}"]`);
+  if(!active){ navIndicator.style.opacity='0'; return; }
+  navIndicator.style.opacity='1';
+  navIndicator.style.width = `${active.offsetWidth}px`;
+  navIndicator.style.transform = `translateX(${active.offsetLeft}px)`;
+}
 
 function setActiveLink(id){
-navLinks.forEach(link=>{
-link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-});
+  navLinks.forEach(link=>{
+    link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+  });
+  moveNavIndicator(id);
 }
 
-const observer = new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-setActiveLink(entry.target.id);
+function smoothScrollTo(target){
+  const header = document.querySelector('header');
+  const headerOffset = header ? header.offsetHeight + 18 : 90;
+  const destination = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - headerOffset);
+  const start = window.pageYOffset;
+  const distance = destination - start;
+  const duration = Math.min(900, Math.max(420, Math.abs(distance) * .55));
+  const startTime = performance.now();
+  const ease = t => 1 - Math.pow(1 - t, 4);
+
+  function step(now){
+    const progress = Math.min(1, (now - startTime) / duration);
+    window.scrollTo(0, start + distance * ease(progress));
+    if(progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
+
+navLinks.forEach(link=>{
+  link.addEventListener('click', event=>{
+    const hash = link.getAttribute('href');
+    const target = document.querySelector(hash);
+    if(!target) return;
+    event.preventDefault();
+    setActiveLink(target.id);
+    closeMobileMenu();
+    history.pushState(null, '', hash);
+    smoothScrollTo(target);
+  });
 });
+
+const observer = new IntersectionObserver((entries)=>{
+  const visible = entries.filter(entry => entry.isIntersecting)
+    .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+  if(visible) setActiveLink(visible.target.id);
 }, {
-root:null,
-rootMargin: '-40% 0px -55% 0px',
-threshold: 0
+  root:null,
+  rootMargin: '-28% 0px -52% 0px',
+  threshold:[0,.1,.25,.5]
 });
 
 sections.forEach(sec => observer.observe(sec));
 
-/* Set initial active state on load, including hash in URL */
 window.addEventListener('DOMContentLoaded', ()=>{
-const initialId = (location.hash || '#home').replace('#','');
-setActiveLink(initialId);
+  const initialId = (location.hash || '#home').replace('#','');
+  setActiveLink(initialId);
+  requestAnimationFrame(()=>moveNavIndicator(initialId));
+});
+window.addEventListener('resize', ()=>{
+  const active = desktopNav?.querySelector('.active');
+  if(active) moveNavIndicator(active.getAttribute('href').replace('#',''));
 });
 </script>
 </body>
