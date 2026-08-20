@@ -307,6 +307,50 @@ border:1px solid var(--border); border-radius:100px; color:var(--muted);
 
 /* PROJECT */
 #project{padding:110px 0; border-top:1px solid var(--border);}
+.featured-projects{margin-bottom:96px;}
+.featured-projects-title{font-family:var(--display);font-size:clamp(30px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin-bottom:42px;}
+.featured-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;}
+.featured-card{display:block;min-width:0;}
+.featured-visual{
+  height:220px;border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  position:relative;background:var(--surface);margin-bottom:18px;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.featured-visual::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,255,255,.035),transparent 38%,rgba(94,234,212,.035));
+}
+.featured-card:hover .featured-visual{
+  transform:translateY(-5px);border-color:rgba(94,234,212,.6);
+  box-shadow:0 18px 42px rgba(0,0,0,.34),0 0 28px rgba(94,234,212,.08);
+}
+.featured-visual svg{display:block;width:100%;height:100%;}
+.featured-visual .gridline{stroke:rgba(94,234,212,.10);stroke-width:1;}
+.featured-visual .mutedline{stroke:#303843;stroke-width:1;}
+.featured-visual .glow{filter:drop-shadow(0 0 7px rgba(94,234,212,.38));}
+.featured-visual .soft{fill:rgba(94,234,212,.08);stroke:rgba(94,234,212,.24);}
+.featured-visual .label{fill:#BFC7CE;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.05em;}
+.featured-visual .title{fill:#F0EDE6;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;}
+.featured-visual .tiny{fill:#7D8791;font-family:'JetBrains Mono',monospace;font-size:7px;}
+.featured-visual.cv{background:
+  radial-gradient(circle at 76% 22%,rgba(94,234,212,.16),transparent 22%),
+  linear-gradient(145deg,#111820,#0D1014 62%,#10191A);
+}
+.featured-visual.docs{background:
+  radial-gradient(circle at 52% 54%,rgba(94,234,212,.16),transparent 28%),
+  linear-gradient(145deg,#11171B,#0C1014 68%,#11191A);
+}
+.featured-visual.chat{background:
+  radial-gradient(circle at 78% 18%,rgba(94,234,212,.17),transparent 18%),
+  radial-gradient(circle at 18% 82%,rgba(94,234,212,.08),transparent 24%),
+  linear-gradient(145deg,#11191D,#0C1014 68%,#101A1B);
+}
+.featured-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.featured-tags .tag{font-size:11px;padding:5px 11px;color:var(--teal);border-color:rgba(94,234,212,.22);background:rgba(94,234,212,.05);}
+.featured-card h3{font-family:var(--display);font-size:23px;line-height:1.25;margin-bottom:9px;}
+.featured-card p{color:var(--muted);font-size:15px;line-height:1.6;}
+.project-detail{padding-top:4px;}
+.project-detail-head{padding-top:10px;border-top:1px solid var(--border);}
 .project-tags{display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;}
 .project-body p{color:var(--muted); font-size:16px; max-width:760px; margin-bottom:36px;}
 .project-shot{
@@ -408,6 +452,9 @@ footer p{font-family:var(--mono); font-size:12px; color:var(--muted-2);}
 .about-grid{grid-template-columns:1fr;}
 .skill-grid{grid-template-columns:1fr;}
 .service-grid{grid-template-columns:1fr;}
+.featured-grid{grid-template-columns:1fr;gap:30px;}
+.featured-visual{height:220px;}
+.featured-projects{margin-bottom:72px;}
 .steps{grid-template-columns:1fr 1fr;}
 .contact-layout{grid-template-columns:1fr; gap:40px;}
 }
@@ -466,6 +513,36 @@ nav.wrap{height:64px;}
   color: #ffffff !important;
   font-weight: 700 !important;
 }
+
+
+/* ===== INTERACTIVE COLORFUL PROJECT LANDING PAGE ===== */
+#project{position:relative;overflow:hidden;background:radial-gradient(circle at 10% 8%,rgba(94,234,212,.06),transparent 25%),radial-gradient(circle at 92% 20%,rgba(139,92,246,.08),transparent 24%);}
+.featured-projects{position:relative;}
+.featured-projects::after{content:"";position:absolute;right:2%;top:10px;width:180px;height:180px;border-radius:50%;background:conic-gradient(from 180deg,rgba(94,234,212,.18),rgba(250,204,21,.13),rgba(236,72,153,.14),rgba(139,92,246,.16),rgba(94,234,212,.18));filter:blur(30px);opacity:.55;pointer-events:none;animation:projectOrb 10s linear infinite;}
+@keyframes projectOrb{to{transform:rotate(360deg)}}
+.featured-card{position:relative;padding:10px;border:1px solid rgba(255,255,255,.06);border-radius:20px;background:linear-gradient(180deg,rgba(19,24,31,.72),rgba(11,15,20,.96));transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;transform-style:preserve-3d;will-change:transform;}
+.featured-card::before{content:"";position:absolute;inset:-1px;border-radius:20px;padding:1px;background:linear-gradient(135deg,transparent 15%,var(--project-accent),transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;pointer-events:none;}
+.featured-card.cv-card{--project-accent:#39e58c}.featured-card.docs-card{--project-accent:#b45cff}.featured-card.chat-card{--project-accent:#37b8ff}
+.featured-card:hover,.featured-card.is-active{border-color:var(--project-accent);box-shadow:0 24px 55px rgba(0,0,0,.36),0 0 30px color-mix(in srgb,var(--project-accent) 17%,transparent);}
+.featured-card:hover .featured-visual,.featured-card.is-active .featured-visual{transform:translateY(-4px) scale(1.012);}
+.featured-visual{height:240px;border-radius:15px;isolation:isolate;}
+.featured-visual::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.72;mix-blend-mode:screen;background:radial-gradient(circle at 15% 15%,rgba(255,255,255,.18),transparent 20%);}
+.featured-visual.cv{background:radial-gradient(circle at 82% 14%,rgba(57,229,140,.42),transparent 28%),radial-gradient(circle at 20% 85%,rgba(0,174,255,.22),transparent 32%),linear-gradient(135deg,#063a43,#10213b 50%,#172112);}
+.featured-visual.docs{background:radial-gradient(circle at 18% 18%,rgba(255,130,34,.45),transparent 28%),radial-gradient(circle at 84% 80%,rgba(180,92,255,.36),transparent 32%),linear-gradient(135deg,#351522,#25104b 58%,#132e48);}
+.featured-visual.chat{background:radial-gradient(circle at 83% 16%,rgba(37,211,102,.38),transparent 24%),radial-gradient(circle at 14% 86%,rgba(0,174,255,.32),transparent 28%),linear-gradient(135deg,#123b44,#12305b 52%,#26204f);}
+.docs .glow{filter:drop-shadow(0 0 9px rgba(180,92,255,.85));}.docs .glow rect{stroke:#d28cff!important;fill:#251642!important}.docs .glow path{stroke:#ffb454!important}.docs .glow circle{stroke:#d28cff!important;fill:#351b55!important}
+.chat .glow{filter:drop-shadow(0 0 10px rgba(55,184,255,.8));}.chat .glow circle{stroke:#37b8ff!important;fill:#14345a!important}.chat .glow path{stroke:#ffd24d!important}
+.featured-visual svg{animation:visualFloat 5s ease-in-out infinite}.docs svg{animation-delay:-1.7s}.chat svg{animation-delay:-3.2s}@keyframes visualFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.featured-tags .tag{transition:transform .25s ease,background .25s ease,border-color .25s ease}.featured-card:hover .featured-tags .tag{transform:translateY(-2px)}
+.featured-card.cv-card .tag{color:#63f0ad;border-color:rgba(57,229,140,.35);background:rgba(57,229,140,.07)}.featured-card.docs-card .tag{color:#d39bff;border-color:rgba(180,92,255,.35);background:rgba(180,92,255,.07)}.featured-card.chat-card .tag{color:#76cfff;border-color:rgba(55,184,255,.35);background:rgba(55,184,255,.07)}
+.project-open{width:100%;margin-top:18px;border:1px solid var(--project-accent);border-radius:12px;padding:11px 14px;background:linear-gradient(90deg,color-mix(in srgb,var(--project-accent) 13%,transparent),transparent);color:var(--text);font-family:var(--mono);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:transform .25s ease,background .25s ease;}
+.project-open:hover{transform:translateX(4px);background:color-mix(in srgb,var(--project-accent) 14%,transparent)}.project-open .arrow{font-size:18px;color:var(--project-accent);transition:transform .25s ease}.project-open:hover .arrow{transform:translateX(4px)}
+.project-live-bar{margin:34px 0 72px;padding:16px 18px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(90deg,rgba(94,234,212,.07),rgba(139,92,246,.05),rgba(255,180,84,.05));display:flex;gap:14px;align-items:center;justify-content:space-between;}
+.project-live-info{display:flex;align-items:center;gap:12px;min-width:0}.project-live-dot{width:10px;height:10px;border-radius:50%;background:var(--live-color,#5EEAD4);box-shadow:0 0 0 0 var(--live-color,#5EEAD4);animation:livePulse 1.8s infinite}@keyframes livePulse{70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.project-live-info strong{display:block;font-family:var(--display);font-size:15px}.project-live-info span{display:block;color:var(--muted);font-size:12px;margin-top:3px}.project-progress{width:min(34vw,260px);height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}.project-progress i{display:block;width:72%;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--live-color,#5EEAD4),#fff);transition:width .5s ease,background .5s ease}
+.reveal-project{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}.reveal-project.show{opacity:1;transform:translateY(0)}
+@media(max-width:860px){.featured-grid{grid-template-columns:1fr}.featured-card{max-width:620px;margin:auto;width:100%}.project-progress{width:100px}}
+@media(prefers-reduced-motion:reduce){.featured-visual svg,.featured-projects::after,.project-live-dot{animation:none!important}.featured-card,.reveal-project{transition:none!important}}
 
 </style>
 </head>
@@ -843,7 +920,110 @@ Selain automation, saya juga terbiasa mengerjakan sisi visual dan konten — des
 <!-- PROJECT -->
 <section id="project">
 <div class="wrap">
-<div class="sec-eyebrow">// project</div>
+<div class="featured-projects">
+<div class="sec-eyebrow">// <span data-i18n="en">projects</span><span data-i18n="id">project</span></div>
+<h2 class="featured-projects-title"><span data-i18n="en">Featured Projects</span><span data-i18n="id">Project Unggulan</span></h2>
+<div class="featured-grid">
+
+<article class="featured-card cv-card reveal-project">
+  <div class="featured-visual cv" aria-hidden="true">
+    <svg viewBox="0 0 420 220" role="presentation">
+      <defs>
+        <linearGradient id="cvPanel" x1="0" x2="1"><stop stop-color="#121B20"/><stop offset="1" stop-color="#0C1115"/></linearGradient>
+        <linearGradient id="cvBar" x1="0" y1="1" x2="0" y2="0"><stop stop-color="#2F7D70"/><stop offset="1" stop-color="#5EEAD4"/></linearGradient>
+      </defs>
+      <path class="gridline" d="M0 180H420M0 140H420M0 100H420M0 60H420M60 0V220M120 0V220M180 0V220M240 0V220M300 0V220M360 0V220"/>
+      <rect x="24" y="26" width="372" height="166" rx="10" fill="url(#cvPanel)" stroke="#2A333C"/>
+      <rect x="24" y="26" width="372" height="28" rx="10" fill="#151E24"/>
+      <circle cx="42" cy="40" r="4" fill="#5EEAD4"/><circle cx="56" cy="40" r="4" fill="#2F7D70"/><circle cx="70" cy="40" r="4" fill="#5B6169"/>
+      <text x="88" y="43" class="tiny">AI RECRUITMENT DASHBOARD</text>
+      <rect x="42" y="70" width="96" height="104" rx="7" class="soft"/>
+      <circle cx="90" cy="96" r="19" fill="rgba(94,234,212,.12)" stroke="#5EEAD4"/>
+      <path d="M90 85v12l9 5" stroke="#5EEAD4" stroke-width="2" fill="none"/>
+      <text x="57" y="132" class="label">CVs PROCESSED</text><text x="57" y="153" class="title">500+</text>
+      <text x="57" y="168" class="tiny">AUTO-SCORING ACTIVE</text>
+      <rect x="156" y="70" width="220" height="104" rx="7" fill="#10161B" stroke="#2A333C"/>
+      <text x="174" y="90" class="label">CANDIDATE SCORE</text>
+      <path d="M174 152V111H190V152H204V94H220V152H234V121H250V152H264V82H280V152H294V104H310V152H324V74H340V152H354V116H370V152" fill="none" stroke="url(#cvBar)" stroke-width="7" stroke-linecap="round" class="glow"/>
+      <path d="M174 158H360" class="mutedline"/>
+      <circle cx="345" cy="86" r="17" fill="#122522" stroke="#5EEAD4"/><path d="m337 86 6 6 11-13" fill="none" stroke="#5EEAD4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="311" y="120" class="tiny">92% MATCH</text>
+    </svg>
+  </div>
+  <div class="featured-tags"><span class="tag">n8n</span><span class="tag">AI</span><span class="tag">Google Sheets</span></div>
+  <h3><span data-i18n="en">AI CV Screening System</span><span data-i18n="id">Sistem Screening CV Berbasis AI</span></h3>
+  <p><span data-i18n="en">Automated screening for 500+ CVs using AI. Saves 90% of recruitment processing time.</span><span data-i18n="id">Screening 500+ CV secara otomatis menggunakan AI. Menghemat hingga 90% waktu proses rekrutmen.</span></p>
+  <button class="project-open" type="button"><span><span data-i18n="en">View CV Screening Details</span><span data-i18n="id">Lihat Detail CV Screening</span></span><span class="arrow">→</span></button>
+</article>
+
+<article class="featured-card docs-card reveal-project">
+  <div class="featured-visual docs" aria-hidden="true">
+    <svg viewBox="0 0 420 220" role="presentation">
+      <path class="gridline" d="M0 170H420M0 130H420M0 90H420M0 50H420M70 0V220M140 0V220M210 0V220M280 0V220M350 0V220"/>
+      <path d="M86 82 210 38l124 44-124 44z" fill="rgba(94,234,212,.05)" stroke="rgba(94,234,212,.28)"/>
+      <path d="M86 82v44l124 44v-44zm248 0v44l-124 44v-44z" fill="rgba(94,234,212,.035)" stroke="rgba(94,234,212,.22)"/>
+      <g class="glow">
+        <rect x="166" y="62" width="88" height="112" rx="7" fill="#121A1E" stroke="#5EEAD4"/>
+        <path d="M184 86h52M184 102h52M184 118h38M184 142h52M184 158h30" stroke="rgba(94,234,212,.58)" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="274" cy="90" r="12" fill="#122522" stroke="#5EEAD4"/><path d="m268 90 4 4 7-8" fill="none" stroke="#5EEAD4" stroke-width="2.4"/>
+        <circle cx="146" cy="126" r="12" fill="#122522" stroke="#5EEAD4"/><path d="m140 126 4 4 7-8" fill="none" stroke="#5EEAD4" stroke-width="2.4"/>
+      </g>
+      <path d="M118 126h18M254 90h8" stroke="#5EEAD4" stroke-dasharray="4 5"/>
+      <rect x="48" y="34" width="104" height="34" rx="17" fill="rgba(94,234,212,.08)" stroke="rgba(94,234,212,.25)"/>
+      <text x="69" y="55" class="label">SORT</text><text x="99" y="55" class="tiny">→ AI</text>
+      <rect x="268" y="150" width="104" height="34" rx="17" fill="rgba(94,234,212,.08)" stroke="rgba(94,234,212,.25)"/>
+      <text x="286" y="171" class="label">SUMMARY</text>
+      <text x="144" y="199" class="tiny">CLASSIFY • EXTRACT • SUMMARIZE</text>
+    </svg>
+  </div>
+  <div class="featured-tags"><span class="tag">n8n</span><span class="tag">AI</span><span class="tag">Google Drive</span></div>
+  <h3><span data-i18n="en">Document Sorting &amp; Summarize</span><span data-i18n="id">Pengurutan &amp; Ringkasan Dokumen</span></h3>
+  <p><span data-i18n="en">Automatically sort, classify, and summarize incoming documents using AI.</span><span data-i18n="id">Mengurutkan, mengklasifikasikan, dan merangkum dokumen masuk secara otomatis menggunakan AI.</span></p>
+  <button class="project-open" type="button"><span><span data-i18n="en">View Document Automation Details</span><span data-i18n="id">Lihat Detail Otomasi Dokumen</span></span><span class="arrow">→</span></button>
+</article>
+
+<article class="featured-card chat-card reveal-project">
+  <div class="featured-visual chat" aria-hidden="true">
+    <svg viewBox="0 0 420 220" role="presentation">
+      <path class="gridline" d="M0 180H420M0 140H420M0 100H420M0 60H420M60 0V220M120 0V220M180 0V220M240 0V220M300 0V220M360 0V220"/>
+      <g transform="rotate(10 210 110)">
+        <rect x="128" y="22" width="164" height="184" rx="20" fill="#0A0F13" stroke="#3A4850" stroke-width="2"/>
+        <rect x="141" y="43" width="138" height="145" rx="12" fill="#11191E"/>
+        <rect x="188" y="30" width="44" height="5" rx="2.5" fill="#303A42"/>
+        <circle cx="210" cy="196" r="4" fill="#303A42"/>
+        <rect x="154" y="62" width="72" height="22" rx="10" fill="rgba(94,234,212,.12)" stroke="rgba(94,234,212,.26)"/>
+        <rect x="177" y="92" width="84" height="24" rx="10" fill="rgba(94,234,212,.18)" stroke="rgba(94,234,212,.38)"/>
+        <rect x="153" y="124" width="98" height="24" rx="10" fill="rgba(94,234,212,.09)" stroke="rgba(94,234,212,.24)"/>
+        <text x="163" y="77" class="tiny">Hello, how can I help?</text>
+        <text x="188" y="108" class="tiny">AI response</text>
+        <text x="163" y="140" class="tiny">Smart &amp; contextual</text>
+      </g>
+      <g class="glow">
+        <circle cx="85" cy="74" r="23" fill="#122522" stroke="#5EEAD4"/>
+        <path d="M76 74h18M85 65v18" stroke="#5EEAD4" stroke-width="3" stroke-linecap="round"/>
+        <path d="M109 82c18 9 27 18 37 32" fill="none" stroke="#5EEAD4" stroke-width="1.5" stroke-dasharray="4 5"/>
+        <circle cx="336" cy="154" r="23" fill="#122522" stroke="#5EEAD4"/>
+        <path d="M326 154h20M336 144v20" stroke="#5EEAD4" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <text x="43" y="121" class="label">MESSAGE</text>
+      <text x="305" y="194" class="label">AI AGENT</text>
+    </svg>
+  </div>
+  <div class="featured-tags"><span class="tag">n8n</span><span class="tag">AI</span><span class="tag">Fonnte</span></div>
+  <h3><span data-i18n="en">WhatsApp AI Chatbot</span><span data-i18n="id">Chatbot AI WhatsApp</span></h3>
+  <p><span data-i18n="en">Auto-reply WhatsApp chatbot integrated with AI for smart, contextual responses.</span><span data-i18n="id">Chatbot WhatsApp auto-reply terintegrasi AI untuk memberikan respons cerdas dan kontekstual.</span></p>
+  <button class="project-open" type="button"><span><span data-i18n="en">View WhatsApp Chatbot Details</span><span data-i18n="id">Lihat Detail Chatbot WhatsApp</span></span><span class="arrow">→</span></button>
+</article>
+
+</div>
+</div>
+<div class="project-live-bar reveal-project" id="project-live-bar" style="--live-color:#39e58c">
+  <div class="project-live-info"><span class="project-live-dot"></span><div><strong id="project-live-title">AI CV Screening System</strong><span id="project-live-text">Automation flow ready • 500+ CV capacity</span></div></div>
+  <div class="project-progress" aria-hidden="true"><i id="project-live-progress"></i></div>
+</div>
+<div class="project-detail" id="cv-screening-details">
+<div class="project-detail-head">
+<div class="sec-eyebrow">// <span data-i18n="en">project detail</span><span data-i18n="id">detail project</span></div>
 <h2 class="sec-title">CV Screening Automation</h2>
 <p class="sec-sub">
 <span data-i18n="en">A complete workflow from CV submission to candidate response — no manual steps in between.</span>
@@ -901,6 +1081,7 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 <a href="https://github.com/muhammadaslambik" target="_blank" class="project-link">
 <span data-i18n="en">View on GitHub →</span><span data-i18n="id">Lihat GitHub →</span>
 </a>
+</div>
 </div>
 </section>
 
@@ -1103,6 +1284,43 @@ window.addEventListener('DOMContentLoaded', ()=>{
 const initialId = (location.hash || '#home').replace('#','');
 setActiveLink(initialId);
 });
+
+/* Interactive Featured Projects */
+const projectCards = Array.from(document.querySelectorAll('.featured-card'));
+const liveBar = document.getElementById('project-live-bar');
+const liveTitle = document.getElementById('project-live-title');
+const liveText = document.getElementById('project-live-text');
+const liveProgress = document.getElementById('project-live-progress');
+const projectData = [
+  {color:'#39e58c',progress:'88%',enTitle:'AI CV Screening System',idTitle:'Sistem Screening CV Berbasis AI',enText:'Automation flow ready • 500+ CV capacity',idText:'Alur otomasi siap • Kapasitas 500+ CV'},
+  {color:'#b45cff',progress:'76%',enTitle:'Document Sorting & Summarize',idTitle:'Pengurutan & Ringkasan Dokumen',enText:'AI classification pipeline • Smart document processing',idText:'Pipeline klasifikasi AI • Pemrosesan dokumen cerdas'},
+  {color:'#37b8ff',progress:'94%',enTitle:'WhatsApp AI Chatbot',idTitle:'Chatbot AI WhatsApp',enText:'Real-time AI replies • Context-aware conversations',idText:'Balasan AI real-time • Percakapan memahami konteks'}
+];
+function activateProject(index,scrollToDetail=false){
+  const data=projectData[index];
+  projectCards.forEach((card,i)=>card.classList.toggle('is-active',i===index));
+  liveBar.style.setProperty('--live-color',data.color);
+  liveTitle.textContent=root.dataset.lang==='id'?data.idTitle:data.enTitle;
+  liveText.textContent=root.dataset.lang==='id'?data.idText:data.enText;
+  liveProgress.style.width=data.progress;
+  liveProgress.style.background=`linear-gradient(90deg,${data.color},#fff)`;
+  if(scrollToDetail) document.querySelector('.project-detail')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+projectCards.forEach((card,index)=>{
+  card.addEventListener('click',event=>activateProject(index,Boolean(event.target.closest('.project-open'))));
+  card.addEventListener('mousemove',event=>{
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const r=card.getBoundingClientRect(),x=(event.clientX-r.left)/r.width-.5,y=(event.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(900px) rotateY(${x*5}deg) rotateX(${y*-5}deg) translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave',()=>card.style.transform='');
+});
+const projectRevealObserver=new IntersectionObserver(entries=>entries.forEach((entry,idx)=>{
+  if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('show'),idx*80);projectRevealObserver.unobserve(entry.target);}
+}),{threshold:.14});
+document.querySelectorAll('.reveal-project').forEach(el=>projectRevealObserver.observe(el));
+activateProject(0);
+
 </script>
 </body>
 </html>
