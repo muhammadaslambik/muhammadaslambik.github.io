@@ -72,10 +72,11 @@ height:72px;
 }
 .brand{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:17px; letter-spacing:.01em;}
 .brand .mark{
-width:34px; height:34px; border-radius:8px;
-background:linear-gradient(135deg, var(--teal), var(--red));
+width:34px; height:34px; border-radius:50%;
+background:var(--teal);
 display:flex; align-items:center; justify-content:center;
 color:#0B0D10; font-family:var(--mono); font-weight:700; font-size:13px;
+border:2px solid rgba(94,234,212,.35);
 }
 .navlinks{
   display:flex;
@@ -268,6 +269,22 @@ font-size:13px;
 /* SKILLS */
 #skill{padding:110px 0; border-top:1px solid var(--border);}
 .skill-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+.service-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
+.service-card{
+border:1px solid var(--border); border-radius:var(--radius); padding:32px;
+background:var(--surface);
+transition:border-color .2s;
+}
+.service-card:hover{border-color:var(--teal-dim);}
+.service-card .icon-box{
+width:44px; height:44px; border-radius:10px;
+background:var(--surface-2); border:1px solid var(--border);
+display:flex; align-items:center; justify-content:center;
+color:var(--teal); margin-bottom:20px;
+}
+.service-card .icon-box svg{width:22px; height:22px;}
+.service-card h3{font-family:var(--display); font-size:20px; margin-bottom:10px;}
+.service-card p{color:var(--muted); font-size:14px;}
 .skill-card{
 border:1px solid var(--border); border-radius:var(--radius); padding:32px;
 background:var(--surface);
@@ -385,6 +402,7 @@ footer p{font-family:var(--mono); font-size:12px; color:var(--muted-2);}
 .mobile-menu .lang-toggle{flex:0 0 auto;}
 .about-grid{grid-template-columns:1fr;}
 .skill-grid{grid-template-columns:1fr;}
+.service-grid{grid-template-columns:1fr;}
 .steps{grid-template-columns:1fr 1fr;}
 .contact-layout{grid-template-columns:1fr; gap:40px;}
 }
@@ -441,6 +459,7 @@ nav.wrap{height:64px;}
 <div class="brand"><span class="mark">MA</span> Muhammad Aslambik</div>
 <div class="navlinks">
 <a href="#home" data-navlink><span data-i18n="en">Home</span><span data-i18n="id">Home</span></a>
+<a href="#services" data-navlink><span data-i18n="en">Services</span><span data-i18n="id">Layanan</span></a>
 <a href="#about" data-navlink><span data-i18n="en">About</span><span data-i18n="id">Tentang</span></a>
 <a href="#skill" data-navlink><span data-i18n="en">Skills</span><span data-i18n="id">Skill</span></a>
 <a href="#project" data-navlink>Project</a>
@@ -462,6 +481,7 @@ nav.wrap{height:64px;}
 <div class="mobile-menu-inner">
 <div class="navlinks-mobile">
 <a href="#home" data-navlink><span data-i18n="en">Home</span><span data-i18n="id">Home</span></a>
+<a href="#services" data-navlink><span data-i18n="en">Services</span><span data-i18n="id">Layanan</span></a>
 <a href="#about" data-navlink><span data-i18n="en">About</span><span data-i18n="id">Tentang</span></a>
 <a href="#skill" data-navlink><span data-i18n="en">Skills</span><span data-i18n="id">Skill</span></a>
 <a href="#project" data-navlink>Project</a>
@@ -648,6 +668,44 @@ nav.wrap{height:64px;}
   <text x="1015" y="140" text-anchor="middle" class="flow-node-label" data-lang-en="email + sheet" data-lang-id="email + sheet">email + sheet</text>
 </g>
 </svg>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+<div class="wrap">
+<div class="sec-eyebrow">// <span data-i18n="en">services</span><span data-i18n="id">layanan</span></div>
+<h2 class="sec-title">
+<span data-i18n="en">What I Do</span>
+<span data-i18n="id">Yang Saya Kerjakan</span>
+</h2>
+<p class="sec-sub">
+<span data-i18n="en">Three ways I can help turn your manual process into an automated one.</span>
+<span data-i18n="id">Tiga cara saya bisa membantu mengubah proses manual kamu jadi otomatis.</span>
+</p>
+<div class="service-grid">
+<div class="service-card">
+<div class="icon-box">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v1a3 3 0 0 0-2 2.83V12a3 3 0 0 0 2 2.83V16a4 4 0 0 0 4 4 4 4 0 0 0 4-4v-1.17A3 3 0 0 0 18 12v-2.17A3 3 0 0 0 16 7V6a4 4 0 0 0-4-4Z"/><path d="M9 9h.01M15 9h.01M9 14h6"/></svg>
+</div>
+<h3><span data-i18n="en">AI Automation Consulting</span><span data-i18n="id">Konsultasi Otomasi AI</span></h3>
+<p><span data-i18n="en">Analyze your business process and design an automation that saves time and cost.</span><span data-i18n="id">Menganalisis proses bisnis kamu dan merancang otomasi yang menghemat waktu dan biaya.</span></p>
+</div>
+<div class="service-card">
+<div class="icon-box">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.3"/><circle cx="19" cy="6" r="2.3"/><circle cx="12" cy="18" r="2.3"/><path d="M7 7.3 10.3 16M17 7.3 13.7 16"/></svg>
+</div>
+<h3>n8n Implementation</h3>
+<p><span data-i18n="en">Build end-to-end workflow automation using n8n, from setup to deployment.</span><span data-i18n="id">Membangun automasi workflow end-to-end menggunakan n8n, dari setup sampai deployment.</span></p>
+</div>
+<div class="service-card">
+<div class="icon-box">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg>
+</div>
+<h3><span data-i18n="en">Private Mentoring</span><span data-i18n="id">Mentoring Privat</span></h3>
+<p><span data-i18n="en">Learn AI automation hands-on using your own real business case.</span><span data-i18n="id">Belajar automasi AI secara langsung menggunakan studi kasus bisnis kamu sendiri.</span></p>
 </div>
 </div>
 </div>
