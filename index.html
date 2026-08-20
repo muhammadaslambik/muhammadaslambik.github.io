@@ -226,37 +226,6 @@ font-size:clamp(26px, 3.6vw, 40px); letter-spacing:-.01em; max-width:640px; marg
 }
 .sec-sub{color:var(--muted); max-width:520px; font-size:15px; margin-bottom:56px;}
 
-/* ABOUT */
-#about{padding:110px 0;}
-.about-grid{display:grid; grid-template-columns:1.3fr .9fr; gap:64px; align-items:start;}
-.about-grid p{color:var(--muted); font-size:16px; margin-bottom:20px;}
-.about-grid strong{color:var(--text); font-weight:600;}
-.about-photo-frame{
-position:relative;
-border:1px solid var(--border); border-radius:var(--radius);
-background:var(--surface);
-overflow:hidden;
-margin:14px 14px 20px;
-}
-.about-photo-topbar{
-display:flex; align-items:center; justify-content:space-between;
-padding:10px 16px; border-bottom:1px solid var(--border);
-font-family:var(--mono); font-size:11px; color:var(--muted);
-}
-.about-photo-topbar .live{color:var(--teal); display:flex; align-items:center; gap:6px;}
-.about-photo-topbar .live .dot{width:6px;height:6px;border-radius:50%;background:var(--teal); animation:pulse 1.8s infinite;}
-.about-photo-frame .photo-wrap{
-padding:24px; display:flex; justify-content:center;
-background:
-radial-gradient(circle at 50% 20%, rgba(255,180,84,.10), transparent 60%),
-var(--surface);
-}
-.about-photo-frame img{
-width:100%; max-width:280px; height:auto;
-display:block;
-filter:drop-shadow(0 12px 28px rgba(0,0,0,.45));
-}
-.facts{border:1px solid var(--border); border-radius:var(--radius); background:var(--surface);}
 .fact-row{
 display:flex; justify-content:space-between; align-items:center;
 padding:18px 20px; border-bottom:1px solid var(--border);
@@ -449,7 +418,6 @@ footer p{font-family:var(--mono); font-size:12px; color:var(--muted-2);}
 .mobile-menu .btn{width:100%; text-align:center; color:#0B0D10; font-weight:600; text-transform:none; letter-spacing:normal; font-size:14px; padding:13px 18px;}
 .mobile-menu .btn:hover{color:#0B0D10;}
 .mobile-menu .lang-toggle{flex:0 0 auto;}
-.about-grid{grid-template-columns:1fr;}
 .skill-grid{grid-template-columns:1fr;}
 .service-grid{grid-template-columns:1fr;}
 .featured-grid{grid-template-columns:1fr;gap:30px;}
@@ -553,7 +521,6 @@ nav.wrap{height:64px;}
 <div class="navlinks">
 <a href="#home" data-navlink><span data-i18n="en">Home</span><span data-i18n="id">Home</span></a>
 <a href="#services" data-navlink><span data-i18n="en">Services</span><span data-i18n="id">Layanan</span></a>
-<a href="#about" data-navlink><span data-i18n="en">About</span><span data-i18n="id">Tentang</span></a>
 <a href="#skill" data-navlink><span data-i18n="en">Skills</span><span data-i18n="id">Skill</span></a>
 <a href="#project" data-navlink>Project</a>
 <a href="#contact" data-navlink><span data-i18n="en">Contact</span><span data-i18n="id">Kontak</span></a>
@@ -575,7 +542,6 @@ nav.wrap{height:64px;}
 <div class="navlinks-mobile">
 <a href="#home" data-navlink><span data-i18n="en">Home</span><span data-i18n="id">Home</span></a>
 <a href="#services" data-navlink><span data-i18n="en">Services</span><span data-i18n="id">Layanan</span></a>
-<a href="#about" data-navlink><span data-i18n="en">About</span><span data-i18n="id">Tentang</span></a>
 <a href="#skill" data-navlink><span data-i18n="en">Skills</span><span data-i18n="id">Skill</span></a>
 <a href="#project" data-navlink>Project</a>
 <a href="#contact" data-navlink><span data-i18n="en">Contact</span><span data-i18n="id">Kontak</span></a>
@@ -606,13 +572,7 @@ nav.wrap{height:64px;}
 <span data-i18n="id">Nama saya Muhammad Aslambik, saya siap membantu merancang otomatisasi pekerjaan Anda dengan menggunakan kecerdasan buatan (AI) agar pekerjaan Anda menjadi lebih murah, cepat, mudah, dan efisien.</span>
 </p>
 <p class="lede hero-description">
-<span data-i18n="en">
-  I work at the intersection of <strong>automation</strong> and <strong>AI</strong> —
-  designing <strong>workflows</strong> that run <strong>automatically</strong> using
-  <strong>n8n</strong> to
-  <strong class="hero-highlight">replace the repetitive manual work processes</strong>
-  <strong class="hero-highlight">you currently perform.</strong>
-</span>
+<span data-i18n="en">I work at the intersection of <strong>automation</strong> and <strong>AI</strong> — designing <strong>workflows</strong> that run <strong>automatically</strong> using <strong>n8n</strong> to <strong class="hero-highlight">replace the repetitive manual work processes</strong> you currently perform.</span>
 <span data-i18n="id">Saya bekerja di titik temu antara <strong>otomasi</strong> dan <strong>AI</strong> — merancang <strong>alur kerja</strong> yang berjalan <strong>otomatis</strong> menggunakan <strong>n8n</strong> untuk <strong class="hero-manual-highlight"><strong class="hero-highlight">menggantikan proses kerja manual berulang</strong> yang Anda lakukan.</span>
 </p>
 <div class="hero-cta">
@@ -833,45 +793,6 @@ nav.wrap{height:64px;}
 </div>
 <h3><span data-i18n="en">Private Mentoring</span><span data-i18n="id">Mentoring Privat</span></h3>
 <p><span data-i18n="en">Learn AI automation hands-on using your own real business case.</span><span data-i18n="id">Belajar automasi AI secara langsung menggunakan studi kasus bisnis kamu sendiri.</span></p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-<div class="wrap">
-<div class="sec-eyebrow">// <span data-i18n="en">about</span><span data-i18n="id">tentang</span></div>
-<h2 class="sec-title">
-<span data-i18n="en">From writing stories, to writing workflows.</span>
-<span data-i18n="id">Dari menulis cerita, ke menulis alur kerja.</span>
-</h2>
-<div class="about-grid">
-<div>
-<p data-i18n="en">
-I work at the intersection of <strong data-i18n="en">automation</strong> and <strong data-i18n="en">AI</strong> — designing n8n workflows that replace repetitive manual processes: from incoming forms, to document processing, to AI-assisted decisions, without anyone having to handle each step by hand.
-</p>
-<p data-i18n="id">
-Saya bekerja di titik temu antara <strong data-i18n="id">otomasi</strong> dan <strong data-i18n="id">AI</strong> — merancang <strong>workflow n8n</strong> yang menggantikan proses manual berulang: dari form masuk, dokumen diproses, sampai keputusan dibantu AI Agent, tanpa seseorang harus duduk mengerjakannya satu per satu.
-</p>
-<p data-i18n="en">
-My flagship project is an automated CV screening system — from an applicant filling out a form, to their CV being extracted and read, scored by an AI Agent against role criteria, to a result email sent automatically to shortlisted and non-shortlisted candidates alike.
-</p>
-<p data-i18n="id">
-Project andalan saya adalah sistem screening CV otomatis — mulai dari pelamar mengisi form, CV-nya diambil dan dibaca, dinilai oleh AI berdasarkan kriteria posisi, sampai email hasil terkirim otomatis ke kandidat lolos maupun tidak.
-</p>
-<p data-i18n="en">
-Beyond automation, I'm also comfortable on the visual and content side — design in Canva and website management in WordPress — so a project can be handled end-to-end, from the system to what people actually see.
-</p>
-<p data-i18n="id">
-Selain automation, saya juga terbiasa mengerjakan sisi visual dan konten — desain di Canva dan pengelolaan website di WordPress — jadi satu project bisa saya kerjakan dari sistemnya sampai tampilannya.
-</p>
-</div>
-<div class="facts">
-<div class="fact-row"><span class="k">Base</span><span class="v" data-i18n="en">Indonesia (remote)</span><span class="v" data-i18n="id">Indonesia (remote)</span></div>
-<div class="fact-row"><span class="k"><span data-i18n="en">Focus</span><span data-i18n="id">Fokus</span></span><span class="v">Workflow Automation &amp; AI Agent</span></div>
-<div class="fact-row"><span class="k"><span data-i18n="en">Main Tool</span><span data-i18n="id">Tool Utama</span></span><span class="v">n8n</span></div>
-<div class="fact-row"><span class="k">Status</span><span class="v status"><span class="dot"></span><span data-i18n="en">Open for new projects</span><span data-i18n="id">Terbuka untuk project</span></span></div>
 </div>
 </div>
 </div>
