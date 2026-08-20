@@ -116,6 +116,18 @@ padding:6px 12px; border-radius:100px;
 }
 .status-pill .dot{width:6px; height:6px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal); animation:pulse 1.8s infinite;}
 @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.35;}}
+@keyframes waveBounce{
+0%, 100%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+}
+.wave-letter{
+display:inline-block;
+animation:waveBounce 1.8s ease-in-out infinite;
+}
+.wave-letter.is-space{width:.32em;}
+@media (prefers-reduced-motion: reduce){
+.wave-letter{animation:none;}
+}
 .lang-toggle{
 display:flex; font-family:var(--mono); font-size:12px; border:1px solid var(--border); border-radius:100px; overflow:hidden;
 }
@@ -437,7 +449,7 @@ nav.wrap{height:64px;}
 <a href="#contact" data-navlink><span data-i18n="en">Contact</span><span data-i18n="id">Kontak</span></a>
 </div>
 <div class="navright">
-<span class="status-pill"><span class="dot"></span><span data-i18n="en">open for work</span><span data-i18n="id">terbuka untuk project</span></span>
+<span class="status-pill"><span class="dot"></span><span data-i18n="en">Open</span><span data-i18n="id">Open</span></span>
 <div class="lang-toggle">
 <button type="button" data-setlang="en">EN</button>
 <button type="button" data-setlang="id">ID</button>
@@ -878,6 +890,25 @@ document.querySelectorAll('.lang-toggle button').forEach(b=>{
 b.addEventListener('click', ()=> setLang(b.dataset.setlang));
 });
 setLang(localStorage.getItem('ma_lang') || 'en');
+
+/* Wave (timbul-tenggelam) letter animation for the headline accent text */
+document.querySelectorAll('h1.headline .accent').forEach(el=>{
+const text = el.textContent;
+el.textContent = '';
+let letterIndex = 0;
+Array.from(text).forEach(ch=>{
+const span = document.createElement('span');
+span.textContent = ch;
+if(ch === ' ' || ch === '\u00A0'){
+span.className = 'wave-letter is-space';
+} else {
+span.className = 'wave-letter';
+span.style.animationDelay = (letterIndex * 0.07) + 's';
+letterIndex++;
+}
+el.appendChild(span);
+});
+});
 
 
 const menuToggle = document.querySelector('.navmenu-toggle');
