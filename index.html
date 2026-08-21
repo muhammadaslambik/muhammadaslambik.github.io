@@ -2063,12 +2063,6 @@ function activateProject(index,scrollToDetail=false){
 }
 projectCards.forEach((card,index)=>{
   card.addEventListener('click',event=>activateProject(index,Boolean(event.target.closest('.project-open'))));
-  card.addEventListener('mousemove',event=>{
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    const r=card.getBoundingClientRect(),x=(event.clientX-r.left)/r.width-.5,y=(event.clientY-r.top)/r.height-.5;
-    card.style.transform=`perspective(900px) rotateY(${x*5}deg) rotateX(${y*-5}deg) translateY(-6px)`;
-  });
-  card.addEventListener('mouseleave',()=>card.style.transform='');
 });
 const projectRevealObserver=new IntersectionObserver(entries=>entries.forEach((entry,idx)=>{
   if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('show'),idx*80);projectRevealObserver.unobserve(entry.target);}
