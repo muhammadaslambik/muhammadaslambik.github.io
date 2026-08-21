@@ -738,18 +738,21 @@ animation:skillTagIn .65s both;
 .featured-projects{margin-bottom:96px;}
 .featured-projects-title{font-family:var(--display);font-size:clamp(30px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin-bottom:22px;}
 .featured-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;}
-.cta-card{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;position:relative;overflow:hidden;transition:transform .4s ease,box-shadow .4s ease,border-color .4s ease;}
-.cta-card::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;background:linear-gradient(120deg,rgba(94,234,212,0) 0%,rgba(94,234,212,.7) 50%,rgba(94,234,212,0) 100%);background-size:220% 220%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ctaSheen 5s ease-in-out infinite;pointer-events:none;}
-.cta-card::after{content:"";position:absolute;right:-40px;top:50%;width:160px;height:160px;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle,rgba(94,234,212,.16),transparent 70%);filter:blur(20px);pointer-events:none;animation:ctaPulse 4s ease-in-out infinite;}
-.cta-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(94,234,212,.12);}
-@keyframes ctaSheen{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.cta-card{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;position:relative;overflow:hidden;transition:transform .4s ease,box-shadow .4s ease;}
+.cta-card::before{content:"";position:absolute;inset:0;border-radius:20px;padding:2px;background:conic-gradient(from 0deg,#5EEAD4,#FACC15,#EC4899,#8B5CF6,#5EEAD4);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ctaBorderSpin 6s linear infinite;pointer-events:none;}
+.cta-card::after{content:"";position:absolute;right:-40px;top:50%;width:160px;height:160px;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle,rgba(94,234,212,.2),transparent 70%);filter:blur(20px);pointer-events:none;animation:ctaPulse 4s ease-in-out infinite;}
+.cta-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(94,234,212,.16);}
+.cta-icon{position:relative;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;margin-bottom:10px;background:conic-gradient(from 0deg,#5EEAD4,#FACC15,#EC4899,#8B5CF6,#5EEAD4);animation:ctaBorderSpin 6s linear infinite;}
+.cta-icon span{position:absolute;inset:2px;border-radius:50%;background:#0F1418;display:flex;align-items:center;justify-content:center;font-size:15px;animation:ctaIconPulse 2.4s ease-in-out infinite;}
+@keyframes ctaBorderSpin{to{transform:rotate(360deg);}}
 @keyframes ctaPulse{0%,100%{opacity:.6;transform:translateY(-50%) scale(1);}50%{opacity:1;transform:translateY(-50%) scale(1.15);}}
+@keyframes ctaIconPulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 2px rgba(94,234,212,.5));}50%{transform:scale(1.15);filter:drop-shadow(0 0 8px rgba(94,234,212,.9));}}
 .cta-card h3{margin-bottom:6px;}
 .cta-card p{margin-bottom:0;max-width:520px;}
 .cta-card .btn{margin-left:auto;}
 .cta-card .btn:hover{transform:none;}
 @media(max-width:640px){.cta-card{flex-direction:column;align-items:flex-start;}.cta-card .btn{margin-left:0;}}
-@media(prefers-reduced-motion:reduce){.cta-card::before,.cta-card::after{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.cta-card::before,.cta-card::after,.cta-icon,.cta-icon span{animation:none!important}}
 .featured-card{display:block;min-width:0;}
 .featured-visual{
   height:220px;border:1px solid var(--border);border-radius:14px;overflow:hidden;
@@ -1531,9 +1534,12 @@ nav.wrap{height:64px;}
 </article>
 
 <article class="featured-card cta-card reveal-project">
-  <div class="featured-tags"><span class="tag">Custom</span></div>
-  <h3><span data-i18n="en">Submit Your Project According to Your Needs</span><span data-i18n="id">Sampaikan Proyek Sesuai Kebutuhan Anda</span></h3>
-  <p><span data-i18n="en">Have a different project in mind? Let's discuss it and find the right automation solution together.</span><span data-i18n="id">Punya proyek lain yang ingin dikerjakan? Mari diskusikan dan temukan solusi otomatisasi yang tepat.</span></p>
+  <div class="cta-card-text">
+    <div class="cta-icon"><span>✦</span></div>
+    <div class="featured-tags"><span class="tag">Custom</span></div>
+    <h3><span data-i18n="en">Submit Your Project According to Your Needs</span><span data-i18n="id">Sampaikan Proyek Sesuai Kebutuhan Anda</span></h3>
+    <p><span data-i18n="en">Have a different project in mind? Let's discuss it and find the right automation solution together.</span><span data-i18n="id">Punya proyek lain yang ingin dikerjakan? Mari diskusikan dan temukan solusi otomatisasi yang tepat.</span></p>
+  </div>
   <button type="button" class="btn service-open-btn" data-service="custom"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
 </article>
 
