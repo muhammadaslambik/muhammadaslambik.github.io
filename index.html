@@ -1305,18 +1305,20 @@ window.addEventListener('resize', ()=>{
   if(window.innerWidth > 860) closeMobileMenu();
 });
 
-/* Contact form: service selector language + send directly from the website via Static Forms (AJAX) */
-const contactService = document.getElementById('contact-service');
-const contactServiceOptions = document.querySelectorAll('.contact-service-option');
 
+/* Contact service selector language */
 function updateContactServiceOptions(lang){
-  if(!contactService) return;
-  const placeholder = contactService.querySelector('option[value=""]');
+  const select = document.getElementById('contact-service');
+  if(!select) return;
+
+  const language = lang === 'id' ? 'id' : 'en';
+  const placeholder = select.querySelector('option[value=""]');
   if(placeholder){
-    placeholder.textContent = placeholder.dataset[lang === 'id' ? 'id' : 'en'];
+    placeholder.textContent = placeholder.dataset[language];
   }
-  contactServiceOptions.forEach(option=>{
-    option.textContent = option.dataset[lang === 'id' ? 'id' : 'en'];
+
+  select.querySelectorAll('.contact-service-option').forEach(option=>{
+    option.textContent = option.dataset[language];
   });
 }
 
