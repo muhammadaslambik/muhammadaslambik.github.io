@@ -304,37 +304,11 @@ animation:skillTagIn .65s both;
 .tag img[alt="Canva logo"]{width:34px;height:34px;flex-basis:34px;padding:3px;background:#fff;}
 .tag img[alt="Fonnte logo"]{width:76px;height:30px;flex-basis:76px;padding:3px 6px;background:#fff;border-radius:6px;}
 .tag:has(img[alt="n8n logo"]),.tag:has(img[alt="Canva logo"]),.tag:has(img[alt="Fonnte logo"]){padding:6px 11px;}
-.tag .canva-fallback{background:linear-gradient(135deg,#00C4CC,#2D8CFF,#7B2FF7)!important;color:#fff!important;font-family:var(--display)!important;font-size:10px!important;}
-.skill-logo-fallback{width:28px;height:28px;display:grid;place-items:center;font-size:10px;font-weight:800;border-radius:8px;background:linear-gradient(135deg,rgba(94,234,212,.18),rgba(167,139,250,.18));color:var(--text);border:1px solid rgba(255,255,255,.08);}
+.tag .skill-logo-fallback{width:28px;height:28px;display:grid;place-items:center;font-size:10px;font-weight:800;border-radius:8px;background:linear-gradient(135deg,rgba(94,234,212,.18),rgba(167,139,250,.18));color:var(--text);border:1px solid rgba(255,255,255,.08);}
 @keyframes skillSheen{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 @keyframes skillTagIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media (prefers-reduced-motion:reduce){.skill-card::before,.tag{animation:none!important}.skill-card,.tag{transition:none}}
 
-
-
-/* PREMIUM SKILLS V2 */
-.skill-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:stretch;}
-.skill-card{padding:34px;min-height:430px;border-radius:24px;background:radial-gradient(circle at 90% 5%,rgba(94,234,212,.11),transparent 30%),radial-gradient(circle at 5% 95%,rgba(167,139,250,.10),transparent 28%),linear-gradient(145deg,#151922,#0f1217);border:1px solid rgba(255,255,255,.09);box-shadow:0 22px 60px rgba(0,0,0,.22);}
-.skill-card::after{content:"";position:absolute;inset:1px;border-radius:23px;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.08),transparent 24%,transparent 72%,rgba(255,255,255,.04));opacity:.7;}
-.skill-card .num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:28px;border-radius:999px;background:rgba(94,234,212,.08);border:1px solid rgba(94,234,212,.22);color:var(--teal);margin-bottom:20px;}
-.skill-card h3{font-size:26px;letter-spacing:-.02em;margin-bottom:9px;}
-.skill-card p{max-width:520px;line-height:1.7;margin-bottom:28px;}
-.tag-list{gap:12px;align-items:stretch;}
-.tag{min-height:62px;flex:1 1 155px;justify-content:flex-start;padding:10px 13px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.01em;color:#d9dde3;overflow:hidden;}
-.tag::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tag-color,#5EEAD4);opacity:.8;}
-.logo-frame{width:40px;height:40px;flex:0 0 40px;border-radius:12px;display:grid;place-items:center;background:#fff;border:1px solid rgba(255,255,255,.15);box-shadow:0 7px 18px rgba(0,0,0,.22);transition:transform .3s ease,box-shadow .3s ease;overflow:hidden;}
-.logo-frame img{width:27px;height:27px;object-fit:contain;max-width:none;}
-.tag:hover .logo-frame{transform:translateY(-2px) rotate(-3deg) scale(1.08);box-shadow:0 10px 25px rgba(0,0,0,.3);}
-.tag:hover{transform:translateY(-5px);background:rgba(255,255,255,.06);border-color:color-mix(in srgb,var(--tag-color,#5EEAD4) 55%,transparent);box-shadow:0 16px 30px rgba(0,0,0,.25),0 0 24px color-mix(in srgb,var(--tag-color,#5EEAD4) 12%,transparent);}
-.tag-n8n{--tag-color:#EA4B71}.tag-ai{--tag-color:#A78BFA}.tag-sheets{--tag-color:#34A853}.tag-drive{--tag-color:#4285F4}.tag-gmail{--tag-color:#EA4335}.tag-workspace{--tag-color:#4285F4}.tag-gemini{--tag-color:#8E75B2}.tag-claude{--tag-color:#D97757}.tag-deepseek{--tag-color:#4D6BFE}.tag-tailscale{--tag-color:#FFFFFF}.tag-youtube{--tag-color:#FF0000}.tag-fonnte{--tag-color:#20B7A5}.tag-whatsapp{--tag-color:#25D366}.tag-telegram{--tag-color:#2AABEE}.tag-docker{--tag-color:#2496ED}.tag-canva{--tag-color:#7B61FF}.tag-wordpress{--tag-color:#21759B}.tag-structured{--tag-color:#F59E0B}.tag-error{--tag-color:#F0876B}
-.tag-n8n .logo-frame{background:#fff}.tag-n8n .logo-frame img{width:32px;height:32px;}
-.canva-frame{background:linear-gradient(135deg,#00C4CC 0%,#2D8CFF 48%,#7B2FF7 100%);padding:3px;}
-.canva-frame img{width:36px;height:36px;object-fit:contain;border-radius:9px;background:#fff;padding:2px;}
-.fonnte-frame{background:linear-gradient(135deg,#0ea5a5,#22c55e);color:#fff;}
-.fonnte-mark{font-family:var(--display);font-weight:800;font-size:22px;line-height:1;}
-.logo-ai,.logo-code,.logo-error{background:linear-gradient(135deg,rgba(167,139,250,.25),rgba(94,234,212,.18));color:#fff;font-weight:800;font-family:var(--mono);}
-.logo-error{background:linear-gradient(135deg,rgba(240,135,107,.25),rgba(255,180,84,.18));}
-@media(max-width:760px){.skill-grid{grid-template-columns:1fr;}.skill-card{min-height:auto;padding:26px}.tag{flex-basis:145px;}}
 
 /* PROJECT */
 #project{padding:110px 0; border-top:1px solid var(--border);}
@@ -965,26 +939,25 @@ nav.wrap{height:64px;}
 <span data-i18n="en">Designing and running end-to-end automated systems.</span>
 <span data-i18n="id">Merancang dan menjalankan sistem otomatis end-to-end.</span>
 </p>
-<div class="tag-list skill-orbit" aria-label="Tools and platforms">
-<span class="tag tag-n8n"><span class="logo-frame"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo" title="n8n"></span><span>n8n</span></span>
-<span class="tag tag-ai"><span class="logo-frame logo-ai">AI</span><span>AI Agent / LLM</span></span>
-<span class="tag tag-sheets"><span class="logo-frame"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo"></span><span>Google Sheets</span></span>
-<span class="tag tag-drive"><span class="logo-frame"><img src="https://cdn.simpleicons.org/googledrive/4285F4" alt="Google Drive logo"></span><span>Google Drive</span></span>
-<span class="tag tag-gmail"><span class="logo-frame"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo"></span><span>Gmail</span></span>
-<span class="tag tag-workspace"><span class="logo-frame"><img src="https://cdn.simpleicons.org/google/4285F4" alt="Google Workspace logo"></span><span>Google Workspace</span></span>
-<span class="tag tag-gemini"><span class="logo-frame"><img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="Google Gemini logo"></span><span>Gemini AI</span></span>
-<span class="tag tag-claude"><span class="logo-frame"><img src="https://cdn.simpleicons.org/anthropic/D97757" alt="Claude logo"></span><span>Claude AI</span></span>
-<span class="tag tag-deepseek"><span class="logo-frame"><img src="https://cdn.simpleicons.org/deepseek/4D6BFE" alt="DeepSeek logo"></span><span>DeepSeek</span></span>
-<span class="tag tag-tailscale"><span class="logo-frame"><img src="https://cdn.simpleicons.org/tailscale/FFFFFF" alt="Tailscale logo"></span><span>Tailscale</span></span>
-<span class="tag tag-youtube"><span class="logo-frame"><img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube logo"></span><span>YouTube API</span></span>
-<span class="tag tag-fonnte"><span class="logo-frame fonnte-frame"><span class="fonnte-mark">F</span></span><span>Fonnte</span></span>
-<span class="tag tag-whatsapp"><span class="logo-frame"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo"></span><span>WhatsApp</span></span>
-<span class="tag tag-telegram"><span class="logo-frame"><img src="https://cdn.simpleicons.org/telegram/2AABEE" alt="Telegram logo"></span><span>Telegram</span></span>
-<span class="tag tag-docker"><span class="logo-frame"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker logo"></span><span>Docker</span></span>
-<span class="tag tag-canva"><span class="logo-frame canva-frame"><img src="https://zonalogo.com/api/asset-preview?preset=hero&amp;size=500&amp;theme=dark&amp;url=https%3A%2F%2Fassets.zonalogo.com%2Ftechnology%2Fcanva.com%2Fwordmark-1777177967961-350.svg&amp;v=v3" alt="Canva logo" title="Canva"></span><span>Canva</span></span>
-<span class="tag tag-wordpress"><span class="logo-frame"><img src="https://cdn.simpleicons.org/wordpress/21759B" alt="WordPress logo"></span><span>WordPress</span></span>
-<span class="tag tag-structured"><span class="logo-frame logo-code">{ }</span><span>Structured Output</span></span>
-<span class="tag tag-error"><span class="logo-frame logo-error">!</span><span>Error Handling</span></span>
+<div class="tag-list">
+<span class="tag"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo" title="n8n">n8n</span>
+<span class="tag"><span class="skill-logo-fallback">AI</span>AI Agent / LLM</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo">Google Sheets API</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googledrive/4285F4" alt="Google Drive logo">Google Drive API</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo">Gmail API</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/google/4285F4" alt="Google logo">Google Workspace</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="Google Gemini logo">Google Gemini AI</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/anthropic/D97757" alt="Anthropic logo">Claude AI</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/deepseek/4D6BFE" alt="DeepSeek logo">DeepSeek</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/tailscale/4C9EEB" alt="Tailscale logo">Tailscale</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube logo">YouTube API</span>
+<span class="tag"><img src="https://fonnte.com/wp-content/uploads/2023/03/Logo-Fonnte-1536x368.png" alt="Fonnte logo" title="Fonnte">Fonnte</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo">WhatsApp</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo">Telegram</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker logo">Docker</span>
+<span class="tag"><span class="skill-logo-fallback">SO</span>Structured Output</span>
+<span class="tag"><span class="skill-logo-fallback">EH</span>Error Handling</span>
+<span class="tag"><span class="skill-logo-fallback">+</span>Other Tools</span>
 </div>
 </div>
 <div class="skill-card">
@@ -994,9 +967,9 @@ nav.wrap{height:64px;}
 <span data-i18n="en">Handling the side people directly see and use.</span>
 <span data-i18n="id">Menyiapkan sisi yang dilihat dan digunakan langsung oleh orang.</span>
 </p>
-<div class="tag-list skill-orbit">
-<span class="tag tag-canva"><span class="logo-frame canva-frame"><img src="https://zonalogo.com/api/asset-preview?preset=hero&amp;size=500&amp;theme=dark&amp;url=https%3A%2F%2Fassets.zonalogo.com%2Ftechnology%2Fcanva.com%2Fwordmark-1777177967961-350.svg&amp;v=v3" alt="Canva logo" title="Canva"></span><span>Canva</span></span>
-<span class="tag tag-wordpress"><span class="logo-frame"><img src="https://cdn.simpleicons.org/wordpress/21759B" alt="WordPress logo"></span><span>WordPress</span></span>
+<div class="tag-list">
+<span class="tag"><img src="https://cdn.simpleicons.org/canva/00C4CC" alt="Canva logo" title="Canva">Canva</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/wordpress/21759B" alt="WordPress logo">WordPress</span>
 </div>
 </div>
 </div>
@@ -1649,7 +1622,7 @@ document.querySelectorAll('.tag img').forEach(function(img){
     const fallback=document.createElement('span');
     fallback.className='skill-logo-fallback';
     const alt=(img.alt||'').replace(/ logo/i,'');
-    fallback.textContent=alt==='Fonnte'?'F':alt==='Canva'?'Canva':alt==='n8n'?'n8n':alt.slice(0,2).toUpperCase(); fallback.className='skill-logo-fallback '+(alt==='Canva'?'canva-fallback':'');
+    fallback.textContent=alt==='Fonnte'?'F':alt==='Canva'?'C':alt==='n8n'?'n8n':alt.slice(0,2).toUpperCase();
     img.replaceWith(fallback);
   }, {once:true});
 });
