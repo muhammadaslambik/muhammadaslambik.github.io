@@ -161,9 +161,18 @@ display:flex; align-items:center; gap:10px;
 .hero-photo{position:relative; display:flex; align-items:flex-end; justify-content:center; width:300px; max-width:100%;}
 .hero-photo-glow{
 position:absolute; inset:-44px; z-index:0;
-background:radial-gradient(circle, rgba(94,234,212,.32), transparent 65%);
+background:radial-gradient(circle, rgba(94,234,212,.34), transparent 65%);
 filter:blur(28px);
+animation:photoGlowCycle 100s linear infinite;
 }
+@keyframes photoGlowCycle{
+0%{background:radial-gradient(circle, rgba(94,234,212,.34), transparent 65%);}
+25%{background:radial-gradient(circle, rgba(255,180,84,.34), transparent 65%);}
+50%{background:radial-gradient(circle, rgba(240,135,107,.34), transparent 65%);}
+75%{background:radial-gradient(circle, rgba(167,139,250,.34), transparent 65%);}
+100%{background:radial-gradient(circle, rgba(94,234,212,.34), transparent 65%);}
+}
+@media (prefers-reduced-motion: reduce){.hero-photo-glow{animation:none;}}
 .hero-photo img{
 position:relative; z-index:1;
 width:100%; max-width:320px; height:auto; display:block;
@@ -273,11 +282,17 @@ transition:border-color .2s;
 .skill-card .num{font-family:var(--mono); font-size:12px; color:var(--muted-2); margin-bottom:18px;}
 .skill-card h3{font-family:var(--display); font-size:21px; margin-bottom:10px;}
 .skill-card p{color:var(--muted); font-size:14px; margin-bottom:24px;}
-.tag-list{display:flex; flex-wrap:wrap; gap:8px;}
+.tag-list{display:flex; flex-wrap:wrap; gap:10px;}
 .tag{
-font-family:var(--mono); font-size:12px; padding:6px 12px;
-border:1px solid var(--border); border-radius:100px; color:var(--muted);
+font-family:var(--mono); font-size:12px; padding:8px 12px;
+border:1px solid var(--border); border-radius:12px; color:var(--muted);
+display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.018);
+transition:border-color .2s, transform .2s, background .2s;
 }
+.tag:hover{border-color:var(--teal-dim); transform:translateY(-2px); background:rgba(255,255,255,.035);}
+.tag img{width:20px; height:20px; object-fit:contain; display:block;}
+.tag .skill-logo-fallback{width:20px; height:20px; display:grid; place-items:center; font-size:11px; font-weight:700; border-radius:5px; background:rgba(94,234,212,.12); color:var(--teal);}
+
 
 /* PROJECT */
 #project{padding:110px 0; border-top:1px solid var(--border);}
@@ -653,8 +668,8 @@ nav.wrap{height:64px;}
 <span data-i18n="id">Nama saya Muhammad Aslambik, saya siap membantu merancang otomatisasi pekerjaan Anda dengan menggunakan kecerdasan buatan (AI) agar pekerjaan Anda menjadi lebih murah, cepat, mudah, dan efisien.</span>
 </p>
 <p class="lede hero-description">
-<span data-i18n="en">I work at the intersection of <strong>automation</strong> and <strong>AI</strong> — designing <strong>workflows</strong> that run <strong>automatically</strong> using <strong>n8n</strong> to <strong class="hero-highlight">replace the repetitive manual work processes you currently perform.</strong></span>
-<span data-i18n="id">Saya bekerja di titik temu antara <strong>otomasi</strong> dan <strong>AI</strong> — merancang <strong>alur kerja</strong> yang berjalan <strong>otomatis</strong> menggunakan <strong>n8n</strong> untuk <strong class="hero-manual-highlight"><strong class="hero-highlight">menggantikan proses kerja manual berulang</strong> yang Anda lakukan.</span>
+<span data-i18n="en">I work at the intersection of <strong>Automation</strong> and <strong>Artificial Intelligence (AI)</strong> — designing <strong>workflows</strong> that run <strong>automatically</strong> using <strong>n8n</strong> to <strong class="hero-highlight">replace the repetitive manual work processes you currently perform.</strong></span>
+<span data-i18n="id">Saya bekerja di titik temu antara <strong>Otomatisasi</strong> dan <strong>Kecerdasan Buatan (AI)</strong> — merancang <strong>alur kerja</strong> yang berjalan <strong>otomatis</strong> menggunakan <strong>n8n</strong> untuk <strong class="hero-highlight">menggantikan proses kerja manual berulang yang Anda lakukan.</strong></span>
 </p>
 <div class="hero-cta">
 <a href="#project" class="btn"><span data-i18n="en">See how it works ↓</span><span data-i18n="id">Lihat cara kerjanya ↓</span></a>
@@ -891,7 +906,7 @@ nav.wrap{height:64px;}
 <!-- SKILLS -->
 <section id="skill">
 <div class="wrap">
-<div class="sec-eyebrow">// <span data-i18n="en">skills</span><span data-i18n="id">kemampuan</span></div>
+<div class="sec-eyebrow">// <span data-i18n="en">skills</span><span data-i18n="id">keahlian</span></div>
 <h2 class="sec-title">
 <span data-i18n="en">My Skills</span>
 <span data-i18n="id">Keahlian Saya</span>
@@ -909,24 +924,24 @@ nav.wrap{height:64px;}
 <span data-i18n="id">Merancang dan menjalankan sistem otomatis end-to-end.</span>
 </p>
 <div class="tag-list">
-<span class="tag">n8n</span>
-<span class="tag">AI Agent / LLM</span>
-<span class="tag">Google Sheets API</span>
-<span class="tag">Google Drive API</span>
-<span class="tag">Gmail API</span>
-<span class="tag">Google Workspace</span>
-<span class="tag">Google Gemini AI</span>
-<span class="tag">Claude AI</span>
-<span class="tag">DeepSeek</span>
-<span class="tag">Tailscale</span>
-<span class="tag">Youtube API</span>
-<span class="tag">Fonnte</span>
-<span class="tag">WhatsApp</span>
-<span class="tag">Telegram</span>
-<span class="tag">Docker</span>
-<span class="tag">Structured Output</span>
-<span class="tag">Error Handling</span>
-<span class="tag">Other Tools</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo">n8n</span>
+<span class="tag"><span class="skill-logo-fallback">AI</span>AI Agent / LLM</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo">Google Sheets API</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googledrive/4285F4" alt="Google Drive logo">Google Drive API</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo">Gmail API</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/google/4285F4" alt="Google logo">Google Workspace</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="Google Gemini logo">Google Gemini AI</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/anthropic/D97757" alt="Anthropic logo">Claude AI</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/deepseek/4D6BFE" alt="DeepSeek logo">DeepSeek</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/tailscale/4C9EEB" alt="Tailscale logo">Tailscale</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube logo">YouTube API</span>
+<span class="tag"><img src="https://fonnte.com/wp-content/uploads/2023/03/Logo-Fonnte-1536x368.png" alt="Fonnte logo">Fonnte</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo">WhatsApp</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo">Telegram</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker logo">Docker</span>
+<span class="tag"><span class="skill-logo-fallback">SO</span>Structured Output</span>
+<span class="tag"><span class="skill-logo-fallback">EH</span>Error Handling</span>
+<span class="tag"><span class="skill-logo-fallback">+</span>Other Tools</span>
 </div>
 </div>
 <div class="skill-card">
@@ -937,8 +952,8 @@ nav.wrap{height:64px;}
 <span data-i18n="id">Menyiapkan sisi yang dilihat dan digunakan langsung oleh orang.</span>
 </p>
 <div class="tag-list">
-<span class="tag">Canva</span>
-<span class="tag">WordPress</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/canva/00C4CC" alt="Canva logo">Canva</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/wordpress/21759B" alt="WordPress logo">WordPress</span>
 </div>
 </div>
 </div>
