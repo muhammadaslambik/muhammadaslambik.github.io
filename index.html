@@ -738,6 +738,11 @@ animation:skillTagIn .65s both;
 .featured-projects{margin-bottom:96px;}
 .featured-projects-title{font-family:var(--display);font-size:clamp(30px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin-bottom:22px;}
 .featured-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;}
+.cta-card{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;}
+.cta-card h3{margin-bottom:6px;}
+.cta-card p{margin-bottom:0;max-width:520px;}
+.cta-card .btn{margin-left:auto;}
+@media(max-width:640px){.cta-card{flex-direction:column;align-items:flex-start;}.cta-card .btn{margin-left:0;}}
 .featured-card{display:block;min-width:0;}
 .featured-visual{
   height:220px;border:1px solid var(--border);border-radius:14px;overflow:hidden;
@@ -1518,6 +1523,13 @@ nav.wrap{height:64px;}
   <button class="project-open" type="button"><span><span data-i18n="en">View WhatsApp Chatbot Details</span><span data-i18n="id">Lihat Detail Chatbot WhatsApp</span></span><span class="arrow">→</span></button>
 </article>
 
+<article class="featured-card cta-card reveal-project">
+  <div class="featured-tags"><span class="tag">Custom</span></div>
+  <h3><span data-i18n="en">Submit Your Project According to Your Needs</span><span data-i18n="id">Sampaikan Proyek Sesuai Kebutuhan Anda</span></h3>
+  <p><span data-i18n="en">Have a different project in mind? Let's discuss it and find the right automation solution together.</span><span data-i18n="id">Punya proyek lain yang ingin dikerjakan? Mari diskusikan dan temukan solusi otomatisasi yang tepat.</span></p>
+  <button type="button" class="btn service-open-btn" data-service="custom"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
+</article>
+
 </div>
 </div>
 <div class="project-live-bar reveal-project" id="project-live-bar" style="--live-color:#39e58c">
@@ -1687,6 +1699,7 @@ placeholder="Your Phone Number" data-placeholder-en="Your Phone Number" data-pla
           <option class="service-option" value="implementation" data-en="n8n Implementation" data-id="Implementasi n8n">n8n Implementation</option>
           <option class="service-option" value="mentoring" data-en="Private Mentoring" data-id="Mentoring Privat">Private Mentoring</option>
           <option class="service-option" value="other" data-en="Other Services" data-id="Layanan Lainnya">Other Services</option>
+          <option class="service-option" value="custom" data-en="Custom Project" data-id="Proyek Kustom">Custom Project</option>
         </select>
       </div>
 
@@ -1874,7 +1887,8 @@ const serviceNames = {
   consulting: { en: 'AI Automation Consulting', id: 'Konsultasi Otomatisasi AI' },
   implementation: { en: 'n8n Implementation', id: 'Implementasi n8n' },
   mentoring: { en: 'Private Mentoring', id: 'Mentoring Privat' },
-  other: { en: 'Other Services', id: 'Layanan Lainnya' }
+  other: { en: 'Other Services', id: 'Layanan Lainnya' },
+  custom: { en: 'Custom Project', id: 'Proyek Kustom' }
 };
 
 function updateServiceOptions(lang){
