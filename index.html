@@ -310,6 +310,430 @@ animation:skillTagIn .65s both;
 @media (prefers-reduced-motion:reduce){.skill-card::before,.tag{animation:none!important}.skill-card,.tag{transition:none}}
 
 
+
+
+/* FINAL SKILLS LAYOUT */
+#skill .skill-grid{
+  align-items:stretch;
+  grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);
+  gap:20px;
+}
+
+#skill .skill-card{
+  height:360px;
+  min-height:360px;
+  box-sizing:border-box;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(94,234,212,.08), transparent 32%),
+    linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+}
+
+#skill .skill-card::after{
+  content:"";
+  position:absolute;
+  top:0; left:24px; right:24px;
+  height:2px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--teal),rgba(167,139,250,.7),transparent);
+  opacity:.75;
+}
+
+#skill .skill-card .num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:max-content;
+  min-width:34px;
+  height:24px;
+  padding:0 9px;
+  margin-bottom:12px;
+  border:1px solid rgba(94,234,212,.22);
+  border-radius:999px;
+  background:rgba(94,234,212,.06);
+  color:var(--teal);
+  font-size:10px;
+}
+
+#skill .skill-card h3{
+  font-size:20px;
+  margin-bottom:7px;
+}
+
+#skill .skill-card p{
+  font-size:13px;
+  line-height:1.55;
+  margin-bottom:16px;
+}
+
+/* n8n + Error Handling sit side-by-side as the two featured items */
+#skill .skill-card:first-child .tag-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+#skill .skill-card:first-child .tag{
+  width:100%;
+  min-height:40px;
+  box-sizing:border-box;
+  padding:6px 9px;
+  border-radius:11px;
+  gap:7px;
+  font-size:10px;
+  line-height:1.2;
+}
+
+/* Only n8n and Error Handling are visible in the static row.
+   The remaining tools are placed in the moving marquee below. */
+#skill .skill-card:first-child .tag:nth-child(n+3){
+  display:none;
+}
+
+#skill .skill-card:first-child .tag:nth-child(1),
+#skill .skill-card:first-child .tag:nth-child(17){
+  display:flex;
+}
+
+/* Marquee wrapper */
+.skill-marquee{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  margin-top:auto;
+  padding:8px 0;
+  border-top:1px solid rgba(255,255,255,.07);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+}
+
+.skill-marquee-track{
+  display:flex;
+  width:max-content;
+  gap:8px;
+  animation:skillMarqueeRTL 26s linear infinite;
+  will-change:transform;
+}
+
+.skill-marquee:hover .skill-marquee-track{
+  animation-play-state:paused;
+}
+
+.skill-marquee .tag{
+  flex:0 0 auto;
+  min-height:40px;
+  padding:6px 10px;
+  border-radius:11px;
+  gap:7px;
+  font-size:10px;
+  white-space:nowrap;
+}
+
+.skill-marquee .tag img{
+  width:23px;
+  height:23px;
+  flex-basis:23px;
+  padding:2px;
+  border-radius:6px;
+}
+
+.skill-marquee .tag img[alt="n8n logo"],
+.skill-marquee .tag img[alt="Canva logo"]{
+  width:28px;
+  height:28px;
+  flex-basis:28px;
+}
+
+.skill-marquee .tag img[alt="Fonnte logo"]{
+  width:62px;
+  height:25px;
+  flex-basis:62px;
+}
+
+.skill-marquee .skill-logo-fallback{
+  width:23px;
+  height:23px;
+  flex:0 0 23px;
+  font-size:9px;
+  border-radius:6px;
+}
+
+@keyframes skillMarqueeRTL{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+/* Design & Content fills the same card height and centers its content */
+#skill .skill-card:nth-child(2){
+  justify-content:flex-start;
+}
+
+#skill .skill-card:nth-child(2) .tag-list{
+  display:flex;
+  gap:10px;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+#skill .skill-card:nth-child(2) .tag{
+  flex:1 1 0;
+  justify-content:center;
+  min-height:44px;
+  padding:7px 10px;
+  border-radius:12px;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion:reduce){
+  .skill-marquee-track{animation:none!important;transform:none!important;}
+}
+
+/* Mobile */
+@media (max-width:760px){
+  #skill .skill-grid{
+    grid-template-columns:1fr;
+  }
+
+  #skill .skill-card{
+    height:auto;
+    min-height:320px;
+  }
+
+  #skill .skill-card:nth-child(2){
+    min-height:220px;
+  }
+}
+
+
+/* LOGOS FIX — keep all Automation & AI tools visible */
+#skill .skill-card:first-child .skill-tools-layout{
+  display:block !important;
+  width:100%;
+}
+
+#skill .skill-card:first-child .skill-featured-logos{
+  display:grid !important;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+#skill .skill-card:first-child .skill-featured-logos .tag{
+  display:flex !important;
+  width:100%;
+  min-height:42px;
+  box-sizing:border-box;
+}
+
+#skill .skill-card:first-child .skill-marquee{
+  display:block !important;
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  padding:8px 0;
+  border-top:1px solid rgba(255,255,255,.07);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+}
+
+#skill .skill-card:first-child .skill-marquee-track{
+  display:flex !important;
+  align-items:center;
+  width:max-content !important;
+  gap:8px;
+  animation:skillMarqueeRTL 28s linear infinite;
+  will-change:transform;
+}
+
+#skill .skill-card:first-child .skill-marquee .tag{
+  display:inline-flex !important;
+  flex:0 0 auto !important;
+  width:auto !important;
+  min-width:max-content;
+  min-height:40px;
+  padding:6px 10px;
+  box-sizing:border-box;
+}
+
+#skill .skill-card:first-child .skill-marquee .tag img{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  width:23px;
+  height:23px;
+  flex:0 0 23px;
+  object-fit:contain;
+  padding:2px;
+  border-radius:6px;
+}
+
+#skill .skill-card:first-child .skill-marquee .skill-logo-fallback{
+  display:grid !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  width:23px;
+  height:23px;
+  flex:0 0 23px;
+}
+
+@keyframes skillMarqueeRTL{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+#skill .skill-card:first-child .skill-marquee:hover .skill-marquee-track{
+  animation-play-state:paused;
+}
+
+@media (prefers-reduced-motion:reduce){
+  #skill .skill-card:first-child .skill-marquee-track{
+    animation:none !important;
+    transform:none !important;
+  }
+}
+
+
+/* Canva official logo */
+#skill .skill-card:nth-child(2) .tag img[alt="Canva logo"]{
+  width:32px;
+  height:32px;
+  flex:0 0 32px;
+  padding:0;
+  background:transparent;
+  border-radius:0;
+  box-shadow:none;
+  object-fit:contain;
+}
+
+
+/* Colorful Canva logo */
+#skill .skill-card:nth-child(2) .tag img[alt="Canva logo"]{
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  padding:0;
+  background:transparent;
+  border:0;
+  border-radius:6px;
+  box-shadow:none;
+  object-fit:contain;
+}
+
+
+/* Canva gradient logo — verified colorful asset */
+#skill .skill-card:nth-child(2) .tag img[alt="Canva logo"]{
+  width:34px !important;
+  height:34px !important;
+  flex:0 0 34px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:6px !important;
+  box-shadow:none !important;
+  filter:none !important;
+  opacity:1 !important;
+  object-fit:contain !important;
+}
+
+
+/* INLINE COLORFUL CANVA LOGO — no external asset, no grayscale */
+#skill .skill-card:nth-child(2) .canva-original-logo{
+  width:34px !important;
+  height:34px !important;
+  flex:0 0 34px !important;
+  display:block !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  filter:none !important;
+  opacity:1 !important;
+}
+
+
+/* COLORFUL ERROR HANDLING LOGO */
+#skill .skill-card:first-child .error-handling-logo{
+  width:30px !important;
+  height:30px !important;
+  flex:0 0 30px !important;
+  display:block !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:7px !important;
+  box-shadow:0 4px 12px rgba(255,125,60,.22) !important;
+  filter:none !important;
+  opacity:1 !important;
+}
+
+
+/* AI BRAND LOGOS */
+#skill .claude-original-logo,
+#skill .openai-original-logo{
+  width:28px !important;
+  height:28px !important;
+  flex:0 0 28px !important;
+  display:block !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:7px !important;
+  box-shadow:none !important;
+  filter:none !important;
+  opacity:1 !important;
+  object-fit:contain !important;
+}
+
+#skill .skill-card:first-child .skill-marquee .claude-original-logo,
+#skill .skill-card:first-child .skill-marquee .openai-original-logo{
+  width:28px !important;
+  height:28px !important;
+  flex-basis:28px !important;
+}
+
+
+/* Real Claude + ChatGPT logos */
+#skill .claude-real-logo,
+#skill .chatgpt-real-logo{
+  width:28px !important;
+  height:28px !important;
+  flex:0 0 28px !important;
+  display:block !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:6px !important;
+  box-shadow:none !important;
+  filter:none !important;
+  opacity:1 !important;
+  object-fit:contain !important;
+}
+
+
+/* ChatGPT — exact supplied original logo */
+#skill .chatgpt-real-logo{
+  width:30px !important;
+  height:30px !important;
+  flex:0 0 30px !important;
+  display:block !important;
+  padding:0 !important;
+  margin:0 !important;
+  background:#fff !important;
+  border:0 !important;
+  border-radius:6px !important;
+  box-shadow:none !important;
+  filter:none !important;
+  opacity:1 !important;
+  object-fit:cover !important;
+}
+
 /* PROJECT */
 #project{padding:110px 0; border-top:1px solid var(--border);}
 .featured-projects{margin-bottom:96px;}
@@ -677,7 +1101,7 @@ nav.wrap{height:64px;}
 <div class="hero-copy">
 <h1 class="headline">
 <span data-i18n="en">AI Automation,<br><span class="accent">Made&nbsp;Simple.</span></span>
-<span data-i18n="id">Otomasi AI,<br><span class="accent">Dibuat&nbsp;Sederhana.</span></span>
+<span data-i18n="id">Otomatisasi AI,<br><span class="accent">Dibuat&nbsp;Sederhana.</span></span>
 </h1>
 <p class="lede">
 <span data-i18n="en">My name is Muhammad Aslambik. I'm ready to help design automation for your work using Artificial Intelligence (AI), making it more affordable, faster, easier, and more efficient.</span>
@@ -875,8 +1299,8 @@ nav.wrap{height:64px;}
 <path d="M24 2.5v4M24 41.5v4M6.5 24h4M37.5 24h4M11.6 11.6l2.8 2.8M33.6 33.6l2.8 2.8M36.4 11.6l-2.8 2.8M14.4 33.6l-2.8 2.8" stroke="url(#aiGradient)" stroke-width="2" stroke-linecap="round"/>
 </svg>
 </div>
-<h3><span data-i18n="en">AI Automation Consulting</span><span data-i18n="id">Konsultasi Otomasi AI</span></h3>
-<p><span data-i18n="en">Analyze your business process and design an automation that saves time and cost.</span><span data-i18n="id">Menganalisis proses bisnis kamu dan merancang otomasi yang menghemat waktu dan biaya.</span></p>
+<h3><span data-i18n="en">AI Automation Consulting</span><span data-i18n="id">Konsultasi Otomatisasi AI</span></h3>
+<p><span data-i18n="en">Analyze your business process and design an automation that saves time and cost.</span><span data-i18n="id">Menganalisis proses bisnis kamu dan merancang otomatisasi yang menghemat waktu dan biaya.</span></p>
 <div class="service-message-btn">
 <button type="button" class="btn service-open-btn" data-service="consulting"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
 </div>
@@ -939,26 +1363,37 @@ nav.wrap{height:64px;}
 <span data-i18n="en">Designing and running end-to-end automated systems.</span>
 <span data-i18n="id">Merancang dan menjalankan sistem otomatis end-to-end.</span>
 </p>
-<div class="tag-list">
-<span class="tag"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo" title="n8n">n8n</span>
-<span class="tag"><span class="skill-logo-fallback">AI</span>AI Agent / LLM</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo">Google Sheets API</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/googledrive/4285F4" alt="Google Drive logo">Google Drive API</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo">Gmail API</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/google/4285F4" alt="Google logo">Google Workspace</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="Google Gemini logo">Google Gemini AI</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/anthropic/D97757" alt="Anthropic logo">Claude AI</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/deepseek/4D6BFE" alt="DeepSeek logo">DeepSeek</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/tailscale/4C9EEB" alt="Tailscale logo">Tailscale</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube logo">YouTube API</span>
-<span class="tag"><img src="https://fonnte.com/wp-content/uploads/2023/03/Logo-Fonnte-1536x368.png" alt="Fonnte logo" title="Fonnte">Fonnte</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo">WhatsApp</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo">Telegram</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker logo">Docker</span>
-<span class="tag"><span class="skill-logo-fallback">SO</span>Structured Output</span>
-<span class="tag"><span class="skill-logo-fallback">EH</span>Error Handling</span>
-<span class="tag"><span class="skill-logo-fallback">+</span>Other Tools</span>
+
+<div class="skill-tools-layout">
+  <div class="skill-featured-logos">
+    <span class="tag"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo" title="n8n">n8n</span>
+    <span class="tag"><svg class="error-handling-logo" viewBox="0 0 40 40" role="img" aria-label="Error Handling">
+  <defs>
+    <linearGradient id="errorGradient" x1="4" y1="36" x2="36" y2="4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF4D6D"/>
+      <stop offset="0.5" stop-color="#FF9F1C"/>
+      <stop offset="1" stop-color="#FFD166"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="36" height="36" rx="10" fill="url(#errorGradient)"/>
+  <path d="M20 10.5v11.5" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="20" cy="28.5" r="2" fill="#fff"/>
+  <path d="M11 14.5a11 11 0 0 1 18 0M9 25.5a13 13 0 0 0 22 0"
+        fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+</svg>Error Handling</span>
+  </div>
+  <div class="skill-marquee" aria-label="Automation and AI tools">
+    <div class="skill-marquee-track">
+      <span class="tag"><span class="skill-logo-fallback">AI</span><span class="tag"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo">Google Sheets API</span><span class="tag"><img src="https://cdn.simpleicons.org/googledrive/4285F4" alt="Google Drive logo">Google Drive API</span><span class="tag"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo">Gmail API</span><span class="tag"><img src="https://cdn.simpleicons.org/google/4285F4" alt="Google logo">Google Workspace</span><span class="tag"><img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="Google Gemini logo">Google Gemini AI</span><span class="tag"><svg class="claude-real-logo" viewBox="0 0 39.5 39.53" role="img" aria-label="Claude AI" title="Claude AI"><path d="m7.75 26.27 7.77-4.36.13-.38-.13-.21h-.38l-1.3-.08-4.44-.12-3.85-.16-3.73-.2-.94-.2-.88-1.16.09-.58.79-.53 1.13.1 2.5.17 3.75.26 2.72.16 4.03.42h.64l.09-.26-.22-.16-.17-.16-3.88-2.63-4.2-2.78-2.2-1.6-1.19-.81-.6-.76-.26-1.66 1.08-1.19 1.45.1.37.1 1.47 1.13 3.14 2.43 4.1 3.02.6.5.24-.17.03-.12-.27-.45-2.23-4.03-2.38-4.1-1.06-1.7-.28-1.02c-.1-.42-.17-.77-.17-1.2l1.23-1.67.68-.22 1.64.22.69.6 1.02 2.33 1.65 3.67 2.56 4.99.75 1.48.4 1.37.15.42h.26v-.24l.21-2.81.39-3.45.38-4.44.13-1.25.62-1.5 1.23-.81.96.46.79 1.13-.11.73-.47 3.05-.92 4.78-.6 3.2h.35l.4-.4 1.62-2.15 2.72-3.4 1.2-1.35 1.4-1.49.9-.71h1.7l1.25 1.86-.56 1.92-1.75 2.22-1.45 1.88-2.08 2.8-1.3 2.24.12.18.31-.03 4.7-1 2.54-.46 3.03-.52 1.37.64.15.65-.54 1.33-3.24.8-3.8.76-5.66 1.34-.07.05.08.1 2.55.24 1.09.06h2.67l4.97.37 1.3.86.78 1.05-.13.8-2 1.02-2.7-.64-6.3-1.5-2.16-.54h-.3v.18l1.8 1.76 3.3 2.98 4.13 3.84.21.95-.53.75-.56-.08-3.63-2.73-1.4-1.23-3.17-2.67h-.21v.28l.73 1.07 3.86 5.8.2 1.78-.28.58-1 .35-1.1-.2-2.26-3.17-2.33-3.57-1.88-3.2-.23.13-1.11 11.95-.52.61-1.2.46-1-.76-.53-1.23.53-2.43.64-3.17.52-2.52.47-3.13.28-1.04-.02-.07-.23.03-2.36 3.24-3.59 4.85-2.84 3.04-.68.27-1.18-.61.11-1.09.66-.97 3.93-5 2.37-3.1 1.53-1.79-.01-.26h-.09l-10.44 6.78-1.86.24-.8-.75.1-1.23.38-.4 3.14-2.16z" fill="#d97757"/></svg> Claude AI</span>
+<span class="tag">
+  <img class="chatgpt-real-logo" src="data:image/jpeg;base64,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" alt="ChatGPT logo" title="ChatGPT">
+  ChatGPT
+</span><span class="tag"><img src="https://cdn.simpleicons.org/deepseek/4D6BFE" alt="DeepSeek logo">DeepSeek AI</span><span class="tag"><img src="https://cdn.simpleicons.org/tailscale/4C9EEB" alt="Tailscale logo">Tailscale</span><span class="tag"><img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube logo">YouTube API</span><span class="tag"><img src="https://fonnte.com/wp-content/uploads/2023/03/Logo-Fonnte-1536x368.png" alt="Fonnte logo" title="Fonnte">Fonnte</span><span class="tag"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo">WhatsApp</span><span class="tag"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo">Telegram</span><span class="tag"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker logo">Docker</span><span class="tag"><span class="skill-logo-fallback">SO</span><span class="tag"><span class="skill-logo-fallback">EH</span><span class="tag"><span class="skill-logo-fallback">+</span>
+      <span class="tag"><span class="skill-logo-fallback">AI</span><span class="tag"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo">Google Sheets API</span><span class="tag"><img src="https://cdn.simpleicons.org/googledrive/4285F4" alt="Google Drive logo">Google Drive API</span><span class="tag"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo">Gmail API</span><span class="tag"><img src="https://cdn.simpleicons.org/google/4285F4" alt="Google logo">Google Workspace</span><span class="tag"><img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="Google Gemini logo">Google Gemini AI</span><span class="tag"><svg class="claude-real-logo" viewBox="0 0 39.5 39.53" role="img" aria-label="Claude AI" title="Claude AI"><path d="m7.75 26.27 7.77-4.36.13-.38-.13-.21h-.38l-1.3-.08-4.44-.12-3.85-.16-3.73-.2-.94-.2-.88-1.16.09-.58.79-.53 1.13.1 2.5.17 3.75.26 2.72.16 4.03.42h.64l.09-.26-.22-.16-.17-.16-3.88-2.63-4.2-2.78-2.2-1.6-1.19-.81-.6-.76-.26-1.66 1.08-1.19 1.45.1.37.1 1.47 1.13 3.14 2.43 4.1 3.02.6.5.24-.17.03-.12-.27-.45-2.23-4.03-2.38-4.1-1.06-1.7-.28-1.02c-.1-.42-.17-.77-.17-1.2l1.23-1.67.68-.22 1.64.22.69.6 1.02 2.33 1.65 3.67 2.56 4.99.75 1.48.4 1.37.15.42h.26v-.24l.21-2.81.39-3.45.38-4.44.13-1.25.62-1.5 1.23-.81.96.46.79 1.13-.11.73-.47 3.05-.92 4.78-.6 3.2h.35l.4-.4 1.62-2.15 2.72-3.4 1.2-1.35 1.4-1.49.9-.71h1.7l1.25 1.86-.56 1.92-1.75 2.22-1.45 1.88-2.08 2.8-1.3 2.24.12.18.31-.03 4.7-1 2.54-.46 3.03-.52 1.37.64.15.65-.54 1.33-3.24.8-3.8.76-5.66 1.34-.07.05.08.1 2.55.24 1.09.06h2.67l4.97.37 1.3.86.78 1.05-.13.8-2 1.02-2.7-.64-6.3-1.5-2.16-.54h-.3v.18l1.8 1.76 3.3 2.98 4.13 3.84.21.95-.53.75-.56-.08-3.63-2.73-1.4-1.23-3.17-2.67h-.21v.28l.73 1.07 3.86 5.8.2 1.78-.28.58-1 .35-1.1-.2-2.26-3.17-2.33-3.57-1.88-3.2-.23.13-1.11 11.95-.52.61-1.2.46-1-.76-.53-1.23.53-2.43.64-3.17.52-2.52.47-3.13.28-1.04-.02-.07-.23.03-2.36 3.24-3.59 4.85-2.84 3.04-.68.27-1.18-.61.11-1.09.66-.97 3.93-5 2.37-3.1 1.53-1.79-.01-.26h-.09l-10.44 6.78-1.86.24-.8-.75.1-1.23.38-.4 3.14-2.16z" fill="#d97757"/></svg> Claude AI</span><span class="tag"><img src="https://cdn.simpleicons.org/deepseek/4D6BFE" alt="DeepSeek logo">DeepSeek AI</span><span class="tag"><img src="https://cdn.simpleicons.org/tailscale/4C9EEB" alt="Tailscale logo">Tailscale</span><span class="tag"><img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube logo">YouTube API</span><span class="tag"><img src="https://fonnte.com/wp-content/uploads/2023/03/Logo-Fonnte-1536x368.png" alt="Fonnte logo" title="Fonnte">Fonnte</span><span class="tag"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo">WhatsApp</span><span class="tag"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo">Telegram</span><span class="tag"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker logo">Docker</span><span class="tag"><span class="skill-logo-fallback">SO</span><span class="tag"><span class="skill-logo-fallback">EH</span><span class="tag"><span class="skill-logo-fallback">+</span>
+    </div>
+  </div>
 </div>
+
 </div>
 <div class="skill-card">
 <div class="num">02</div>
@@ -968,7 +1403,18 @@ nav.wrap{height:64px;}
 <span data-i18n="id">Menyiapkan sisi yang dilihat dan digunakan langsung oleh orang.</span>
 </p>
 <div class="tag-list">
-<span class="tag"><img src="https://cdn.simpleicons.org/canva/00C4CC" alt="Canva logo" title="Canva">Canva</span>
+<span class="tag"><svg class="canva-original-logo" viewBox="0 0 64 64" role="img" aria-label="Canva logo" title="Canva">
+  <defs>
+    <linearGradient id="canvaGradient" x1="8" y1="54" x2="56" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00C4CC"/>
+      <stop offset="0.5" stop-color="#7B2CFF"/>
+      <stop offset="1" stop-color="#8B3DFF"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="29" fill="url(#canvaGradient)"/>
+  <path d="M42.5 27.2c-2.1-3.5-5.8-5.5-10.2-5.5-7 0-12.6 4.6-12.6 10.7 0 6.2 5.5 10.7 12.6 10.7 4.4 0 8.1-2 10.2-5.5"
+        fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round"/>
+</svg>Canva</span>
 <span class="tag"><img src="https://cdn.simpleicons.org/wordpress/21759B" alt="WordPress logo">WordPress</span>
 </div>
 </div>
@@ -1038,7 +1484,7 @@ nav.wrap{height:64px;}
   <div class="featured-tags"><span class="tag">n8n</span><span class="tag">AI</span><span class="tag">Google Drive</span></div>
   <h3><span data-i18n="en">Document Sorting &amp; Summarize</span><span data-i18n="id">Pengurutan &amp; Ringkasan Dokumen</span></h3>
   <p><span data-i18n="en">Automatically sort, classify, and summarize incoming documents using AI.</span><span data-i18n="id">Mengurutkan, mengklasifikasikan, dan merangkum dokumen masuk secara otomatis menggunakan AI.</span></p>
-  <button class="project-open" type="button"><span><span data-i18n="en">View Document Automation Details</span><span data-i18n="id">Lihat Detail Otomasi Dokumen</span></span><span class="arrow">→</span></button>
+  <button class="project-open" type="button"><span><span data-i18n="en">View Document Automation Details</span><span data-i18n="id">Lihat Detail Otomatisasi Dokumen</span></span><span class="arrow">→</span></button>
 </article>
 
 <article class="featured-card chat-card reveal-project">
@@ -1156,7 +1602,7 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 </h2>
 <p class="sec-sub">
 <span data-i18n="en">Got a process you want to automate? Or want to learn how to do it yourself. Let's talk about your project.</span>
-<span data-i18n="id">Ada proses yang ingin diotomasi? Atau mau belajar cara buatnya sendiri. Mari bicarakan project kamu.</span>
+<span data-i18n="id">Ada proses yang ingin diotomatisasi? Atau mau belajar cara buatnya sendiri. Mari bicarakan project kamu.</span>
 </p>
 <div class="contact-info">
 <a href="mailto:job.muhammadaslambik@gmail.com" class="email">
@@ -1183,7 +1629,7 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 </label>
 <select id="contact-service" name="service" class="service-select" required>
 <option value="" selected disabled data-en="Select Your Service Need" data-id="Pilih Layanan Kebutuhan Anda">Select Your Service Need</option>
-<option class="contact-service-option" value="consulting" data-en="AI Automation Consulting" data-id="Konsultasi Otomasi AI">AI Automation Consulting</option>
+<option class="contact-service-option" value="consulting" data-en="AI Automation Consulting" data-id="Konsultasi Otomatisasi AI">AI Automation Consulting</option>
 <option class="contact-service-option" value="implementation" data-en="n8n Implementation" data-id="Implementasi n8n">n8n Implementation</option>
 <option class="contact-service-option" value="mentoring" data-en="Private Mentoring" data-id="Mentoring Privat">Private Mentoring</option>
 <option class="contact-service-option" value="other" data-en="Other Services" data-id="Layanan Lainnya">Other Services</option>
@@ -1241,7 +1687,7 @@ placeholder="Your Phone Number" data-placeholder-en="Your Phone Number" data-pla
           <span data-i18n="id">Layanan</span>
         </label>
         <select id="service-choice" name="service" class="service-select" required>
-          <option class="service-option" value="consulting" data-en="AI Automation Consulting" data-id="Konsultasi Otomasi AI">AI Automation Consulting</option>
+          <option class="service-option" value="consulting" data-en="AI Automation Consulting" data-id="Konsultasi Otomatisasi AI">AI Automation Consulting</option>
           <option class="service-option" value="implementation" data-en="n8n Implementation" data-id="Implementasi n8n">n8n Implementation</option>
           <option class="service-option" value="mentoring" data-en="Private Mentoring" data-id="Mentoring Privat">Private Mentoring</option>
           <option class="service-option" value="other" data-en="Other Services" data-id="Layanan Lainnya">Other Services</option>
@@ -1429,7 +1875,7 @@ const serviceSubmit = document.getElementById('service-contact-submit');
 const serviceStatus = document.getElementById('service-contact-status');
 
 const serviceNames = {
-  consulting: { en: 'AI Automation Consulting', id: 'Konsultasi Otomasi AI' },
+  consulting: { en: 'AI Automation Consulting', id: 'Konsultasi Otomatisasi AI' },
   implementation: { en: 'n8n Implementation', id: 'Implementasi n8n' },
   mentoring: { en: 'Private Mentoring', id: 'Mentoring Privat' },
   other: { en: 'Other Services', id: 'Layanan Lainnya' }
@@ -1584,7 +2030,7 @@ const liveTitle = document.getElementById('project-live-title');
 const liveText = document.getElementById('project-live-text');
 const liveProgress = document.getElementById('project-live-progress');
 const projectData = [
-  {color:'#39e58c',progress:'88%',enTitle:'AI CV Screening System',idTitle:'Sistem Screening CV Berbasis AI',enText:'Automation flow ready • 500+ CV capacity',idText:'Alur otomasi siap • Kapasitas 500+ CV'},
+  {color:'#39e58c',progress:'88%',enTitle:'AI CV Screening System',idTitle:'Sistem Screening CV Berbasis AI',enText:'Automation flow ready • 500+ CV capacity',idText:'Alur otomatisasi siap • Kapasitas 500+ CV'},
   {color:'#b45cff',progress:'76%',enTitle:'Document Sorting & Summarize',idTitle:'Pengurutan & Ringkasan Dokumen',enText:'AI classification pipeline • Smart document processing',idText:'Pipeline klasifikasi AI • Pemrosesan dokumen cerdas'},
   {color:'#37b8ff',progress:'94%',enTitle:'WhatsApp AI Chatbot',idTitle:'Chatbot AI WhatsApp',enText:'Real-time AI replies • Context-aware conversations',idText:'Balasan AI real-time • Percakapan memahami konteks'}
 ];
