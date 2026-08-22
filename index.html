@@ -739,11 +739,11 @@ animation:skillTagIn .65s both;
 .featured-projects-title{font-family:var(--display);font-size:clamp(30px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin-bottom:22px;}
 .featured-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;}
 .cta-card{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;position:relative;overflow:hidden;transition:transform .4s ease,box-shadow .4s ease;}
-.cta-card::before{content:"";position:absolute;inset:0;border-radius:20px;padding:2px;background:conic-gradient(from 0deg,#5EEAD4,#FACC15,#EC4899,#8B5CF6,#5EEAD4);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ctaBorderSpin 6s linear infinite;pointer-events:none;}
-.cta-card::after{content:"";position:absolute;right:-40px;top:50%;width:160px;height:160px;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle,rgba(94,234,212,.2),transparent 70%);filter:blur(20px);pointer-events:none;animation:ctaPulse 4s ease-in-out infinite;}
-.cta-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(94,234,212,.16);}
-.cta-icon{position:relative;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;margin-bottom:10px;background:conic-gradient(from 0deg,#5EEAD4,#FACC15,#EC4899,#8B5CF6,#5EEAD4);animation:ctaBorderSpin 6s linear infinite;}
-.cta-icon span{position:absolute;inset:2px;border-radius:50%;background:#0F1418;display:flex;align-items:center;justify-content:center;font-size:15px;animation:ctaIconPulse 2.4s ease-in-out infinite;}
+.featured-card.cta-card::before{content:"";position:absolute;inset:0;border-radius:20px;padding:2px;background:conic-gradient(from 0deg,#5EEAD4,#FACC15,#EC4899,#8B5CF6,#5EEAD4);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:1;animation:ctaBorderSpin 6s linear infinite;pointer-events:none;}
+.featured-card.cta-card::after{content:"";position:absolute;right:-40px;top:50%;width:160px;height:160px;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle,rgba(94,234,212,.2),transparent 70%);filter:blur(20px);pointer-events:none;animation:ctaPulse 4s ease-in-out infinite;}
+.featured-card.cta-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(94,234,212,.16);border-color:transparent;}
+.cta-icon{position:absolute;top:16px;right:16px;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:conic-gradient(from 0deg,#5EEAD4,#FACC15,#EC4899,#8B5CF6,#5EEAD4);animation:ctaBorderSpin 6s linear infinite;z-index:2;}
+.cta-icon span{position:absolute;inset:2px;border-radius:50%;background:#0F1418;display:flex;align-items:center;justify-content:center;font-size:11px;animation:ctaIconPulse 2.4s ease-in-out infinite;}
 @keyframes ctaBorderSpin{to{transform:rotate(360deg);}}
 @keyframes ctaPulse{0%,100%{opacity:.6;transform:translateY(-50%) scale(1);}50%{opacity:1;transform:translateY(-50%) scale(1.15);}}
 @keyframes ctaIconPulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 2px rgba(94,234,212,.5));}50%{transform:scale(1.15);filter:drop-shadow(0 0 8px rgba(94,234,212,.9));}}
@@ -752,7 +752,7 @@ animation:skillTagIn .65s both;
 .cta-card .btn{margin-left:auto;}
 .cta-card .btn:hover{transform:none;}
 @media(max-width:640px){.cta-card{flex-direction:column;align-items:flex-start;}.cta-card .btn{margin-left:0;}}
-@media(prefers-reduced-motion:reduce){.cta-card::before,.cta-card::after,.cta-icon,.cta-icon span{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.featured-card.cta-card::before,.featured-card.cta-card::after,.cta-icon,.cta-icon span{animation:none!important}}
 .featured-card{display:block;min-width:0;}
 .featured-visual{
   height:220px;border:1px solid var(--border);border-radius:14px;overflow:hidden;
@@ -1317,7 +1317,7 @@ nav.wrap{height:64px;}
 <h3><span data-i18n="en">AI Automation Consulting</span><span data-i18n="id">Konsultasi Otomatisasi AI</span></h3>
 <p><span data-i18n="en">Analyze your business process and design an automation that saves time and cost.</span><span data-i18n="id">Menganalisis proses bisnis anda dan merancang otomatisasi yang menghemat waktu dan biaya.</span></p>
 <div class="service-message-btn">
-<button type="button" class="btn service-open-btn" data-service="consulting"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
+<button type="button" class="btn service-open-btn" data-service="ai-automation-project"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
 </div>
 </div>
 <div class="service-card">
@@ -1327,7 +1327,7 @@ nav.wrap{height:64px;}
 <h3><span data-i18n="en">n8n Implementation</span><span data-i18n="id">Implementasi n8n</span></h3>
 <p><span data-i18n="en">Build end-to-end workflow automation using n8n, from setup to deployment.</span><span data-i18n="id">Membangun automasi workflow end-to-end menggunakan n8n, dari setup sampai deployment.</span></p>
 <div class="service-message-btn">
-<button type="button" class="btn service-open-btn" data-service="implementation"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
+<button type="button" class="btn service-open-btn" data-service="ai-automation-project"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
 </div>
 </div>
 <div class="service-card">
@@ -1351,7 +1351,7 @@ nav.wrap{height:64px;}
 <h3><span data-i18n="en">Private Mentoring</span><span data-i18n="id">Mentoring Privat</span></h3>
 <p><span data-i18n="en">Learn AI automation hands-on using your own real business case.</span><span data-i18n="id">Belajar automasi AI secara langsung menggunakan studi kasus bisnis anda sendiri.</span></p>
 <div class="service-message-btn">
-<button type="button" class="btn service-open-btn" data-service="mentoring"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
+<button type="button" class="btn service-open-btn" data-service="other"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
 </div>
 </div>
 </div>
@@ -1454,18 +1454,18 @@ nav.wrap{height:64px;}
       <rect x="24" y="26" width="372" height="166" rx="10" fill="url(#cvPanel)" stroke="#2A333C"/>
       <rect x="24" y="26" width="372" height="28" rx="10" fill="#151E24"/>
       <circle cx="42" cy="40" r="4" fill="#5EEAD4"/><circle cx="56" cy="40" r="4" fill="#2F7D70"/><circle cx="70" cy="40" r="4" fill="#5B6169"/>
-      <text x="88" y="43" class="tiny">AI RECRUITMENT DASHBOARD</text>
+      <text x="88" y="43" class="tiny" data-lang-en="AI RECRUITMENT DASHBOARD" data-lang-id="DASBOR REKRUTMEN AI">AI RECRUITMENT DASHBOARD</text>
       <rect x="42" y="70" width="96" height="104" rx="7" class="soft"/>
       <circle cx="90" cy="96" r="19" fill="rgba(94,234,212,.12)" stroke="#5EEAD4"/>
       <path d="M90 85v12l9 5" stroke="#5EEAD4" stroke-width="2" fill="none"/>
-      <text x="57" y="132" class="label">CVs PROCESSED</text><text x="57" y="153" class="title">500+</text>
-      <text x="57" y="168" class="tiny">AUTO-SCORING ACTIVE</text>
+      <text x="57" y="132" class="label" data-lang-en="CVs PROCESSED" data-lang-id="CV DIPROSES">CVs PROCESSED</text><text x="57" y="153" class="title">500+</text>
+      <text x="57" y="168" class="tiny" data-lang-en="AUTO-SCORING ACTIVE" data-lang-id="PENILAIAN OTOMATIS AKTIF">AUTO-SCORING ACTIVE</text>
       <rect x="156" y="70" width="220" height="104" rx="7" fill="#10161B" stroke="#2A333C"/>
-      <text x="174" y="90" class="label">CANDIDATE SCORE</text>
+      <text x="174" y="90" class="label" data-lang-en="CANDIDATE SCORE" data-lang-id="SKOR KANDIDAT">CANDIDATE SCORE</text>
       <path d="M174 152V111H190V152H204V94H220V152H234V121H250V152H264V82H280V152H294V104H310V152H324V74H340V152H354V116H370V152" fill="none" stroke="url(#cvBar)" stroke-width="7" stroke-linecap="round" class="glow"/>
       <path d="M174 158H360" class="mutedline"/>
       <circle cx="345" cy="86" r="17" fill="#122522" stroke="#5EEAD4"/><path d="m337 86 6 6 11-13" fill="none" stroke="#5EEAD4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="311" y="120" class="tiny">92% MATCH</text>
+      <text x="311" y="120" class="tiny" data-lang-en="92% MATCH" data-lang-id="92% COCOK">92% MATCH</text>
     </svg>
   </div>
   <div class="featured-tags"><span class="tag">n8n</span><span class="tag">AI</span><span class="tag">Google Sheets</span></div>
@@ -1488,10 +1488,10 @@ nav.wrap{height:64px;}
       </g>
       <path d="M118 126h18M254 90h8" stroke="#5EEAD4" stroke-dasharray="4 5"/>
       <rect x="48" y="34" width="104" height="34" rx="17" fill="rgba(94,234,212,.08)" stroke="rgba(94,234,212,.25)"/>
-      <text x="69" y="55" class="label">SORT</text><text x="99" y="55" class="tiny">→ AI</text>
+      <text x="69" y="55" class="label" data-lang-en="SORT" data-lang-id="URUTKAN">SORT</text><text x="99" y="55" class="tiny">→ AI</text>
       <rect x="268" y="150" width="104" height="34" rx="17" fill="rgba(94,234,212,.08)" stroke="rgba(94,234,212,.25)"/>
-      <text x="286" y="171" class="label">SUMMARY</text>
-      <text x="144" y="199" class="tiny">CLASSIFY • EXTRACT • SUMMARIZE</text>
+      <text x="286" y="171" class="label" data-lang-en="SUMMARY" data-lang-id="RINGKASAN">SUMMARY</text>
+      <text x="144" y="199" class="tiny" data-lang-en="CLASSIFY • EXTRACT • SUMMARIZE" data-lang-id="KLASIFIKASI • EKSTRAK • RINGKAS">CLASSIFY • EXTRACT • SUMMARIZE</text>
     </svg>
   </div>
   <div class="featured-tags"><span class="tag">n8n</span><span class="tag">AI</span><span class="tag">Google Drive</span></div>
@@ -1512,9 +1512,9 @@ nav.wrap{height:64px;}
         <rect x="154" y="62" width="72" height="22" rx="10" fill="rgba(94,234,212,.12)" stroke="rgba(94,234,212,.26)"/>
         <rect x="177" y="92" width="84" height="24" rx="10" fill="rgba(94,234,212,.18)" stroke="rgba(94,234,212,.38)"/>
         <rect x="153" y="124" width="98" height="24" rx="10" fill="rgba(94,234,212,.09)" stroke="rgba(94,234,212,.24)"/>
-        <text x="163" y="77" class="tiny">Hello, how can I help?</text>
-        <text x="188" y="108" class="tiny">AI response</text>
-        <text x="163" y="140" class="tiny">Smart &amp; contextual</text>
+        <text x="163" y="77" class="tiny" data-lang-en="Hello, how can I help?" data-lang-id="Halo, ada yang bisa saya bantu?">Hello, how can I help?</text>
+        <text x="188" y="108" class="tiny" data-lang-en="AI response" data-lang-id="Balasan AI">AI response</text>
+        <text x="163" y="140" class="tiny" data-lang-en="Smart &amp; contextual" data-lang-id="Pintar &amp; kontekstual">Smart &amp; contextual</text>
       </g>
       <g class="glow">
         <circle cx="85" cy="74" r="23" fill="#122522" stroke="#5EEAD4"/>
@@ -1523,8 +1523,8 @@ nav.wrap{height:64px;}
         <circle cx="336" cy="154" r="23" fill="#122522" stroke="#5EEAD4"/>
         <path d="M326 154h20M336 144v20" stroke="#5EEAD4" stroke-width="3" stroke-linecap="round"/>
       </g>
-      <text x="43" y="121" class="label">MESSAGE</text>
-      <text x="305" y="194" class="label">AI AGENT</text>
+      <text x="43" y="121" class="label" data-lang-en="MESSAGE" data-lang-id="PESAN">MESSAGE</text>
+      <text x="305" y="194" class="label" data-lang-en="AI AGENT" data-lang-id="AGEN AI">AI AGENT</text>
     </svg>
   </div>
   <div class="featured-tags"><span class="tag">n8n</span><span class="tag">AI</span><span class="tag">Fonnte</span></div>
@@ -1535,12 +1535,11 @@ nav.wrap{height:64px;}
 
 <article class="featured-card cta-card reveal-project">
   <div class="cta-card-text">
-    <div class="cta-icon"><span>✦</span></div>
-    <div class="featured-tags"><span class="tag">Custom</span></div>
+    <div class="featured-tags cta-tags-row"><span class="tag">Custom</span><div class="cta-icon"><span>✦</span></div></div>
     <h3><span data-i18n="en">Submit Your Project According to Your Needs</span><span data-i18n="id">Sampaikan Proyek Sesuai Kebutuhan Anda</span></h3>
     <p><span data-i18n="en">Have a different project in mind? Let's discuss it and find the right automation solution together.</span><span data-i18n="id">Punya proyek lain yang ingin dikerjakan? Mari diskusikan dan temukan solusi otomatisasi yang tepat.</span></p>
   </div>
-  <button type="button" class="btn service-open-btn" data-service="custom"><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
+  <button type="button" class="btn service-open-btn" data-service=""><span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span></button>
 </article>
 
 </div>
@@ -1650,10 +1649,12 @@ Kandidat mengisi form lamaran, CV-nya otomatis dibaca dan dinilai oleh AI Agent 
 </label>
 <select id="contact-service" name="service" class="service-select" required>
 <option value="" selected disabled data-en="Select Your Service Need" data-id="Pilih Layanan Kebutuhan Anda">Select Your Service Need</option>
-<option class="contact-service-option" value="consulting" data-en="AI Automation Consulting" data-id="Konsultasi Otomatisasi AI">AI Automation Consulting</option>
-<option class="contact-service-option" value="implementation" data-en="n8n Implementation" data-id="Implementasi n8n">n8n Implementation</option>
-<option class="contact-service-option" value="mentoring" data-en="Private Mentoring" data-id="Mentoring Privat">Private Mentoring</option>
-<option class="contact-service-option" value="other" data-en="Other Services" data-id="Layanan Lainnya">Other Services</option>
+<option class="contact-service-option" value="ai-automation-project" data-en="AI Automation Project" data-id="Proyek Membangun Otomatisasi AI">AI Automation Project</option>
+<option class="contact-service-option" value="website-project" data-en="Website Development Project" data-id="Proyek Membangun Situs Website">Website Development Project</option>
+<option class="contact-service-option" value="n8n-template" data-en="n8n Workflow Template Purchase" data-id="Pembelian Template Workflow n8n">n8n Workflow Template Purchase</option>
+<option class="contact-service-option" value="error-handling" data-en="Error Handling Service" data-id="Jasa Penanganan Kesalahan">Error Handling Service</option>
+<option class="contact-service-option" value="maintenance" data-en="System Maintenance Service" data-id="Jasa Pemeliharaan Sistem">System Maintenance Service</option>
+<option class="contact-service-option" value="other" data-en="Other" data-id="Lainnya">Other</option>
 </select>
 </div>
 <div class="field">
@@ -1708,11 +1709,13 @@ placeholder="Your Phone Number" data-placeholder-en="Your Phone Number" data-pla
           <span data-i18n="id">Layanan</span>
         </label>
         <select id="service-choice" name="service" class="service-select" required>
-          <option class="service-option" value="consulting" data-en="AI Automation Consulting" data-id="Konsultasi Otomatisasi AI">AI Automation Consulting</option>
-          <option class="service-option" value="implementation" data-en="n8n Implementation" data-id="Implementasi n8n">n8n Implementation</option>
-          <option class="service-option" value="mentoring" data-en="Private Mentoring" data-id="Mentoring Privat">Private Mentoring</option>
-          <option class="service-option" value="other" data-en="Other Services" data-id="Layanan Lainnya">Other Services</option>
-          <option class="service-option" value="custom" data-en="Custom Project" data-id="Proyek Kustom">Custom Project</option>
+          <option value="" selected disabled data-en="Select Your Service Need" data-id="Pilih Layanan Kebutuhan Anda">Select Your Service Need</option>
+          <option class="service-option" value="ai-automation-project" data-en="AI Automation Project" data-id="Proyek Membangun Otomatisasi AI">AI Automation Project</option>
+          <option class="service-option" value="website-project" data-en="Website Development Project" data-id="Proyek Membangun Situs Website">Website Development Project</option>
+          <option class="service-option" value="n8n-template" data-en="n8n Workflow Template Purchase" data-id="Pembelian Template Workflow n8n">n8n Workflow Template Purchase</option>
+          <option class="service-option" value="error-handling" data-en="Error Handling Service" data-id="Jasa Penanganan Kesalahan">Error Handling Service</option>
+          <option class="service-option" value="maintenance" data-en="System Maintenance Service" data-id="Jasa Pemeliharaan Sistem">System Maintenance Service</option>
+          <option class="service-option" value="other" data-en="Other" data-id="Lainnya">Other</option>
         </select>
       </div>
 
@@ -1778,6 +1781,7 @@ document.querySelectorAll('[data-placeholder-en][data-placeholder-id]').forEach(
     : field.dataset.placeholderEn;
 });
 updateContactServiceOptions(lang);
+if(typeof updateServiceOptions === 'function') updateServiceOptions(lang);
 
 document.querySelectorAll('[data-lang-en][data-lang-id]').forEach(el=>{
   el.textContent = lang === 'id' ? el.dataset.langId : el.dataset.langEn;
@@ -1897,25 +1901,32 @@ const serviceSubmit = document.getElementById('service-contact-submit');
 const serviceStatus = document.getElementById('service-contact-status');
 
 const serviceNames = {
-  consulting: { en: 'AI Automation Consulting', id: 'Konsultasi Otomatisasi AI' },
-  implementation: { en: 'n8n Implementation', id: 'Implementasi n8n' },
-  mentoring: { en: 'Private Mentoring', id: 'Mentoring Privat' },
-  other: { en: 'Other Services', id: 'Layanan Lainnya' },
-  custom: { en: 'Custom Project', id: 'Proyek Kustom' }
+  'ai-automation-project': { en: 'AI Automation Project', id: 'Proyek Membangun Otomatisasi AI' },
+  'website-project': { en: 'Website Development Project', id: 'Proyek Membangun Situs Website' },
+  'n8n-template': { en: 'n8n Workflow Template Purchase', id: 'Pembelian Template Workflow n8n' },
+  'error-handling': { en: 'Error Handling Service', id: 'Jasa Penanganan Kesalahan' },
+  'maintenance': { en: 'System Maintenance Service', id: 'Jasa Pemeliharaan Sistem' },
+  'other': { en: 'Other', id: 'Lainnya' }
 };
 
 function updateServiceOptions(lang){
+  const language = lang === 'id' ? 'id' : 'en';
+  const placeholder = serviceChoice?.querySelector('option[value=""]');
+  if(placeholder){
+    placeholder.textContent = placeholder.dataset[language];
+  }
   document.querySelectorAll('.service-option').forEach(option=>{
-    option.textContent = option.dataset[lang === 'id' ? 'id' : 'en'];
+    option.textContent = option.dataset[language];
   });
 }
 
 function openServiceModal(service){
-  serviceChoice.value = service || 'other';
-  serviceChoice.dataset.userSelected = 'true';
+  serviceChoice.value = service || '';
+  serviceChoice.dataset.userSelected = service ? 'true' : 'false';
   updateServiceOptions(root.dataset.lang || 'en');
+  const lang = root.dataset.lang === 'id' ? 'id' : 'en';
   serviceSubject.value = (root.dataset.lang === 'id' ? 'Permintaan layanan' : 'Service inquiry')
-    + ': ' + serviceNames[serviceChoice.value][root.dataset.lang === 'id' ? 'id' : 'en'];
+    + (serviceNames[serviceChoice.value] ? ': ' + serviceNames[serviceChoice.value][lang] : '');
   serviceStatus.textContent = '';
   serviceStatus.style.display = 'none';
   serviceModal.classList.add('is-open');
