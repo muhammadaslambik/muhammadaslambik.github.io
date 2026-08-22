@@ -1911,7 +1911,8 @@ const serviceNames = {
 
 function updateServiceOptions(lang){
   const language = lang === 'id' ? 'id' : 'en';
-  const placeholder = serviceChoice?.querySelector('option[value=""]');
+  const choice = document.getElementById('service-choice');
+  const placeholder = choice?.querySelector('option[value=""]');
   if(placeholder){
     placeholder.textContent = placeholder.dataset[language];
   }
