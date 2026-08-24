@@ -259,6 +259,10 @@ display:flex; flex-direction:column;
 margin-top:auto;
 padding-top:22px;
 }
+/* Services message card uses the exact Projects CTA/card design. */
+.service-grid .service-message-card{grid-column:1/-1;}
+.service-grid .service-message-card .cta-card-text{flex:1 1 520px;min-width:0;}
+.service-grid .service-message-card .service-open-btn{flex:0 0 auto;}
 .service-card:hover{border-color:var(--teal-dim);}
 .service-card .icon-box{
 width:44px; height:44px; border-radius:10px;
@@ -1344,6 +1348,18 @@ nav.wrap{height:64px;}
 <h3><span data-i18n="en">Private Mentoring</span><span data-i18n="id">Mentoring Privat</span></h3>
 <p><span data-i18n="en">Learn AI automation hands-on using your own real business case.</span><span data-i18n="id">Belajar automasi AI secara langsung menggunakan studi kasus bisnis anda sendiri.</span></p>
 </div>
+
+<!-- SERVICE MESSAGE CTA — same concept as the Projects message card -->
+<article class="featured-card cta-card service-message-card">
+  <div class="cta-card-text">
+    <div class="featured-tags cta-tags-row"><span class="tag">Custom</span><div class="cta-icon"><span>✦</span></div></div>
+    <h3><span data-i18n="en">Send a Message About Your Needs</span><span data-i18n="id">Kirim Pesan Sesuai Kebutuhan Anda</span></h3>
+    <p><span data-i18n="en">Not sure which service fits your needs? Send me a message and let's discuss the right automation solution together.</span><span data-i18n="id">Belum yakin layanan mana yang sesuai? Kirim pesan dan mari diskusikan solusi otomatisasi yang tepat untuk kebutuhan Anda.</span></p>
+  </div>
+  <button type="button" class="btn service-open-btn" data-service="">
+    <span data-i18n="en">Send Message</span><span data-i18n="id">Kirim Pesan</span>
+  </button>
+</article>
 </div>
 </div>
 </section>
