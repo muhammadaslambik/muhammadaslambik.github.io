@@ -1086,6 +1086,158 @@ nav.wrap{height:64px;}
 @media(max-width:820px){.cv-case-sections{grid-template-columns:1fr}.cv-case-section{min-height:auto}.cv-case-card{width:calc(100vw - 20px);padding:24px 16px}.cv-case-header{padding:8px 35px 18px}.cv-case-footer{align-items:flex-start;flex-direction:column}.cv-case-footer-note{text-align:left}}
 @media(prefers-reduced-motion:reduce){.cv-case-modal.is-open,.cv-case-orb,.cv-case-icon,.cv-flow-arrow{animation:none!important}.cv-case-section:hover{transform:none}}
 
+
+/* Mobile optimization for AI CV Screening case study */
+@media (max-width: 768px){
+  .project-detail-modal,
+  .case-study-modal,
+  .project-detail{
+    width: calc(100vw - 24px) !important;
+    max-width: none !important;
+    margin: 12px auto !important;
+    border-radius: 22px !important;
+  }
+
+  .project-detail-modal .project-detail-inner,
+  .case-study-modal .project-detail-inner,
+  .project-detail .project-detail-inner{
+    padding: 28px 18px 34px !important;
+  }
+
+  .project-detail-modal h1,
+  .case-study-modal h1,
+  .project-detail h1{
+    font-size: clamp(28px, 8vw, 38px) !important;
+    line-height: 1.12 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .project-detail-modal .project-detail-subtitle,
+  .case-study-modal .project-detail-subtitle,
+  .project-detail .project-detail-subtitle{
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+    max-width: 620px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .project-detail-modal .project-flow,
+  .case-study-modal .project-flow,
+  .project-detail .project-flow{
+    gap: 7px !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    padding: 4px 2px 10px !important;
+    scrollbar-width: none !important;
+  }
+
+  .project-detail-modal .project-flow::-webkit-scrollbar,
+  .case-study-modal .project-flow::-webkit-scrollbar,
+  .project-detail .project-flow::-webkit-scrollbar{
+    display: none !important;
+  }
+
+  .project-detail-modal .project-flow > *,
+  .case-study-modal .project-flow > *,
+  .project-detail .project-flow > *{
+    flex: 0 0 auto !important;
+  }
+
+  .project-detail-modal .project-columns,
+  .case-study-modal .project-columns,
+  .project-detail .project-columns{
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .project-detail-modal .project-column,
+  .case-study-modal .project-column,
+  .project-detail .project-column{
+    min-height: 0 !important;
+    padding: 20px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .project-detail-modal .project-column h3,
+  .case-study-modal .project-column h3,
+  .project-detail .project-column h3{
+    font-size: 21px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .project-detail-modal .project-column li,
+  .case-study-modal .project-column li,
+  .project-detail .project-column li{
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 9px !important;
+  }
+
+  .project-detail-modal .project-column p,
+  .case-study-modal .project-column p,
+  .project-detail .project-column p{
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+  }
+
+  .project-detail-modal .project-close,
+  .case-study-modal .project-close,
+  .project-detail .project-close{
+    width: 40px !important;
+    height: 40px !important;
+    top: 12px !important;
+    right: 12px !important;
+  }
+}
+
+@media (max-width: 480px){
+  .project-detail-modal,
+  .case-study-modal,
+  .project-detail{
+    width: calc(100vw - 16px) !important;
+    margin: 8px auto !important;
+    border-radius: 18px !important;
+  }
+
+  .project-detail-modal .project-detail-inner,
+  .case-study-modal .project-detail-inner,
+  .project-detail .project-detail-inner{
+    padding: 24px 14px 28px !important;
+  }
+
+  .project-detail-modal h1,
+  .case-study-modal h1,
+  .project-detail h1{
+    font-size: 27px !important;
+  }
+
+  .project-detail-modal .project-detail-subtitle,
+  .case-study-modal .project-detail-subtitle,
+  .project-detail .project-detail-subtitle{
+    font-size: 13.5px !important;
+  }
+
+  .project-detail-modal .project-column,
+  .case-study-modal .project-column,
+  .project-detail .project-column{
+    padding: 18px 15px !important;
+  }
+
+  .project-detail-modal .project-column h3,
+  .case-study-modal .project-column h3,
+  .project-detail .project-column h3{
+    font-size: 20px !important;
+  }
+
+  .project-detail-modal .project-column li,
+  .case-study-modal .project-column li,
+  .project-detail .project-column li{
+    font-size: 13.5px !important;
+    line-height: 1.68 !important;
+  }
+}
+
 </style>
 </head>
 <body>
