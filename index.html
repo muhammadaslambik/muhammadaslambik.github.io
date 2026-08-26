@@ -1410,6 +1410,62 @@ nav.wrap{height:64px;}
   }
 }
 
+
+/* ===== MOBILE: USE THE FULL CSS VIEWPORT WIDTH =====
+   Chrome/Safari can reserve scrollbar width from the layout viewport.
+   100vw keeps the page canvas at the full device viewport width so the
+   left/right content margins remain genuinely equal. */
+@media (max-width: 860px){
+  html{
+    width:100vw !important;
+    max-width:100vw !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow-x:hidden !important;
+  }
+
+  body{
+    width:100vw !important;
+    max-width:100vw !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow-x:hidden !important;
+  }
+
+  .wrap{
+    width:100% !important;
+    max-width:none !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+
+  nav.wrap,
+  .hero,
+  .hero-top,
+  .hero-copy,
+  .hero-photo,
+  .flow-card,
+  section{
+    box-sizing:border-box !important;
+  }
+
+  .flow-card{
+    width:100% !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+}
+
+@media (max-width:380px){
+  .wrap{
+    padding-left:14px !important;
+    padding-right:14px !important;
+  }
+}
+
 </style>
 </head>
 <body>
