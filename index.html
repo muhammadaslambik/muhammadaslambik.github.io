@@ -1095,6 +1095,108 @@ nav.wrap{height:64px;}
 @media(prefers-reduced-motion:reduce){.cv-case-modal.is-open,.cv-case-orb,.cv-case-icon,.cv-flow-arrow{animation:none!important}.cv-case-section:hover{transform:none}}
 
 
+
+/* ===== MOBILE HOME LAYOUT REFINEMENT ===== */
+@media (max-width: 860px){
+  /* Keep left/right page spacing perfectly balanced */
+  .wrap{
+    width:100%;
+    max-width:none;
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  /* Profile photo appears first on mobile */
+  .hero-top{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+
+  .hero-photo{
+    order:-1;
+    width:100%;
+    margin:0 auto;
+    padding:0;
+  }
+
+  .hero-photo img{
+    width:220px;
+    max-width:72vw;
+    margin:0 auto;
+  }
+
+  .hero-photo-badge{
+    bottom:8px;
+  }
+
+  /* Keep the simulation aligned with the same page margins */
+  .flow-card{
+    width:100%;
+    margin-left:0;
+    margin-right:0;
+  }
+
+  .flow-topbar{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  /* Slightly enlarge the workflow labels for mobile readability */
+  .flow-canvas{
+    padding:20px 12px 16px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .flow-canvas svg{
+    min-width:720px;
+  }
+
+  .flow-node-title{
+    font-size:14px;
+  }
+
+  .flow-node-label{
+    font-size:11.5px;
+  }
+}
+
+@media (max-width:520px){
+  .wrap{
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  .hero{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .hero-photo img{
+    width:205px;
+    max-width:68vw;
+  }
+
+  .flow-topbar{
+    padding-left:14px;
+    padding-right:14px;
+    gap:10px;
+  }
+
+  .flow-topbar > span:first-child{
+    font-size:12px;
+  }
+
+  .flow-live-label{
+    font-size:10px;
+  }
+
+  .flow-canvas svg{
+    min-width:700px;
+  }
+}
+
 </style>
 </head>
 <body>
