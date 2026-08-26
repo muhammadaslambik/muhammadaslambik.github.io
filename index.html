@@ -1368,6 +1368,48 @@ nav.wrap{height:64px;}
   }
 }
 
+
+/* ===== MOBILE: VERTICAL SCROLLBAR MUST NOT CHANGE CONTENT BALANCE =====
+   Keep the page fully scrollable, but make the vertical scrollbar overlay
+   the page instead of taking horizontal layout space. */
+@media (max-width: 860px){
+  html{
+    scrollbar-width:none !important;
+    -ms-overflow-style:none !important;
+  }
+
+  html::-webkit-scrollbar{
+    width:0 !important;
+    height:0 !important;
+    display:none !important;
+  }
+
+  body{
+    scrollbar-width:none !important;
+    -ms-overflow-style:none !important;
+  }
+
+  body::-webkit-scrollbar{
+    width:0 !important;
+    height:0 !important;
+    display:none !important;
+  }
+
+  /* Keep horizontal scrolling available for workflow diagrams,
+     while hiding only their scrollbar track. */
+  .flow-canvas,
+  .cv-case-flow{
+    scrollbar-width:none !important;
+  }
+
+  .flow-canvas::-webkit-scrollbar,
+  .cv-case-flow::-webkit-scrollbar{
+    width:0 !important;
+    height:0 !important;
+    display:none !important;
+  }
+}
+
 </style>
 </head>
 <body>
