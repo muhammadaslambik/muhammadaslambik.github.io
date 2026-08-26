@@ -1320,6 +1320,54 @@ nav.wrap{height:64px;}
   }
 }
 
+
+/* ===== MOBILE: TRUE SYMMETRICAL PAGE PADDING =====
+   Use one exact horizontal padding value instead of width-minus-padding.
+   This keeps every section aligned to the same left/right content edges,
+   including the header, hero and workflow card. */
+@media (max-width: 860px){
+  .wrap{
+    width:100% !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+
+  nav.wrap{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+
+  .hero,
+  .hero-top,
+  .hero-copy,
+  .hero-photo,
+  .flow-card{
+    width:100%;
+    max-width:100%;
+  }
+
+  .hero-photo{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  .flow-card{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+}
+
+@media (max-width:380px){
+  .wrap,
+  nav.wrap{
+    padding-left:14px !important;
+    padding-right:14px !important;
+  }
+}
+
 </style>
 </head>
 <body>
