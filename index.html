@@ -1485,6 +1485,206 @@ nav.wrap{height:64px;}
   }
 }
 
+
+/* ===== PROJECT VIDEO BUTTONS ===== */
+.video-watch-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:42px;
+  margin-top:10px;
+  padding:10px 15px;
+  border:1px solid rgba(91,234,215,.35);
+  border-radius:10px;
+  background:rgba(91,234,215,.07);
+  color:#67e8d8;
+  font-family:inherit;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition:transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.video-watch-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(91,234,215,.13);
+  border-color:rgba(91,234,215,.65);
+}
+
+@media (max-width:820px){
+  .video-watch-btn{
+    min-height:42px;
+    margin-top:9px;
+    font-size:12.5px;
+  }
+}
+
+
+/* ===== YOUTUBE ICON FOR VIDEO BUTTONS ===== */
+.video-watch-btn{
+  gap:9px;
+}
+
+.video-watch-btn .youtube-icon{
+  width:19px;
+  height:19px;
+  flex:0 0 19px;
+  display:block;
+}
+
+.video-watch-btn .youtube-icon rect{
+  fill:#ff0000;
+}
+
+.video-watch-btn .youtube-icon path{
+  fill:#ffffff;
+}
+
+
+/* ===== CV CASE STUDY ACTION BUTTONS ===== */
+.cv-case-actions{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:18px 0 4px;
+}
+
+.cv-case-action{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-height:42px;
+  padding:10px 16px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:11px;
+  background:rgba(255,255,255,.045);
+  color:var(--text,#fff);
+  font:700 12px/1 var(--mono,monospace);
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.cv-case-action:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.25);
+}
+
+.cv-case-action.video{
+  border-color:rgba(255,0,0,.28);
+}
+
+.cv-case-action.video:hover{
+  border-color:rgba(255,0,0,.55);
+  box-shadow:0 8px 24px rgba(255,0,0,.10);
+}
+
+.cv-case-action.workflow{
+  border-color:rgba(91,234,215,.28);
+}
+
+.cv-case-action.workflow:hover{
+  border-color:rgba(91,234,215,.55);
+  box-shadow:0 8px 24px rgba(91,234,215,.10);
+}
+
+.cv-action-icon{
+  width:19px;
+  height:19px;
+  flex:0 0 19px;
+  display:block;
+}
+
+.cv-action-icon.youtube rect{ fill:#ff0000; }
+.cv-action-icon.youtube path{ fill:#fff; }
+
+.cv-action-icon.workflow-icon circle{
+  fill:rgba(91,234,215,.14);
+  stroke:#67e8d8;
+  stroke-width:1.5;
+}
+.cv-action-icon.workflow-icon path{
+  fill:none;
+  stroke:#67e8d8;
+  stroke-width:1.5;
+  stroke-linecap:round;
+}
+
+@media (max-width:820px){
+  .cv-case-actions{
+    flex-direction:column;
+    align-items:stretch;
+    gap:9px;
+    margin-top:15px;
+  }
+
+  .cv-case-action{
+    width:100%;
+    min-height:43px;
+    font-size:12.5px;
+  }
+}
+
+
+/* ===== PROJECT CARD: WORKFLOW EXAMPLE BUTTON ===== */
+.project-workflow-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  min-height:40px;
+  margin-top:9px;
+  padding:9px 14px;
+  border:1px solid rgba(91,234,215,.28);
+  border-radius:10px;
+  background:rgba(91,234,215,.055);
+  color:#67e8d8;
+  font:700 11.5px/1 var(--mono,monospace);
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition:transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.project-workflow-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(91,234,215,.11);
+  border-color:rgba(91,234,215,.55);
+}
+
+.project-workflow-icon{
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+  display:block;
+}
+
+.project-workflow-icon circle{
+  fill:rgba(91,234,215,.12);
+  stroke:#67e8d8;
+  stroke-width:1.5;
+}
+
+.project-workflow-icon path{
+  fill:none;
+  stroke:#67e8d8;
+  stroke-width:1.5;
+  stroke-linecap:round;
+}
+
+@media (max-width:820px){
+  .project-workflow-btn{
+    min-height:42px;
+    font-size:12px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1892,6 +2092,20 @@ nav.wrap{height:64px;}
   <h3><span data-i18n="en">AI CV Screening System</span><span data-i18n="id">Sistem Screening CV Berbasis AI</span></h3>
   <p><span data-i18n="en">Automated screening for 500+ CVs using AI. Saves 90% of recruitment processing time.</span><span data-i18n="id">Screening 500+ CV secara otomatis menggunakan AI. Menghemat hingga 90% waktu proses rekrutmen.</span></p>
   <button class="project-open" type="button"><span><span data-i18n="en">View CV Screening Details</span><span data-i18n="id">Lihat Detail CV Screening</span></span><span class="arrow">→</span></button>
+<button class="project-workflow-btn" type="button" data-workflow-target="cv">
+  <svg class="project-workflow-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <circle cx="5" cy="12" r="2.5"></circle>
+  <circle cx="12" cy="6" r="2.5"></circle>
+  <circle cx="19" cy="12" r="2.5"></circle>
+  <circle cx="12" cy="18" r="2.5"></circle>
+  <path d="M7.2 10.6 L9.8 7.5 M14.2 7.5 L16.8 10.6 M16.8 13.4 L14.2 16.5 M9.8 16.5 L7.2 13.4"></path>
+</svg>
+  <span data-i18n="en">Workflow Example</span><span data-i18n="id">Contoh Alur Kerja</span>
+</button>
+<button class="video-watch-btn" type="button" data-video-target="cv"><svg class="youtube-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="2" y="5" width="20" height="14" rx="4"></rect>
+  <path d="M10 9 L16 12 L10 15 Z"></path>
+</svg><span data-i18n="en">Watch Video</span><span data-i18n="id">Tonton Video</span></button>
 </article>
 
 <article class="featured-card docs-card reveal-project">
@@ -1918,6 +2132,20 @@ nav.wrap{height:64px;}
   <h3><span data-i18n="en">Document Sorting &amp; Summarize</span><span data-i18n="id">Pengurutan &amp; Ringkasan Dokumen</span></h3>
   <p><span data-i18n="en">Automatically sort, classify, and summarize incoming documents using AI.</span><span data-i18n="id">Mengurutkan, mengklasifikasikan, dan merangkum dokumen masuk secara otomatis menggunakan AI.</span></p>
   <button class="project-open" type="button"><span><span data-i18n="en">View Document Automation Details</span><span data-i18n="id">Lihat Detail Otomatisasi Dokumen</span></span><span class="arrow">→</span></button>
+<button class="project-workflow-btn" type="button" data-workflow-target="document">
+  <svg class="project-workflow-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <circle cx="5" cy="12" r="2.5"></circle>
+  <circle cx="12" cy="6" r="2.5"></circle>
+  <circle cx="19" cy="12" r="2.5"></circle>
+  <circle cx="12" cy="18" r="2.5"></circle>
+  <path d="M7.2 10.6 L9.8 7.5 M14.2 7.5 L16.8 10.6 M16.8 13.4 L14.2 16.5 M9.8 16.5 L7.2 13.4"></path>
+</svg>
+  <span data-i18n="en">Workflow Example</span><span data-i18n="id">Contoh Alur Kerja</span>
+</button>
+<button class="video-watch-btn" type="button" data-video-target="document"><svg class="youtube-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="2" y="5" width="20" height="14" rx="4"></rect>
+  <path d="M10 9 L16 12 L10 15 Z"></path>
+</svg><span data-i18n="en">Watch Video</span><span data-i18n="id">Tonton Video</span></button>
 </article>
 
 <article class="featured-card chat-card reveal-project">
@@ -1951,6 +2179,20 @@ nav.wrap{height:64px;}
   <h3><span data-i18n="en">WhatsApp AI Chatbot</span><span data-i18n="id">Chatbot AI WhatsApp</span></h3>
   <p><span data-i18n="en">Auto-reply WhatsApp chatbot integrated with AI for smart, contextual responses.</span><span data-i18n="id">Chatbot WhatsApp auto-reply terintegrasi AI untuk memberikan respons cerdas dan kontekstual.</span></p>
   <button class="project-open" type="button"><span><span data-i18n="en">View WhatsApp Chatbot Details</span><span data-i18n="id">Lihat Detail Chatbot WhatsApp</span></span><span class="arrow">→</span></button>
+<button class="project-workflow-btn" type="button" data-workflow-target="whatsapp">
+  <svg class="project-workflow-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <circle cx="5" cy="12" r="2.5"></circle>
+  <circle cx="12" cy="6" r="2.5"></circle>
+  <circle cx="19" cy="12" r="2.5"></circle>
+  <circle cx="12" cy="18" r="2.5"></circle>
+  <path d="M7.2 10.6 L9.8 7.5 M14.2 7.5 L16.8 10.6 M16.8 13.4 L14.2 16.5 M9.8 16.5 L7.2 13.4"></path>
+</svg>
+  <span data-i18n="en">Workflow Example</span><span data-i18n="id">Contoh Alur Kerja</span>
+</button>
+<button class="video-watch-btn" type="button" data-video-target="whatsapp"><svg class="youtube-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="2" y="5" width="20" height="14" rx="4"></rect>
+  <path d="M10 9 L16 12 L10 15 Z"></path>
+</svg><span data-i18n="en">Watch Video</span><span data-i18n="id">Tonton Video</span></button>
 </article>
 
 <article class="featured-card cta-card reveal-project">
@@ -2057,8 +2299,7 @@ placeholder="Your Phone Number" data-placeholder-en="Your Phone Number" data-pla
     <div class="cv-case-header">
       <span class="cv-case-kicker"><i></i><span data-i18n="en">AI AUTOMATION CASE STUDY</span><span data-i18n="id">STUDI KASUS OTOMATISASI AI</span></span>
       <h2 id="cv-case-title"><span data-i18n="en">AI CV Screening Automation</span><span data-i18n="id">Otomatisasi Screening CV Berbasis AI</span></h2>
-      <p><span data-i18n="en">A complete recruitment screening workflow designed to replace repetitive administrative work with an automated, AI-powered process.</span><span data-i18n="id">Alur kerja screening rekrutmen lengkap yang dirancang untuk menggantikan pekerjaan administratif berulang dengan proses otomatis berbasis AI.</span></p>
-    </div>
+      <p><span data-i18n="en">A complete recruitment screening workflow designed to replace repetitive administrative work with an automated, AI-powered process.</span><span data-i18n="id">Alur kerja screening rekrutmen lengkap yang dirancang untuk menggantikan pekerjaan administratif berulang dengan proses otomatis berbasis AI.</span>
 
     <div class="cv-case-flow" aria-label="Automation flow">
       <span class="cv-flow-node"><b>01</b><span data-i18n="en">CV Submission</span><span data-i18n="id">Kirim CV</span></span><span class="cv-flow-arrow">→</span>
@@ -2106,10 +2347,33 @@ placeholder="Your Phone Number" data-placeholder-en="Your Phone Number" data-pla
       </article>
     </div>
 
+    <div class="cv-case-actions" aria-label="Case study actions">
+      <button type="button" class="cv-case-action video" data-video-target="cv">
+        <svg class="cv-action-icon youtube" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="2" y="5" width="20" height="14" rx="4"></rect>
+          <path d="M10 9 L16 12 L10 15 Z"></path>
+        </svg>
+        <span data-i18n="en">Watch Video</span><span data-i18n="id">Tonton Video</span>
+      </button>
+
+      <button type="button" class="cv-case-action workflow" id="cv-example-workflow">
+        <svg class="cv-action-icon workflow-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="5" cy="12" r="2.5"></circle>
+          <circle cx="12" cy="6" r="2.5"></circle>
+          <circle cx="19" cy="12" r="2.5"></circle>
+          <circle cx="12" cy="18" r="2.5"></circle>
+          <path d="M7.2 10.6 L9.8 7.5 M14.2 7.5 L16.8 10.6 M16.8 13.4 L14.2 16.5 M9.8 16.5 L7.2 13.4"></path>
+        </svg>
+        <span data-i18n="en">Workflow Example</span><span data-i18n="id">Contoh Alur Kerja</span>
+      </button>
+    </div>
+
     <div class="cv-case-footer">
       <div class="cv-case-stack"><span>n8n</span><span>Google Gemini</span><span>Google Drive</span><span>Google Sheets</span><span>Gmail</span></div>
       <div class="cv-case-footer-note"><span data-i18n="en">End-to-end recruitment automation</span><span data-i18n="id">Otomatisasi rekrutmen end-to-end</span></div>
     </div>
+
+    
   </div>
 </div>
 
@@ -2561,6 +2825,44 @@ document.querySelectorAll('.tag img').forEach(function(img){
     fallback.textContent=alt==='Fonnte'?'F':alt==='Canva'?'C':alt==='n8n'?'n8n':alt.slice(0,2).toUpperCase();
     img.replaceWith(fallback);
   }, {once:true});
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const workflowButton = document.getElementById('cv-example-workflow');
+  const workflow = document.querySelector('.cv-case-flow');
+
+  if (workflowButton && workflow) {
+    workflowButton.addEventListener('click', function () {
+      workflow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.project-workflow-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const target = btn.getAttribute('data-workflow-target');
+
+      if (target === 'cv') {
+        const detailBtn = document.querySelector('.cv-case-modal .cv-case-flow');
+        const modal = document.getElementById('cv-case-modal');
+
+        if (modal && detailBtn) {
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden', 'false');
+          setTimeout(function () {
+            detailBtn.scrollIntoView({ behavior:'smooth', block:'center' });
+          }, 120);
+        }
+      }
+    });
+  });
 });
 </script>
 
