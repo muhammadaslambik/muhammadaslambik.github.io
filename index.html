@@ -843,6 +843,8 @@ padding:32px;
 box-shadow:0 14px 40px rgba(0,0,0,.22);
 }
 form{display:flex; flex-direction:column; gap:20px;}
+/* Lock page scrolling only while the service message modal is actually open. */
+body.modal-open{overflow:hidden;}
 .field label{
 font-family:var(--mono); font-size:11px; text-transform:uppercase;
 letter-spacing:.08em; color:var(--teal); display:block; margin-bottom:9px;
@@ -2287,7 +2289,8 @@ placeholder="Your Phone Number" data-placeholder-en="Your Phone Number" data-pla
     <div class="cv-case-header">
       <span class="cv-case-kicker"><i></i><span data-i18n="en">AI AUTOMATION CASE STUDY</span><span data-i18n="id">STUDI KASUS OTOMATISASI AI</span></span>
       <h2 id="cv-case-title"><span data-i18n="en">AI CV Screening Automation</span><span data-i18n="id">Otomatisasi Screening CV Berbasis AI</span></h2>
-      <p><span data-i18n="en">A complete recruitment screening workflow designed to replace repetitive administrative work with an automated, AI-powered process.</span><span data-i18n="id">Alur kerja screening rekrutmen lengkap yang dirancang untuk menggantikan pekerjaan administratif berulang dengan proses otomatis berbasis AI.</span>
+      <p><span data-i18n="en">A complete recruitment screening workflow designed to replace repetitive administrative work with an automated, AI-powered process.</span><span data-i18n="id">Alur kerja screening rekrutmen lengkap yang dirancang untuk menggantikan pekerjaan administratif berulang dengan proses otomatis berbasis AI.</span></p>
+    </div>
 
     <div class="cv-case-flow" aria-label="Automation flow">
       <span class="cv-flow-node"><b>01</b><span data-i18n="en">CV Submission</span><span data-i18n="id">Kirim CV</span></span><span class="cv-flow-arrow">→</span>
@@ -2601,29 +2604,54 @@ function updateServiceOptions(lang){
   });
 }
 
-function openServiceModal(service){
-  serviceChoice.value = service || '';
-  serviceChoice.dataset.userSelected = service ? 'true' : 'false';
-  updateServiceOptions(root.dataset.lang || 'en');
-  const lang = root.dataset.lang === 'id' ? 'id' : 'en';
-  serviceSubject.value = (root.dataset.lang === 'id' ? 'Permintaan layanan' : 'Service inquiry')
-    + (serviceNames[serviceChoice.value] ? ': ' + serviceNames[serviceChoice.value][lang] : '');
-  serviceStatus.textContent = '';
-  serviceStatus.style.display = 'none';
+function openServiceModal(service = ''){
+  if(!serviceModal || !serviceChoice || !serviceSubject) return;
+
+  // Service Message Modal and project-detail modal must never be open together.
+  closeCvCaseModal();
+
+  const lang = root?.dataset?.lang === 'id' ? 'id' : 'en';
+  const selectedService = Object.prototype.hasOwnProperty.call(serviceNames, service)
+    ? service
+    : '';
+
+  serviceChoice.value = selectedService;
+  serviceChoice.dataset.userSelected = selectedService ? 'true' : 'false';
+  updateServiceOptions(lang);
+
+  const serviceName = selectedService && serviceNames[selectedService]
+    ? serviceNames[selectedService][lang]
+    : '';
+
+  serviceSubject.value = (lang === 'id' ? 'Permintaan layanan' : 'Service inquiry')
+    + (serviceName ? ': ' + serviceName : '');
+
+  if(serviceStatus){
+    serviceStatus.textContent = '';
+    serviceStatus.style.display = 'none';
+  }
+
   serviceModal.classList.add('is-open');
   serviceModal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
+
   setTimeout(()=>document.getElementById('service-name')?.focus(), 60);
 }
 
 function closeServiceModal(){
+  if(!serviceModal) return;
   serviceModal.classList.remove('is-open');
   serviceModal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
+  document.body.classList.remove('modal-open');
 }
 
-document.querySelectorAll('.service-open-btn').forEach(button=>{
-  button.addEventListener('click', ()=>openServiceModal(button.dataset.service));
+// Delegated listener: catches every current/future "Kirim Pesan" CTA.
+document.addEventListener('click', event=>{
+  const button = event.target.closest('.service-open-btn');
+  if(!button) return;
+  event.preventDefault();
+  event.stopPropagation();
+  openServiceModal(button.dataset.service || '');
 });
 
 serviceModalClose?.addEventListener('click', closeServiceModal);
@@ -2635,9 +2663,14 @@ document.addEventListener('keydown', event=>{
 });
 
 serviceChoice?.addEventListener('change', ()=>{
-  const lang = root.dataset.lang || 'en';
-  const name = serviceNames[serviceChoice.value][lang === 'id' ? 'id' : 'en'];
-  serviceSubject.value = (lang === 'id' ? 'Permintaan layanan' : 'Service inquiry') + ': ' + name;
+  const lang = root?.dataset?.lang === 'id' ? 'id' : 'en';
+  const selected = serviceChoice.value;
+  const name = serviceNames[selected]
+    ? serviceNames[selected][lang]
+    : '';
+
+  serviceSubject.value = (lang === 'id' ? 'Permintaan layanan' : 'Service inquiry')
+    + (name ? ': ' + name : '');
 });
 
 if(serviceForm){
@@ -2746,16 +2779,20 @@ const cvCaseCard = cvCaseModal?.querySelector('.cv-case-card');
 
 function openCvCaseModal(){
   if(!cvCaseModal) return;
+
+  // The CV detail view is independent from the service contact form.
+  closeServiceModal();
+
   cvCaseModal.classList.add('is-open');
   cvCaseModal.setAttribute('aria-hidden','false');
-  document.body.style.overflow='hidden';
+  document.body.classList.add('modal-open');
   setTimeout(()=>cvCaseClose?.focus(),60);
 }
 function closeCvCaseModal(){
   if(!cvCaseModal) return;
   cvCaseModal.classList.remove('is-open');
   cvCaseModal.setAttribute('aria-hidden','true');
-  document.body.style.overflow='';
+  document.body.classList.remove('modal-open');
 }
 const cvOpenButton = document.querySelector('.cv-card .project-open');
 cvOpenButton?.addEventListener('click',(event)=>{
@@ -2834,7 +2871,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.project-workflow-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
       const target = btn.getAttribute('data-workflow-target');
 
       if (target === 'cv') {
@@ -2842,8 +2881,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const modal = document.getElementById('cv-case-modal');
 
         if (modal && detailBtn) {
-          modal.classList.add('open');
+          modal.classList.add('is-open');
           modal.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('modal-open');
           setTimeout(function () {
             detailBtn.scrollIntoView({ behavior:'smooth', block:'center' });
           }, 120);
