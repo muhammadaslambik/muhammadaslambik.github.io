@@ -834,8 +834,8 @@ display:none;
 .contact-info a.email{font-family:var(--display); font-size:clamp(15px, 2vw, 18px); color:var(--teal); display:inline-flex; align-items:center; gap:9px; margin-bottom:28px; word-break:break-word;}
 .email-icon{width:19px; height:19px; flex:0 0 19px; color:var(--teal);}
 .social-list{display:flex; flex-direction:row; gap:12px; align-items:center;}
-.social-list a{width:44px; height:44px; border:none; border-radius:9px; display:flex; align-items:center; justify-content:center; transition:transform .2s, box-shadow .2s; overflow:hidden;}
-.social-list a:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.28);}
+.social-list a{width:44px; height:44px; border:none; border-radius:9px; display:flex; align-items:center; justify-content:center; transition:box-shadow .2s; overflow:hidden;}
+.social-list a:hover{transform:none; box-shadow:0 6px 18px rgba(0,0,0,.28);}
 .social-list svg{width:22px; height:22px; fill:currentColor;}
 /* GitHub */
 .social-list a:nth-child(1){background:#F2F2F2; color:#24292F;}
@@ -844,6 +844,8 @@ display:none;
 /* Instagram */
 .social-list a:nth-child(3){background:linear-gradient(135deg,#515BD4 0%,#8134AF 30%,#DD2A7B 55%,#F58529 78%,#FEDA77 100%); color:#fff;}
 .social-list .linkedin-icon{fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+/* Keep the Hire Me buttons stable on hover */
+header .btn:hover{transform:none;}
 .social-list a:nth-child(3) svg{fill:none; stroke:currentColor; stroke-width:1.8;}
 /* CONTACT FORM — clearer panel, same dark/amber palette */
 .contact-form-card{
@@ -1837,6 +1839,16 @@ nav.wrap{height:64px;}
     margin-top:18px;
     margin-bottom:0;
   }
+}
+
+
+/* Keep project action buttons stable: no hover movement */
+.project-link:hover,
+.project-card a:hover,
+.project-card button:hover,
+.project-actions a:hover,
+.project-actions button:hover {
+  transform: none !important;
 }
 
 </style>
