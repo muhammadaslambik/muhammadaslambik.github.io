@@ -2332,6 +2332,25 @@ nav.wrap{height:64px;}
   }
 }
 </style>
+
+<style id="project-action-buttons-no-motion">
+/* Keep project action buttons stable: no lift, shake, or transform on hover/focus/active. */
+.project-open,
+.video-watch-btn,
+.project-workflow-btn,
+.project-open:hover,
+.video-watch-btn:hover,
+.project-workflow-btn:hover,
+.project-open:focus,
+.video-watch-btn:focus,
+.project-workflow-btn:focus,
+.project-open:active,
+.video-watch-btn:active,
+.project-workflow-btn:active{
+  transform:none !important;
+  animation:none !important;
+}
+</style>
 </head>
 <body>
 <header>
