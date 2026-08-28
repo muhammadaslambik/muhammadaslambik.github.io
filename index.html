@@ -1007,6 +1007,37 @@ nav.wrap{height:64px;}
 *{animation:none !important; transition:none !important;}
 }
 
+
+/* Mobile swipe instruction for AI Automation Simulation */
+.mobile-swipe-hint{display:none;}
+@media(max-width:860px){
+  .mobile-swipe-hint{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    padding:10px 14px 18px;
+    font-family:var(--mono);
+    font-size:12px;
+    line-height:1.4;
+    color:var(--muted);
+    text-align:center;
+    user-select:none;
+  }
+  .swipe-text{color:var(--muted); font-weight:700;}
+  .swipe-side-icon{
+    color:var(--teal);
+    font-size:18px;
+    line-height:1;
+    display:inline-block;
+    animation:swipeHint 1.8s ease-in-out infinite;
+  }
+  @keyframes swipeHint{
+    0%,100%{opacity:.6;}
+    50%{opacity:1;}
+  }
+}
+
 /* LIVE WORKFLOW ANIMATION */
 .flow-canvas{padding:24px 18px 18px; overflow-x:auto;}
 .flow-canvas svg{width:100%; height:auto; min-width:640px; display:block;}
@@ -2670,7 +2701,13 @@ a[href*="watch"]:hover, a[href*="workflow"]:hover,
   <text x="1015" y="140" text-anchor="middle" class="flow-node-label" data-lang-en="email + sheet" data-lang-id="email + sheet">email + sheet</text>
 </g>
 </svg>
+</div><div class="mobile-swipe-hint" aria-hidden="true">
+  <span class="swipe-side-icon" aria-hidden="true">←</span>
+  <span class="swipe-text" data-i18n="en">Swipe</span>
+  <span class="swipe-text" data-i18n="id">Geser</span>
+  <span class="swipe-side-icon" aria-hidden="true">→</span>
 </div>
+
 </div>
 </div>
 </section>
